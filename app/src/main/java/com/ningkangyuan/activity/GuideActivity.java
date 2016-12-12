@@ -43,7 +43,7 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("检查卡号：" + mVip.getCard_code());
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
         ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.guide, null));
 
         findViewById(R.id.guide_back).setOnClickListener(new View.OnClickListener() {
@@ -73,7 +73,7 @@ public class GuideActivity extends BaseActivity {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                showProgressDialog("正在加载..");
+                showProgressDialog("Being loaded..");
             }
 
             @Override
@@ -81,7 +81,7 @@ public class GuideActivity extends BaseActivity {
                 dismissProgressDialog();
             }
         });
-        String url = "http://api.nbrobo.com/user-guide.html";
+        String url = "http://121.43.123.125:84/user-guide.html";
         mWebView.loadUrl(url);
 
     }
