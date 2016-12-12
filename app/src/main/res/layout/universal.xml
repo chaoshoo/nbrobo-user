@@ -16,19 +16,13 @@
         android:orientation="horizontal"
         android:gravity="bottom">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/icon_main_title"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:textSize="24sp"
             android:textColor="@android:color/white"
-            android:text="Intelligent health management"/>
+            android:text="GD Health"/>
 
         <TextView
             android:id="@+id/universal_checkcard_num"
@@ -39,13 +33,6 @@
             android:textColor="@android:color/black"
             android:text="Check card number：420521199210111111"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:textSize="26sp"
-            android:textColor="@android:color/white"
-            android:text="GD Health"/>
     </LinearLayout>
 
     <FrameLayout
