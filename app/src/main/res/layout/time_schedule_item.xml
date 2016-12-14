@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:textSize="26sp"
         android:textColor="@android:color/white"
-        android:text="start time："/>
+        android:text="@string/TimeScheduleAdapter_java_6"/>
 
     <TextView
         android:id="@+id/time_schedule_item_etime"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:textSize="26sp"
         android:textColor="@android:color/white"
-        android:text="End time："/>
+        android:text="@string/TimeScheduleAdapter_java_7"/>
 
     <TextView
         android:id="@+id/time_schedule_item_flag"
@@ -35,6 +35,6 @@
         android:layout_gravity="right"
         android:textSize="30sp"
         android:textColor="@android:color/white"
-        android:text="Click to registr"/>
+        android:text="@string/ScheduleAdapter_java_9"/>
 
 </LinearLayout>

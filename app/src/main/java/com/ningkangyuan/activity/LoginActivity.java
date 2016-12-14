@@ -31,8 +31,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private static final String TAG = "LoginActivity";
 
-    private EditText mIdentityET,mPhoneET,mPasswordET;
-    private String mIdentityStr,mPhoneStr,mPasswordStr;
+    private EditText mIdentityET, mPhoneET, mPasswordET;
+    private String mIdentityStr, mPhoneStr, mPasswordStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         findViewById(R.id.universal_checkcard_num).setVisibility(View.GONE);
 
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.login, null));
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.login,  null));
 
         mIdentityET = (EditText) findViewById(R.id.login_identity);
 //        mPhoneET = (EditText) findViewById(R.id.login_phone);
@@ -75,11 +75,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_submit:
-                //登录
+                // " + getResources().getString(R.string.LoginActivity_java_6)
                 login();
                 break;
             case R.id.login_register:
-                Intent intent = new Intent(this,RegisterActivity.class);
+                Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -87,48 +87,48 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void login() {
         if (checkParams()) {
-            showProgressDialog("Logging in..");
+            showProgressDialog(" " + getResources().getString(R.string.LoginActivity_java_8) + " ..");
 
             OkHttpHelper.get(OkHttpHelper.makeJsonParams("userlogin",
-                    new String[]{"num","password","android_tv_channel_id"},
-                    new Object[]{mIdentityStr,mPasswordStr, BDPushReceiver.android_tv_channel_id}), new Callback() {
+                    new String[]{"num", "password", "android_tv_channel_id"},
+                    new Object[]{mIdentityStr, mPasswordStr,  BDPushReceiver.android_tv_channel_id}),  new Callback() {
                 @Override
-                public void onFailure(Call call, final IOException e) {
+                public void onFailure(Call call,  final IOException e) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             dismissProgressDialog();
                             String msg = e.getMessage();
                             if (msg.startsWith("Failed"))  {
-                                msg = "Unable to connect to the server，Please check the network";
+                                msg = getResources().getString(R.string.BaseActivity_java_23);
                             }
-                            ToastUtil.show(LoginActivity.this, msg);
+                            ToastUtil.show(LoginActivity.this,  msg);
                         }
                     });
                 }
 
                 @Override
-                public void onResponse(Call call, Response response) throws IOException {
+                public void onResponse(Call call,  Response response) throws IOException {
                     final String result = response.body().string();
-                    LogUtil.d(TAG, result);
-                    final String code = JsonUtil.getObjectByKey("code", result);
-                    final String message= JsonUtil.getObjectByKey("message", result);
-                    final String vip_info= JsonUtil.getObjectByKey("vip_info", result);
+                    LogUtil.d(TAG,  result);
+                    final String code = JsonUtil.getObjectByKey("code",  result);
+                    final String message= JsonUtil.getObjectByKey("message",  result);
+                    final String vip_info= JsonUtil.getObjectByKey("vip_info",  result);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             dismissProgressDialog();
-                            ToastUtil.show(LoginActivity.this, message);
+                            ToastUtil.show(LoginActivity.this,  message);
                             if ("1".equals(code)) {
-                                //将登陆数据存起来
-                                LoginActivity.this.getSharedPreferences("login",0).edit().putString("vip",vip_info).commit();
+                                // " + getResources().getString(R.string.InitActivity_java_49)
+                                LoginActivity.this.getSharedPreferences("login", 0).edit().putString("vip", vip_info).commit();
 
-                                //保存当前登录的账号和密码
-                                LoginActivity.this.getSharedPreferences("login",0).edit().putString("identityStr",mIdentityStr).commit();
-                                LoginActivity.this.getSharedPreferences("login",0).edit().putString("passwordStr", mPasswordStr).commit();
+                                // " + getResources().getString(R.string.LoginActivity_java_28)
+                                LoginActivity.this.getSharedPreferences("login", 0).edit().putString("identityStr", mIdentityStr).commit();
+                                LoginActivity.this.getSharedPreferences("login", 0).edit().putString("passwordStr",  mPasswordStr).commit();
 
-                                //跳转至主页面
-                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                // " + getResources().getString(R.string.InitActivity_java_52)
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
@@ -139,22 +139,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    //校验登录参数
+    // " + getResources().getString(R.string.LoginActivity_java_35)
     private boolean checkParams() {
         mIdentityStr = mIdentityET.getText().toString().trim();
         if (TextUtils.isEmpty(mIdentityStr)) {
-            ToastUtil.show(this,"Please enter your ID or phone number.");
+            ToastUtil.show(this, getResources().getString(R.string.LoginActivity_java_37));
             return false;
         }
 //        mPhoneStr = mPhoneET.getText().toString().trim();
 //        if (TextUtils.isEmpty(mIdentityStr) && TextUtils.isEmpty(mPhoneStr)) {
-//            ToastUtil.show(this,"身份证或手机号至少填一个");
+//            ToastUtil.show(this, getResources().getString(R.string.LoginActivity_java_39));
 //            return false;
 //        }
 //        if (!TextUtils.isEmpty(mIdentityStr)) {
 //            String verifyResult = VerifyUtil.IDCardValidate(mIdentityStr);
 //            if (!TextUtils.isEmpty(verifyResult)) {
-//                ToastUtil.show(this, verifyResult);
+//                ToastUtil.show(this,  verifyResult);
 //                return false;
 //            }
 //        } else {
@@ -162,7 +162,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //        }
 //        if (!TextUtils.isEmpty(mPhoneStr)) {
 //            if (!VerifyUtil.isMobile(mPhoneStr)) {
-//                ToastUtil.show(this, "请输入正确的手机号码");
+//                ToastUtil.show(this,  getResources().getString(R.string.LoginActivity_java_42));
 //                return false;
 //            }
 //        } else {

@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 检测设备种类
+ *  " + getResources().getString(R.string.Axi_java_1)
  * Created by xuchun on 2016/9/2.
  */
 public class Axi implements Serializable {

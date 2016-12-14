@@ -35,11 +35,11 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
     private static final String TAG = "QuestionSaveActivity";
 
     private ImageView mProtraitIV;
-    private TextView mNameTV,mJobTV,mHistoryTV,mIntroTV;
+    private TextView mNameTV, mJobTV, mHistoryTV, mIntroTV;
     private EditText mAddET;
 
-    private TextView mDate0TV,mContent0TV;
-    private TextView mDate1TV,mContent1TV;
+    private TextView mDate0TV, mContent0TV;
+    private TextView mDate1TV, mContent1TV;
 
     private List<QuestionLog> mQuestionLogs = new ArrayList<QuestionLog>();
     private Doctor mDoctor;
@@ -60,8 +60,8 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.question_details, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.question_details,  null));
 
         mProtraitIV = (ImageView) findViewById(R.id.doctor_details_protrait);
         mNameTV = (TextView) findViewById(R.id.doctor_details_name);
@@ -81,7 +81,7 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
         findViewById(R.id.question_details_back).setOnClickListener(this);
 
         mQuestion = (QuestionHistory) getIntent().getSerializableExtra("question");
-        mDate0TV.setText("Submit time：" + mQuestion.getCreate_time());
+        mDate0TV.setText(" " + getResources().getString(R.string.QuestionDetailsActivity_java_8) + " ：" + mQuestion.getCreate_time());
         mContent0TV.setText("  " + mQuestion.getContent());
         getDoctorInfo();
         getQuestionLog();
@@ -94,15 +94,15 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
                 finish();
                 break;
             case R.id.question_details_confirm:
-                //确定追加评论
+                // " + getResources().getString(R.string.QuestionDetailsActivity_java_9)
                 add();
                 break;
             case R.id.question_details_next:
-                //下一条留言
+                // " + getResources().getString(R.string.QuestionDetailsActivity_java_10)
                 showData("+");
                 break;
             case R.id.question_details_up:
-                //上一条留言
+                // " + getResources().getString(R.string.QuestionDetailsActivity_java_11)
                 showData("-");
                 break;
         }
@@ -110,7 +110,7 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
 
     private void showDoctor() {
         if (mDoctor != null) {
-//            ImageLoaderHelper.getInstance().loader("",mProtraitIV,ImageLoaderHelper.makeImageOptions());
+//            ImageLoaderHelper.getInstance().loader("", mProtraitIV, ImageLoaderHelper.makeImageOptions());
 
             mNameTV.setText(mDoctor.getName());
             mJobTV.setText(mDoctor.getTitle());
@@ -122,58 +122,58 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
     private int count = 0;
     private void showData(String type) {
         if (mQuestionLogs.isEmpty()) {
-            ToastUtil.show(this,"No news");
+            ToastUtil.show(this, getResources().getString(R.string.QuestionDetailsActivity_java_15));
             return;
         }
         if ("+".equals(type)) {
             if (count == (mQuestionLogs.size() - 1)) {
-                ToastUtil.show(this,"Last item");
+                ToastUtil.show(this, getResources().getString(R.string.QuestionDetailsActivity_java_17));
                 return;
             }
             count ++;
         } else if ("-".equals(type)) {
             if (count == 0) {
-                ToastUtil.show(this,"First item");
+                ToastUtil.show(this, getResources().getString(R.string.QuestionDetailsActivity_java_19));
                 return;
             }
             count --;
         }
 
         QuestionLog questionLog = mQuestionLogs.get(count);
-        mDate1TV.setText("Reply time：" + questionLog.getCreate_time());
+        mDate1TV.setText(" " + getResources().getString(R.string.QuestionDetailsActivity_java_20) + " ：" + questionLog.getCreate_time());
         mContent1TV.setText("  " + questionLog.getAnswer_content());
 
     }
 
     private void getDoctorInfo() {
-        showProgressDialog("Retrieving doctor information..");
+        showProgressDialog(" " + getResources().getString(R.string.DoctorActivity_java_42) + " ..");
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("doctors",
-                new String[]{"code","name","pageIndex","pageSize","office_code","hospital_code"},
-                new Object[]{mQuestion.getDoctor_code(),"","1","5","",""}), new Callback() {
+                new String[]{"code", "name", "pageIndex", "pageSize", "office_code", "hospital_code"},
+                new Object[]{mQuestion.getDoctor_code(), "", "1", "5", "", ""}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(QuestionDetailsActivity.this, "onFailure：" + e.getMessage());
+                        ToastUtil.show(QuestionDetailsActivity.this,  "onFailure：" + e.getMessage());
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG,"onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code",result))) {
-                    String doctors = JsonUtil.getObjectByKey("doctors",result);
-                    final List<Doctor> tempList = JsonUtil.mGson.fromJson(doctors,new TypeToken<List<Doctor>>() {}.getType());
+                LogUtil.d(TAG, "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
+                    String doctors = JsonUtil.getObjectByKey("doctors", result);
+                    final List<Doctor> tempList = JsonUtil.mGson.fromJson(doctors, new TypeToken<List<Doctor>>() {}.getType());
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             dismissProgressDialog();
                             if (tempList.isEmpty()) {
-                                ToastUtil.show(QuestionDetailsActivity.this, "No doctor information");
+                                ToastUtil.show(QuestionDetailsActivity.this,  getResources().getString(R.string.DoctorActivity_java_64));
                                 return;
                             }
                             mDoctor = tempList.get(0);
@@ -185,7 +185,7 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
                         @Override
                         public void run() {
                             dismissProgressDialog();
-                            ToastUtil.show(QuestionDetailsActivity.this, "No doctor information");
+                            ToastUtil.show(QuestionDetailsActivity.this,  getResources().getString(R.string.DoctorActivity_java_64));
                         }
                     });
                 }
@@ -197,25 +197,25 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
         mCallList.add(OkHttpHelper.get(
                 OkHttpHelper.makeJsonParams("questioninfo",
                         new String[]{"vip_questions_id"},
-                        new Object[]{mQuestion.getId()}), new Callback() {
+                        new Object[]{mQuestion.getId()}),  new Callback() {
                     @Override
-                    public void onFailure(Call call, final IOException e) {
+                    public void onFailure(Call call,  final IOException e) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 dismissProgressDialog();
-                                ToastUtil.show(QuestionDetailsActivity.this, "onFailure：" + e.getMessage());
+                                ToastUtil.show(QuestionDetailsActivity.this,  "onFailure：" + e.getMessage());
                             }
                         });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
+                    public void onResponse(Call call,  Response response) throws IOException {
                         String result = response.body().string();
-                        LogUtil.d(TAG, "onResponse：" + result);
-                        if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                            String questions = JsonUtil.getObjectByKey("questions", result);
-                            List<QuestionLog> tempList = JsonUtil.mGson.fromJson(questions, new TypeToken<List<QuestionLog>>() {
+                        LogUtil.d(TAG,  "onResponse：" + result);
+                        if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                            String questions = JsonUtil.getObjectByKey("questions",  result);
+                            List<QuestionLog> tempList = JsonUtil.mGson.fromJson(questions,  new TypeToken<List<QuestionLog>>() {
                             }.getType());
                             mQuestionLogs.clear();
                             mQuestionLogs.addAll(tempList);
@@ -241,36 +241,36 @@ public class QuestionDetailsActivity extends BaseActivity implements View.OnClic
     private void add() {
         String addStr = mAddET.getText().toString().trim();
         if (TextUtils.isEmpty(addStr)) {
-            ToastUtil.show(QuestionDetailsActivity.this, "Please enter an additional content");
+            ToastUtil.show(QuestionDetailsActivity.this,  getResources().getString(R.string.QuestionDetailsActivity_java_57));
             return;
         }
-        showProgressDialog("Submitting..");
+        showProgressDialog(" " + getResources().getString(R.string.QuestionDetailsActivity_java_58) + " ..");
         mCallList.add(OkHttpHelper.get(
                 OkHttpHelper.makeJsonParams("questionlogsave",
-                        new String[]{"answer_code","vip_questions_id","answer_content"},
-                        new Object[]{mVip.getVip_code(),mQuestion.getId(),addStr}), new Callback() {
+                        new String[]{"answer_code", "vip_questions_id", "answer_content"},
+                        new Object[]{mVip.getVip_code(), mQuestion.getId(), addStr}),  new Callback() {
                     @Override
-                    public void onFailure(Call call, final IOException e) {
+                    public void onFailure(Call call,  final IOException e) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 dismissProgressDialog();
-                                ToastUtil.show(QuestionDetailsActivity.this, "onFailure：" + e.getMessage());
+                                ToastUtil.show(QuestionDetailsActivity.this,  "onFailure：" + e.getMessage());
                             }
                         });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
+                    public void onResponse(Call call,  Response response) throws IOException {
                         String result = response.body().string();
-                        LogUtil.d(TAG, "onResponse：" + result);
-                        final String code = JsonUtil.getObjectByKey("code", result);
-                        final String message = JsonUtil.getObjectByKey("message", result);
+                        LogUtil.d(TAG,  "onResponse：" + result);
+                        final String code = JsonUtil.getObjectByKey("code",  result);
+                        final String message = JsonUtil.getObjectByKey("message",  result);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 dismissProgressDialog();
-                                ToastUtil.show(QuestionDetailsActivity.this, "" + message);
+                                ToastUtil.show(QuestionDetailsActivity.this,  "" + message);
                                 if ("1".equals(code)) {
                                     mAddET.setText("");
                                 }

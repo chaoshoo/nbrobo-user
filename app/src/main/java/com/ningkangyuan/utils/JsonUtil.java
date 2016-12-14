@@ -21,13 +21,13 @@ public class JsonUtil {
     public static final Gson mGson = new Gson();
 
     /**
-     * 根据key获取value
-     * 意外情况返回null
+     *  " + getResources().getString(R.string.JsonUtil_java_1)key " + getResources().getString(R.string.JsonUtil_java_2)value
+     *  " + getResources().getString(R.string.JsonUtil_java_3)null
      * @param key
      * @param jsonStr
      * @return
      */
-    public static String getObjectByKey(String key,String jsonStr) {
+    public static String getObjectByKey(String key, String jsonStr) {
         if (TextUtils.isEmpty(key) || TextUtils.isEmpty(jsonStr)) {
             return null;
         }

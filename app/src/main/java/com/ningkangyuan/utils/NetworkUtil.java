@@ -9,7 +9,7 @@ import android.net.NetworkInfo;
  */
 public class NetworkUtil {
 
-    //判断当前是否有网络
+    // " + getResources().getString(R.string.NetworkUtil_java_1)
     public static boolean isHaveNet(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager == null) {

@@ -9,9 +9,9 @@ public class LogUtil {
 
     private static boolean isDeBug = true;
 
-    public static void d(String tag,String msg) {
+    public static void d(String tag, String msg) {
         if (isDeBug) {
-            Log.d(tag,msg);
+            Log.d(tag, msg);
         }
     }
 

@@ -24,7 +24,7 @@
         android:gravity="center_vertical"
         android:textSize="24sp"
         android:textColor="@android:color/black"
-        android:text="Order number："/>
+        android:text="@string/OrderActivity_java_77"/>
 
     <View
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
         android:gravity="center_vertical"
         android:textSize="24sp"
         android:textColor="@android:color/black"
-        android:text="Order amount："/>
+        android:text="@string/OrderAdapter_java_8"/>
 
     <View
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
         android:gravity="center_vertical"
         android:textSize="24sp"
         android:textColor="@android:color/black"
-        android:text="Locked time："/>
+        android:text="@string/pop_locknum_success_xml_3"/>
 
     <View
         android:layout_width="match_parent"
@@ -69,6 +69,6 @@
         android:layout_marginBottom="20dp"
         android:textSize="@dimen/btn_size"
         android:textColor="@android:color/white"
-        android:text="Confirmed"
+        android:text="@string/BaseActivity_java_10"
         android:background="@drawable/blue_btn"/>
 </LinearLayout>

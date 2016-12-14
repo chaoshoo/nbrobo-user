@@ -33,13 +33,13 @@ public class RemoteDetailsActivity extends BaseActivity implements View.OnClickL
     private static final String TAG = "RemoteDetailsActivity";
 
     private ImageView mProtraitIV;
-    private TextView mNameTV,mJobTV,mHistoryTV,mIntroTV;
+    private TextView mNameTV, mJobTV, mHistoryTV, mIntroTV;
 
-    private TextView mOrderTimeTV,mIsZDTV,mBeginTimeTV,mIsDealTV,mEndTimeTV,mRemarkTV;
+    private TextView mOrderTimeTV, mIsZDTV, mBeginTimeTV, mIsDealTV, mEndTimeTV, mRemarkTV;
     private RatingBar mEvaluateRB;
 
     private RemoteHistory mRemote;
-    private Button mCancelBtn,mBackBtn;
+    private Button mCancelBtn, mBackBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +55,8 @@ public class RemoteDetailsActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.remote_details, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.remote_details,  null));
 
         mProtraitIV = (ImageView) findViewById(R.id.doctor_details_protrait);
         mNameTV = (TextView) findViewById(R.id.doctor_details_name);
@@ -83,14 +83,14 @@ public class RemoteDetailsActivity extends BaseActivity implements View.OnClickL
         mOrderTimeTV.setText(mRemote.getOrder_time());
         mRemarkTV.setText(mRemote.getRemark());
         if ("1".equals(mRemote.getIszd())) {
-            mIsZDTV.setText("yes");
+            mIsZDTV.setText(getResources().getString(R.string.MainActivity_java_28));
             mBeginTimeTV.setText(mRemote.getZd_begin_time());
             if ("1".equals(mRemote.getIsdeal())) {
-                mIsDealTV.setText("yes");
+                mIsDealTV.setText(getResources().getString(R.string.MainActivity_java_28));
                 mEndTimeTV.setText(mRemote.getZd_end_Time());
-                //评价
+                // " + getResources().getString(R.string.RemoteDetailsActivity_java_14)
 //                mEvaluateRB.setRating();
-                //此时不行取消此次预约
+                // " + getResources().getString(R.string.RemoteDetailsActivity_java_15)
                 mCancelBtn.setVisibility(View.GONE);
             } else {
                 findViewById(R.id.remote_details_isDeal_layout).setVisibility(View.GONE);
@@ -112,13 +112,13 @@ public class RemoteDetailsActivity extends BaseActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.remote_details_cancel:
                 if ("1".equals(mRemote.getIsdeal())) {
-                    ToastUtil.show(this,"This remote consultation has been processed，Can not be canceled");
+                    ToastUtil.show(this, getResources().getString(R.string.RemoteDetailsActivity_java_17));
                     return;
                 }
                 cancelSubscribe();
                 break;
             case R.id.remote_details_back:
-                //返回
+                // " + getResources().getString(R.string.DoctorActivity_java_40)
                 finish();
                 break;
         }
@@ -130,7 +130,7 @@ public class RemoteDetailsActivity extends BaseActivity implements View.OnClickL
             public void run() {
                 dismissProgressDialog();
                 if (doctor == null) {
-                    ToastUtil.show(RemoteDetailsActivity.this, "Doctor's information acquisition failed");
+                    ToastUtil.show(RemoteDetailsActivity.this,  getResources().getString(R.string.RemoteDetailsActivity_java_20));
                     return;
                 }
                 mNameTV.setText(doctor.getName());
@@ -143,29 +143,29 @@ public class RemoteDetailsActivity extends BaseActivity implements View.OnClickL
     }
 
     private void getDoctorInfo() {
-        showProgressDialog("Searching doctor information..");
+        showProgressDialog(" " + getResources().getString(R.string.RemoteDetailsActivity_java_21) + " ..");
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("doctors",
-                new String[]{"code","office_code","hospital_code"},
-                new Object[]{mRemote.getDoctor_code(),"",mRemote.getHospital_code()}), new Callback() {
+                new String[]{"code", "office_code", "hospital_code"},
+                new Object[]{mRemote.getDoctor_code(), "", mRemote.getHospital_code()}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(RemoteDetailsActivity.this, "onFailure：" + e.getMessage());
+                        ToastUtil.show(RemoteDetailsActivity.this,  "onFailure：" + e.getMessage());
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                String code = JsonUtil.getObjectByKey("code", result);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                String code = JsonUtil.getObjectByKey("code",  result);
                 if ("1".equals(code)) {
-                    String doctors = JsonUtil.getObjectByKey("doctors",result);
-                    List<Doctor> tempList = JsonUtil.mGson.fromJson(doctors,new TypeToken<List<Doctor>>() {}.getType());
+                    String doctors = JsonUtil.getObjectByKey("doctors", result);
+                    List<Doctor> tempList = JsonUtil.mGson.fromJson(doctors, new TypeToken<List<Doctor>>() {}.getType());
                     if (!tempList.isEmpty()) {
                         initDoctorInfo(tempList.get(0));
                     } else {
@@ -179,32 +179,32 @@ public class RemoteDetailsActivity extends BaseActivity implements View.OnClickL
     }
 
     private void cancelSubscribe() {
-        showProgressDialog("Cancelling..");
+        showProgressDialog(" " + getResources().getString(R.string.RemoteDetailsActivity_java_36) + " ..");
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("remotecancel",
                 new String[]{"remote_code"},
-                new Object[]{mRemote.getCode()}), new Callback() {
+                new Object[]{mRemote.getCode()}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(RemoteDetailsActivity.this, "onFailure：" + e.getMessage());
+                        ToastUtil.show(RemoteDetailsActivity.this,  "onFailure：" + e.getMessage());
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                final String code = JsonUtil.getObjectByKey("code", result);
-                final String message = JsonUtil.getObjectByKey("message",result);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                final String code = JsonUtil.getObjectByKey("code",  result);
+                final String message = JsonUtil.getObjectByKey("message", result);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(RemoteDetailsActivity.this,message);
+                        ToastUtil.show(RemoteDetailsActivity.this, message);
                         if ("1".equals(code)) {
                             setResult(RESULT_OK);
                             finish();

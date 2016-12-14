@@ -85,13 +85,13 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                     findPreference(getString(R.string.setting_vie_hw_encoder_key)).setEnabled(false);
                     break;
                 case 0:
-                    findPreference(getString(R.string.setting_vie_hw_encoder_key)).setSummary("automatic");
+                    findPreference(getString(R.string.setting_vie_hw_encoder_key)).setSummary(getResources().getString(R.string.SettingsFragment_java_7));
                     break;
                 case 1:
-                    findPreference(getString(R.string.setting_vie_hw_encoder_key)).setSummary("Software");
+                    findPreference(getString(R.string.setting_vie_hw_encoder_key)).setSummary(getResources().getString(R.string.SettingsFragment_java_8));
                     break;
                 case 2:
-                    findPreference(getString(R.string.setting_vie_hw_encoder_key)).setSummary("Hardware");
+                    findPreference(getString(R.string.setting_vie_hw_encoder_key)).setSummary(getResources().getString(R.string.SettingsFragment_java_9));
                     break;
             }
 
@@ -100,13 +100,13 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                     findPreference(getString(R.string.setting_vie_hw_decoder_key)).setEnabled(false);
                     break;
                 case 0:
-                    findPreference(getString(R.string.setting_vie_hw_decoder_key)).setSummary("automatic");
+                    findPreference(getString(R.string.setting_vie_hw_decoder_key)).setSummary(getResources().getString(R.string.SettingsFragment_java_7));
                     break;
                 case 1:
-                    findPreference(getString(R.string.setting_vie_hw_decoder_key)).setSummary("Software");
+                    findPreference(getString(R.string.setting_vie_hw_decoder_key)).setSummary(getResources().getString(R.string.SettingsFragment_java_8));
                     break;
                 case 2:
-                    findPreference(getString(R.string.setting_vie_hw_decoder_key)).setSummary("Hardware");
+                    findPreference(getString(R.string.setting_vie_hw_decoder_key)).setSummary(getResources().getString(R.string.SettingsFragment_java_9));
                     break;
             }
 

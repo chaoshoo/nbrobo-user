@@ -12,7 +12,7 @@ import com.ningkangyuan.bean.Hos;
 import java.util.List;
 
 /**
- * 挂号医院
+ *  " + getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class HosAdapter extends RecyclerView.Adapter<HosAdapter.MyViewHolder> {

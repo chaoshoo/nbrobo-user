@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 挂号医生
+ *  " + getResources().getString(R.string.DocActivity_java_1)
  * Created by xuchun on 2016/9/19.
  */
 public class Doc implements Serializable {

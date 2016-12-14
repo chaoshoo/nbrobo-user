@@ -41,10 +41,10 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 成员管理
+ *  " + getResources().getString(R.string.FamilyActivity_java_1)
  * Created by xuchun on 2016/9/1.
  */
-public class FamilyActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class FamilyActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
     private static final String TAG = "FamilyActivity";
 
     private TextView mCurrentNameTV;
@@ -71,15 +71,15 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.family, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.family,  null));
 
         mCurrentNameTV = (TextView) findViewById(R.id.family_current_name);
         String userName = mVip.getReal_name();
         if (TextUtils.isEmpty(userName)) {
             userName = mVip.getMobile();
         }
-        mCurrentNameTV.setText("Current member：" + userName);
+        mCurrentNameTV.setText(" " + getResources().getString(R.string.FamilyActivity_java_5) + " ：" + userName);
         findViewById(R.id.family_back).setOnClickListener(this);
         findViewById(R.id.family_back).setOnFocusChangeListener(this);
 
@@ -87,33 +87,33 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.family_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,1);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 1);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.HORIZONTAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mFamilyAdapter = new FamilyAdapter(mFamilyList));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
                 mPosition = position;
                 if (position > 1) {
                     showItemClickDialog();
@@ -130,9 +130,9 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -142,7 +142,7 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.family_back:
-                //返回
+                // " + getResources().getString(R.string.DoctorActivity_java_40)
                 finish();
                 break;
             case R.id.family_save_close:
@@ -151,7 +151,7 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
                 }
                 break;
             case R.id.family_save_confirm:
-                //绑定
+                // " + getResources().getString(R.string.FamilyActivity_java_22)
                 saveFamilyChild();
                 break;
         }
@@ -161,55 +161,55 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
         mFamilyList.clear();
 
         Vip addVip = new Vip();
-        addVip.setReal_name("Bind member");
+        addVip.setReal_name(getResources().getString(R.string.FamilyActivity_java_23));
         mFamilyList.add(addVip);
 
         addVip = new Vip();
-        addVip.setReal_name("WeChat sweep me");
+        addVip.setReal_name(getResources().getString(R.string.FamilyActivity_java_24));
         mFamilyList.add(addVip);
 
         mFamilyAdapter.notifyDataSetChanged();
     }
 
     private void qryFamilyChild() {
-        showProgressDialog("Searching member data..");
+        showProgressDialog(" " + getResources().getString(R.string.FamilyActivity_java_25) + " ..");
         mCallList.add(OkHttpHelper.get(
                 OkHttpHelper.makeJsonParams("vipfamilylist",
                         new String[]{"vip_code"},
-                        new Object[]{mVip.getVip_code()}), new Callback() {
+                        new Object[]{mVip.getVip_code()}),  new Callback() {
                     @Override
-                    public void onFailure(Call call, final IOException e) {
+                    public void onFailure(Call call,  final IOException e) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 dismissProgressDialog();
                                 String msg = e.getMessage();
                                 if (msg.startsWith("Failed")) {
-                                    msg = "Unable to connect to the server，Please check the network";
+                                    msg = getResources().getString(R.string.BaseActivity_java_23);
                                 }
-                                ToastUtil.show(FamilyActivity.this, msg);
+                                ToastUtil.show(FamilyActivity.this,  msg);
                             }
                         });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
+                    public void onResponse(Call call,  Response response) throws IOException {
                         String result = response.body().string();
-                        LogUtil.d(TAG, "onResponse：" + result);
-                        if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                            String familys = JsonUtil.getObjectByKey("familys", result);
-                            List<Vip> tempList = JsonUtil.mGson.fromJson(familys, new TypeToken<List<Vip>>() {
+                        LogUtil.d(TAG,  "onResponse：" + result);
+                        if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                            String familys = JsonUtil.getObjectByKey("familys",  result);
+                            List<Vip> tempList = JsonUtil.mGson.fromJson(familys,  new TypeToken<List<Vip>>() {
                             }.getType());
 
                             mFamilyList.clear();
 
-                            //构造一个Vip,作为第一个使用
+                            // " + getResources().getString(R.string.FamilyActivity_java_37)Vip " + getResources().getString(R.string.FamilyActivity_java_38)
                             Vip addVip = new Vip();
-                            addVip.setReal_name("Bind member");
+                            addVip.setReal_name(getResources().getString(R.string.FamilyActivity_java_23));
                             mFamilyList.add(addVip);
 
                             addVip = new Vip();
-                            addVip.setReal_name("WeChat sweep me");
+                            addVip.setReal_name(getResources().getString(R.string.FamilyActivity_java_24));
                             mFamilyList.add(addVip);
                             mFamilyList.addAll(tempList);
                             runOnUiThread(new Runnable() {
@@ -232,10 +232,10 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
                 }));
     }
 
-    private EditText mFamilyAccountET,mFamilyPassET;
+    private EditText mFamilyAccountET, mFamilyPassET;
     private void showFamilyChildSave() {
         if (mFamilySavePW == null) {
-            View view = LayoutInflater.from(this).inflate(R.layout.family_save,null);
+            View view = LayoutInflater.from(this).inflate(R.layout.family_save, null);
             int width = ScreenUtil.getWidth(this) * 3 /4;
 //            int height = ScreenUtil.getHeight(this) * 3 / 4;
             mFamilyAccountET = (EditText) view.findViewById(R.id.family_save_card);
@@ -243,55 +243,55 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
             view.findViewById(R.id.family_save_close).setOnClickListener(this);
             view.findViewById(R.id.family_save_confirm).setOnClickListener(this);
 
-            mFamilySavePW = new PopupWindow(view,width, WindowManager.LayoutParams.WRAP_CONTENT,true);
+            mFamilySavePW = new PopupWindow(view, width,  WindowManager.LayoutParams.WRAP_CONTENT, true);
             mFamilySavePW.setBackgroundDrawable(new ColorDrawable(0x00000000));
             mFamilySavePW.setOutsideTouchable(false);
         }
         mFamilyAccountET.requestFocus();
-        mFamilySavePW.showAtLocation(mCurrentNameTV, Gravity.CENTER,0,0);
+        mFamilySavePW.showAtLocation(mCurrentNameTV,  Gravity.CENTER, 0, 0);
     }
 
     private void saveFamilyChild() {
         String card = mFamilyAccountET.getText().toString().trim();
         if (TextUtils.isEmpty(card)) {
-            ToastUtil.show(this,"Please enter your ID number.");
+            ToastUtil.show(this, getResources().getString(R.string.FamilyActivity_java_50));
             return;
         }
         String pass = mFamilyPassET.getText().toString().trim();
         if (TextUtils.isEmpty(card)) {
-            ToastUtil.show(this, "Please input a password");
+            ToastUtil.show(this,  getResources().getString(R.string.FamilyActivity_java_52));
             return;
         }
-        showProgressDialog("Bounding..");
+        showProgressDialog(" " + getResources().getString(R.string.FamilyActivity_java_53) + " ..");
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("savevipfamily",
-                new String[]{"vip_code", "family_account", "family_pwd"},
-                new Object[]{mVip.getVip_code(), card, pass}), new Callback() {
+                new String[]{"vip_code",  "family_account",  "family_pwd"},
+                new Object[]{mVip.getVip_code(),  card,  pass}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed")) {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(FamilyActivity.this, msg);
+                        ToastUtil.show(FamilyActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                final String code = JsonUtil.getObjectByKey("code", result);
-                final String message = JsonUtil.getObjectByKey("message", result);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                final String code = JsonUtil.getObjectByKey("code",  result);
+                final String message = JsonUtil.getObjectByKey("message",  result);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(FamilyActivity.this, message);
+                        ToastUtil.show(FamilyActivity.this,  message);
                         if ("1".equals(code)) {
                             if (mFamilySavePW != null) {
                                 mFamilySavePW.dismiss();
@@ -304,53 +304,53 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
         }));
     }
 
-    //切换成员
+    // " + getResources().getString(R.string.FamilyActivity_java_69)
     private void switchChild() {
         mVip = mFamilyList.get(mPosition);
         MyApplication.isRefreshMain = true;
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
         String userName = mVip.getReal_name();
         if (TextUtils.isEmpty(userName)) {
             userName = mVip.getMobile();
         }
         mCurrentNameTV.setText(userName);
-        getSharedPreferences("login", 0).edit().putString("vip", JsonUtil.mGson.toJson(mVip)).commit();
+        getSharedPreferences("login",  0).edit().putString("vip",  JsonUtil.mGson.toJson(mVip)).commit();
         clearList();
-        ToastUtil.show(FamilyActivity.this, "Members switched");
+        ToastUtil.show(FamilyActivity.this,  getResources().getString(R.string.FamilyActivity_java_74));
         qryFamilyChild();
     }
 
     private void unBindChild() {
-        showProgressDialog("Removing binding..");
+        showProgressDialog(" " + getResources().getString(R.string.FamilyActivity_java_75) + " ..");
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("deletebind",
-                new String[]{"vip_code", "vip_card", "bind_account"},
-                new Object[]{mVip.getVip_code(), mVip.getCard_code(), mFamilyList.get(mPosition).getCard_code()}), new Callback() {
+                new String[]{"vip_code",  "vip_card",  "bind_account"},
+                new Object[]{mVip.getVip_code(),  mVip.getCard_code(),  mFamilyList.get(mPosition).getCard_code()}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed")) {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(FamilyActivity.this, msg);
+                        ToastUtil.show(FamilyActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                final String code = JsonUtil.getObjectByKey("code", result);
-                final String message = JsonUtil.getObjectByKey("message", result);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                final String code = JsonUtil.getObjectByKey("code",  result);
+                final String message = JsonUtil.getObjectByKey("message",  result);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(FamilyActivity.this, message);
+                        ToastUtil.show(FamilyActivity.this,  message);
                         if ("1".equals(code)) {
                             qryFamilyChild();
                         }
@@ -364,18 +364,18 @@ public class FamilyActivity extends BaseActivity implements View.OnClickListener
     private void showItemClickDialog() {
         if (mItemClickDialog == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Prompt");
-            builder.setMessage("Please select operation");
-            builder.setPositiveButton("Click the wrong place", null);
-            builder.setNeutralButton("Switch to this member", new DialogInterface.OnClickListener() {
+            builder.setTitle(getResources().getString(R.string.FamilyActivity_java_91));
+            builder.setMessage(getResources().getString(R.string.FamilyActivity_java_92));
+            builder.setPositiveButton(getResources().getString(R.string.FamilyActivity_java_93),  null);
+            builder.setNeutralButton(getResources().getString(R.string.FamilyActivity_java_95),  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(DialogInterface dialog,  int which) {
                     switchChild();
                 }
             });
-            builder.setNegativeButton("Bind this member", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(getResources().getString(R.string.FamilyActivity_java_98),  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(DialogInterface dialog,  int which) {
                     unBindChild();
                 }
             });

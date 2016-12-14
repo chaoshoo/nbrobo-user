@@ -43,14 +43,14 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 挂号医生
+ *  " + getResources().getString(R.string.DocActivity_java_1)
  * Created by xuchun on 2016/9/1.
  */
-public class TimeScheduleActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class TimeScheduleActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String TAG = "DocActivity";
 
-    private Button mUpBtn,mNextBtn,mBackBtn;
+    private Button mUpBtn, mNextBtn, mBackBtn;
     private List<TimeSchedule> mTimeScheduleList = new ArrayList<TimeSchedule>();
     private TimeScheduleAdapter mTimeScheduleAdapter;
     private RecyclerViewTV mRecyclerViewTV;
@@ -83,8 +83,8 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.time_schedule, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.time_schedule,  null));
 
         mUpBtn = (Button) findViewById(R.id.time_schedule_up);
         mNextBtn = (Button) findViewById(R.id.time_schedule_next);
@@ -100,39 +100,39 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.time_schedule_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,2);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 2);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.VERTICAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mTimeScheduleAdapter = new TimeScheduleAdapter(mTimeScheduleList));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
                 if ("1".equals(mTimeScheduleList.get(position).getRegflag())) {
                     mPartscheduleid = mTimeScheduleList.get(position).getPartscheduleid();
                     showLockNum();
                     return;
                 }
-                ToastUtil.show(TimeScheduleActivity.this, "Temporarily not registere");
+                ToastUtil.show(TimeScheduleActivity.this,  getResources().getString(R.string.ScheduleActivity_java_27));
             }
         });
 
@@ -141,13 +141,13 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
         mDocid = getIntent().getStringExtra("docid");
         mScheduleid = getIntent().getStringExtra("scheduleid");
         mOutpdate = getIntent().getStringExtra("outpdate");
-        qryTimeSchedule(mPage, null);
+        qryTimeSchedule(mPage,  null);
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -157,62 +157,62 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.time_schedule_up:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 if (mPage == 0) {
-                    ToastUtil.show(this,"First page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_29));
                     return;
                 }
-                qryTimeSchedule(mPage, "-");
+                qryTimeSchedule(mPage,  "-");
                 break;
             case R.id.time_schedule_next:
-                //下一页
+                // " + getResources().getString(R.string.DeptActivity_java_31)
                 if (isLastPage) {
-                    ToastUtil.show(this,"Last page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_33));
                     return;
                 }
-                qryTimeSchedule(mPage, "+");
+                qryTimeSchedule(mPage,  "+");
                 break;
             case R.id.time_schedule_back:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 finish();
                 break;
             case R.id.pop_locknum_success_close:
                 mLockNumSuccessPop.dismiss();
                 break;
             case R.id.pop_locknum_success_confirm:
-                //确认挂号
+                // " + getResources().getString(R.string.ScheduleActivity_java_40)
                 confirmOrder();
                 break;
         }
     }
 
-    private void qryTimeSchedule(int page, final String type) {
-        showProgressDialog("Querying data");
+    private void qryTimeSchedule(int page,  final String type) {
+        showProgressDialog(getResources().getString(R.string.DeptActivity_java_37));
         if ("+".equals(type)) {
             page ++;
         } else if ("-".equals(type)) {
             page --;
         }
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("parttime",
-                new String[]{"hosid","scheduleid","doctorno","rowstart","rowcount"},
-                new Object[]{mHosid,mScheduleid,mDocid,page * Constant.PAGE_SIZE_10, Constant.PAGE_SIZE_10}), new Callback() {
+                new String[]{"hosid", "scheduleid", "doctorno", "rowstart", "rowcount"},
+                new Object[]{mHosid, mScheduleid, mDocid, page * Constant.PAGE_SIZE_10,  Constant.PAGE_SIZE_10}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed"))  {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(TimeScheduleActivity.this, msg);
+                        ToastUtil.show(TimeScheduleActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 if ("+".equals(type)) {
                     mPage ++;
                 }
@@ -220,12 +220,12 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
                     mPage --;
                 }
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                    String message = JsonUtil.getObjectByKey("message", result);
-                    String li = JsonUtil.getObjectByKey("li", message);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                    String message = JsonUtil.getObjectByKey("message",  result);
+                    String li = JsonUtil.getObjectByKey("li",  message);
                     if (li != null) {
-                        List<TimeSchedule> tempList = JsonUtil.mGson.fromJson(li, new TypeToken<List<TimeSchedule>>() {}.getType());
+                        List<TimeSchedule> tempList = JsonUtil.mGson.fromJson(li,  new TypeToken<List<TimeSchedule>>() {}.getType());
                         isLastPage = false;
                         if (tempList.size() < Constant.PAGE_SIZE_10) {
                             isLastPage = true;
@@ -246,7 +246,7 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
                         @Override
                         public void run() {
                             dismissProgressDialog();
-                            ToastUtil.show(TimeScheduleActivity.this, "No time scheduling data");
+                            ToastUtil.show(TimeScheduleActivity.this,  getResources().getString(R.string.TimeScheduleActivity_java_58));
                         }
                     });
                 }
@@ -255,42 +255,42 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void locakNum() {
-        showProgressDialog("Lock signal source");
+        showProgressDialog(getResources().getString(R.string.ScheduleActivity_java_65));
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("ghlock",
-                new String[]{"hosid","vipcode","docid","outpdate","deptid","scheduleid","partscheduleid",
-                        "certtypeno","idcard","patientname","patientsex","patientbirthday","contactphone","familyaddress"},
-                new Object[]{mHosid,mVip.getVip_code(),mDocid,mOutpdate,mDeptid,mScheduleid,mPartscheduleid,
-                        "2BA",mVip.getCard_code(),mVip.getReal_name(),mVip.getSex(),mVip.getBirthday(),mVip.getMobile(),mVip.getAddress()}), new Callback() {
+                new String[]{"hosid", "vipcode", "docid", "outpdate", "deptid", "scheduleid", "partscheduleid",
+                        "certtypeno", "idcard", "patientname", "patientsex", "patientbirthday", "contactphone", "familyaddress"},
+                new Object[]{mHosid, mVip.getVip_code(), mDocid, mOutpdate, mDeptid, mScheduleid, mPartscheduleid,
+                        "2BA", mVip.getCard_code(), mVip.getReal_name(), mVip.getSex(), mVip.getBirthday(), mVip.getMobile(), mVip.getAddress()}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         dismissProgressDialog();
-                        ToastUtil.show(TimeScheduleActivity.this, e.getMessage());
+                        ToastUtil.show(TimeScheduleActivity.this,  e.getMessage());
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                final String message = JsonUtil.getObjectByKey("message", result);
-                final String ret = JsonUtil.getObjectByKey("ret", message);
-                final String msg = JsonUtil.getObjectByKey("msg", message);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                final String message = JsonUtil.getObjectByKey("message",  result);
+                final String ret = JsonUtil.getObjectByKey("ret",  message);
+                final String msg = JsonUtil.getObjectByKey("msg",  message);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         if ("0".equals(ret)) {
                             MyApplication.isRefreshMain = true;
-                            ToastUtil.show(TimeScheduleActivity.this, "Locked success,In Personal Center-Register To view");
+                            ToastUtil.show(TimeScheduleActivity.this,  " " + getResources().getString(R.string.ScheduleActivity_java_103) + "  " + getResources().getString(R.string.MainActivity_java_50) + "- " + getResources().getString(R.string.MainActivity_java_48) + "  " + getResources().getString(R.string.ScheduleActivity_java_106) + " ");
                             showLockNumSuccess(message);
                             return;
                         }
-                        ToastUtil.show(TimeScheduleActivity.this, "Locked number failed，" + msg);
+                        ToastUtil.show(TimeScheduleActivity.this,  getResources().getString(R.string.ScheduleActivity_java_108) + msg);
                     }
                 });
             }
@@ -300,26 +300,26 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
     private void showLockNum() {
         if (mLockDialog == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Sure to lock this registeration source?？");
-            builder.setPositiveButton("Confirmed", new DialogInterface.OnClickListener() {
+            builder.setTitle(" " + getResources().getString(R.string.ScheduleActivity_java_109) + "？");
+            builder.setPositiveButton(getResources().getString(R.string.BaseActivity_java_10),  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(DialogInterface dialog,  int which) {
                     locakNum();
                 }
             });
-            builder.setNegativeButton("cancel", null);
+            builder.setNegativeButton(getResources().getString(R.string.BaseActivity_java_11),  null);
 
             mLockDialog = builder.create();
         }
         mLockDialog.show();
     }
 
-    private TextView mOrderIdTV,mOrderFeeTV,mLockNumTimeTV;
+    private TextView mOrderIdTV, mOrderFeeTV, mLockNumTimeTV;
     private SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private String mOrderId;
     private void showLockNumSuccess(String orderStr) {
         if (mLockNumSuccessPop == null) {
-            View view = LayoutInflater.from(this).inflate(R.layout.pop_locknum_success,null);
+            View view = LayoutInflater.from(this).inflate(R.layout.pop_locknum_success, null);
             mOrderIdTV = (TextView) view.findViewById(R.id.pop_locknum_success_orderid);
             mOrderFeeTV = (TextView) view.findViewById(R.id.pop_locknum_success_money);
             mLockNumTimeTV = (TextView) view.findViewById(R.id.pop_locknum_success_ordertime);
@@ -329,51 +329,51 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
 
             int width = ScreenUtil.getWidth(this) * 3 /4;
 //            int height = ScreenUtil.getHeight(this) * 3 / 4;
-            mLockNumSuccessPop = new PopupWindow(view,width, WindowManager.LayoutParams.WRAP_CONTENT,true);
+            mLockNumSuccessPop = new PopupWindow(view, width,  WindowManager.LayoutParams.WRAP_CONTENT, true);
             mLockNumSuccessPop.setBackgroundDrawable(new ColorDrawable(0x00000000));
             mLockNumSuccessPop.setOutsideTouchable(false);
         }
 
-        mOrderId = JsonUtil.getObjectByKey("orderid",orderStr);
-        mOrderIdTV.setText("Order number：" + mOrderId);
-        mOrderFeeTV.setText("Registration fee：" + JsonUtil.getObjectByKey("orderfee",orderStr) + "element");
-        mLockNumTimeTV.setText("Registration Time：" + mSimpleDateFormat.format(new Date(Long.parseLong(JsonUtil.getObjectByKey("ordertime",orderStr)))));
+        mOrderId = JsonUtil.getObjectByKey("orderid", orderStr);
+        mOrderIdTV.setText(" " + getResources().getString(R.string.OrderActivity_java_77) + " ：" + mOrderId);
+        mOrderFeeTV.setText(" " + getResources().getString(R.string.OrderActivity_java_78) + " ：" + JsonUtil.getObjectByKey("orderfee", orderStr) + getResources().getString(R.string.MainActivity_java_98));
+        mLockNumTimeTV.setText(" " + getResources().getString(R.string.ScheduleActivity_java_126) + " ：" + mSimpleDateFormat.format(new Date(Long.parseLong(JsonUtil.getObjectByKey("ordertime", orderStr)))));
 
-        mLockNumSuccessPop.showAtLocation(mRecyclerViewTV, Gravity.CENTER, 0, 0);
+        mLockNumSuccessPop.showAtLocation(mRecyclerViewTV,  Gravity.CENTER,  0,  0);
     }
 
     private void confirmOrder() {
-        showProgressDialog("Confirming order");
+        showProgressDialog(getResources().getString(R.string.OrderActivity_java_95));
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("confirmorder",
                 new String[]{"orderid"},
-                new Object[]{mOrderId}), new Callback() {
+                new Object[]{mOrderId}),  new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(Call call,  IOException e) {
                 dismissProgressDialog();
                 String msg = e.getMessage();
                 if (msg.startsWith("Failed")) {
-                    msg = "Unable to connect to the server，Please check the network";
+                    msg = getResources().getString(R.string.BaseActivity_java_23);
                 }
-                ToastUtil.show(TimeScheduleActivity.this, msg);
+                ToastUtil.show(TimeScheduleActivity.this,  msg);
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                final String message = JsonUtil.getObjectByKey("message", result);
-                final String orderconfirmsms = JsonUtil.getObjectByKey("orderconfirmsms", message);
-                final String ret = JsonUtil.getObjectByKey("ret", message);
-                final String msg = JsonUtil.getObjectByKey("msg", message);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                final String message = JsonUtil.getObjectByKey("message",  result);
+                final String orderconfirmsms = JsonUtil.getObjectByKey("orderconfirmsms",  message);
+                final String ret = JsonUtil.getObjectByKey("ret",  message);
+                final String msg = JsonUtil.getObjectByKey("msg",  message);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         if ("0".equals(ret)) {
                             mLockNumSuccessPop.dismiss();
-                            showConfirmMsg("Confirmed：" + orderconfirmsms);
+                            showConfirmMsg(" " + getResources().getString(R.string.OrderActivity_java_82) + " ：" + orderconfirmsms);
                         } else {
-                            ToastUtil.show(TimeScheduleActivity.this, "Failed to confirm：" + msg);
+                            ToastUtil.show(TimeScheduleActivity.this,  " " + getResources().getString(R.string.OrderActivity_java_110) + " ：" + msg);
                         }
                     }
                 });
@@ -385,10 +385,10 @@ public class TimeScheduleActivity extends BaseActivity implements View.OnClickLi
     private void showConfirmMsg(String msg) {
         if (mshowConfirmMsgDialog == null) {
             mshowConfirmMsgDialog = new AlertDialog.Builder(this);
-            mshowConfirmMsgDialog.setTitle("Prompt");
-            mshowConfirmMsgDialog.setPositiveButton("Confirmed", new DialogInterface.OnClickListener() {
+            mshowConfirmMsgDialog.setTitle(getResources().getString(R.string.FamilyActivity_java_91));
+            mshowConfirmMsgDialog.setPositiveButton(getResources().getString(R.string.BaseActivity_java_10),  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(DialogInterface dialog,  int which) {
                     dialog.dismiss();
                 }
             });

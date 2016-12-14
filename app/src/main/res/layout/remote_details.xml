@@ -43,7 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
-                        android:text="Appointment time："/>
+                        android:text="@string/RemoteHistorydapter_java_7"/>
 
                     <TextView
                         android:id="@+id/remote_details_order_time"
@@ -67,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
-                        android:text="Meet?："/>
+                        android:text="@string/remote_details_xml_2"/>
 
                     <TextView
                         android:id="@+id/remote_details_iszd"
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:textSize="22sp"
-                        android:text="yes"/>
+                        android:text="@string/MainActivity_java_28"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
-                        android:text="Visit time："/>
+                        android:text="@string/remote_details_xml_4"/>
 
                     <TextView
                         android:id="@+id/remote_details_begin_time"
@@ -116,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
-                        android:text="Whether to deal with："/>
+                        android:text="@string/remote_details_xml_5"/>
 
                     <TextView
                         android:id="@+id/remote_details_isDeal"
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:textSize="22sp"
-                        android:text="yes"
+                        android:text="@string/MainActivity_java_28"
                         />
                 </LinearLayout>
 
@@ -141,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
-                        android:text="processing time："/>
+                        android:text="@string/question_item_xml_2"/>
 
                     <TextView
                         android:id="@+id/remote_details_end_time"
@@ -166,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
-                        android:text="Remarks："/>
+                        android:text="@string/remote_details_xml_8"/>
 
                     <TextView
                         android:id="@+id/remote_details_remark"
@@ -174,7 +174,7 @@
                         android:layout_height="match_parent"
                         android:textSize="18sp"
                         android:layout_marginLeft="5dp"
-                        android:hint="UOB shares will be better in the high prices and low power points"/>
+                        android:hint="@string/remote_details_xml_9"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -188,7 +188,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
-                        android:text="evaluation"/>
+                        android:text="@string/RemoteDetailsActivity_java_14"/>
                     <RatingBar
                         android:id="@+id/remote_details_evaluate"
                         android:layout_width="wrap_content"
@@ -213,7 +213,7 @@
                         android:textColor="@android:color/white"
                         android:background="@drawable/blue_btn"
                         android:nextFocusRight="@+id/remote_details_back"
-                        android:text="cancel reservation"/>
+                        android:text="@string/remote_details_xml_11"/>
                     <Button
                         android:id="@+id/remote_details_back"
                         android:layout_width="160dp"
@@ -223,7 +223,7 @@
                         android:textColor="@android:color/white"
                         android:background="@drawable/cyan_btn"
                         android:nextFocusLeft="@+id/remote_details_cancel"
-                        android:text="Return"/>
+                        android:text="@string/DoctorActivity_java_40"/>
                 </LinearLayout>
             </LinearLayout>
 

@@ -12,8 +12,10 @@ import com.ningkangyuan.bean.Schedule;
 
 import java.util.List;
 
+import com.ningkangyuan.MyApplication;
+import com.ningkangyuan.R;
 /**
- * 挂号医院
+ *  " + MyApplication.mContext.getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyViewHolder> {
@@ -36,23 +38,23 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
         holder.mOrderFeeTV.setText("¥ " + schedule.getOrderfee());
         String validFlag = schedule.getValidflag();
         String hitStr = "";
-        String flagStr = "Can not be registered";
+        String flagStr = MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_6);
         if ("1".equals(validFlag)) {
-            hitStr = "Available（The hospital officially confirmed the scheduling table）";
-            flagStr = "Click to registr";
+            hitStr = " " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_7) + "（ " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_8) + "）";
+            flagStr = MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_9);
         } else if ("2".equals(validFlag)) {
-            hitStr = "Fully booked（Registrations fully booked）";
+            hitStr = " " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_10) + "（ " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_11) + "）";
         } else if ("3".equals(validFlag)) {
-            hitStr = "close（医生close，Reservation service stopped，对已预约的号进行close正理）";
+            hitStr = " " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_12) + "（ " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_13) + "）";
         } else if ("4".equals(validFlag)) {
-            hitStr = "Available（The hospital did not officially confirmed the scheduling，Just according to the practice production scheduling";
+            hitStr = " " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_14) + "（ " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_15) + " ";
         } else if ("5".equals(validFlag)) {
-            hitStr = "Expired（Appointment expired）";
+            hitStr = " " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_16) + "（ " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_17) + "）";
         } else if ("6".equals(validFlag)) {
-            hitStr = "No（Not to allow the appointment time schedule）";
+            hitStr = " " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_18) + "（ " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_19) + "）";
         } else if ("7".equals(validFlag)) {
-            hitStr = "Time（Available/可约并且有Time";
-            flagStr = "Click to registr";
+            hitStr = " " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_20) + "（ " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_7) + "/ " + MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_22) + " ";
+            flagStr = MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_9);
         }
         holder.mHintTV.setText(hitStr);
         holder.mFlagTV.setText(flagStr);

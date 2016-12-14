@@ -1,5 +1,6 @@
 package com.ningkangyuan.okhttp;
 
+import com.ningkangyuan.Constant;
 import com.ningkangyuan.utils.LogUtil;
 
 import org.json.JSONException;
@@ -27,12 +28,12 @@ public class OkHttpHelper {
 
 //    private static final String URL = "http://192.168.5.100:8080/nkyapi/mobile/interface.do?content=";
 
-    //外网
+    // " + getResources().getString(R.string.OkHttpHelper_java_4)
 //    private static final String URL = "http://114.55.228.245:84/nkyapi/mobile/interface.do?content=";
 
-    private static final String URL = "http://121.43.123.125:84/mobile/interface.do?content=";
+    private static final String URL = Constant.API_DOMAIN + "/mobile/interface.do?content=";
     /**
-     * get请求
+     * get " + getResources().getString(R.string.OkHttpHelper_java_5)
      * @param params
      * @param callback
      * @return
@@ -59,7 +60,7 @@ public class OkHttpHelper {
     }
 
     /**
-     * 构造json参数
+     *  " + getResources().getString(R.string.OkHttpHelper_java_10)json " + getResources().getString(R.string.OkHttpHelper_java_11)
      * @param names
      * @param values
      * @return

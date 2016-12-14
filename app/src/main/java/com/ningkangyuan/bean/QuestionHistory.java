@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 咨询(留言)
+ *  " + getResources().getString(R.string.PersonalCenterActivity_java_8)( " + getResources().getString(R.string.DoctorActivity_java_27))
  * Created by xuchun on 2016/8/25.
  */
 public class QuestionHistory implements Serializable {

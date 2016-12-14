@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 科室
+ *  " + getResources().getString(R.string.MainActivity_java_100)
  * Created by xuchun on 2016/8/23.
  */
 public class Office implements Serializable {

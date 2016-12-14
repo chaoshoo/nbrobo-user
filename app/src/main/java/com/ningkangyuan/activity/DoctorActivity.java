@@ -39,13 +39,13 @@ import okhttp3.Response;
 /**
  * Created by xuchun on 2016/8/22.
  */
-public class DoctorActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class DoctorActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String TAG = "DoctorActivity";
 
     private static final int PAGE_SIZE = 6;
 
-    private Button mUpBtn,mNextBtn,mBackBtn;
+    private Button mUpBtn, mNextBtn, mBackBtn;
     private DoctorAdapter mDoctorAdapter;
     private RecyclerViewTV mRecyclerViewTV;
     private MainUpView mMainUpView;
@@ -72,8 +72,8 @@ public class DoctorActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.doctor, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.doctor,  null));
 
         mUpBtn = (Button) findViewById(R.id.doctor_up);
         mNextBtn = (Button) findViewById(R.id.doctor_next);
@@ -89,33 +89,33 @@ public class DoctorActivity extends BaseActivity implements View.OnClickListener
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.doctor_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,1);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 1);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.HORIZONTAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mDoctorAdapter = new DoctorAdapter(mDoctorList));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
                 showDoctorSelect(position);
             }
         });
@@ -128,15 +128,15 @@ public class DoctorActivity extends BaseActivity implements View.OnClickListener
         if (hospital_code == null) {
             hospital_code = "";
         }
-        //得到医生数据
-        showProgressDialog("Searching doctor data..");
-        qryDoctor(mPage,null);
+        // " + getResources().getString(R.string.DoctorActivity_java_19)
+        showProgressDialog(" " + getResources().getString(R.string.DoctorActivity_java_20) + " ..");
+        qryDoctor(mPage, null);
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -152,72 +152,72 @@ public class DoctorActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.doctor_select_remote:
             {
-                //远程咨询诊断
+                // " + getResources().getString(R.string.DoctorActivity_java_24)
                 Integer postion = (Integer) v.getTag();
-                Intent intent = new Intent(this,RemoteSaveActivity.class);
-                intent.putExtra("doctor",mDoctorList.get(postion));
+                Intent intent = new Intent(this, RemoteSaveActivity.class);
+                intent.putExtra("doctor", mDoctorList.get(postion));
                 startActivity(intent);
                 mDoctorSelectPW.dismiss();
             }
                 break;
             case R.id.doctor_select_question:
-                //留言
+                // " + getResources().getString(R.string.DoctorActivity_java_27)
                 Integer postion = (Integer) v.getTag();
-                Intent intent = new Intent(this,QuestionSaveActivity.class);
-                intent.putExtra("doctor",mDoctorList.get(postion));
+                Intent intent = new Intent(this, QuestionSaveActivity.class);
+                intent.putExtra("doctor", mDoctorList.get(postion));
                 startActivity(intent);
                 mDoctorSelectPW.dismiss();
                 break;
 
             case R.id.doctor_up:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 if (mPage == 1) {
-                    ToastUtil.show(this,"First page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_29));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryDoctor(mPage,"-");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryDoctor(mPage, "-");
                 break;
             case R.id.doctor_next:
-                //下一页
+                // " + getResources().getString(R.string.DeptActivity_java_31)
                 if (mIsLastPage) {
-                    ToastUtil.show(this,"Last page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_33));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryDoctor(mPage,"+");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryDoctor(mPage, "+");
                 break;
             case R.id.doctor_back:
-                //返回
+                // " + getResources().getString(R.string.DoctorActivity_java_40)
                 finish();
                 break;
         }
     }
 
-    private void qryDoctor(int page, final String type) {
+    private void qryDoctor(int page,  final String type) {
         if ("+".equals(type)) {
             page ++;
         }
         if ("-".equals(type)) {
             page --;
         }
-        showProgressDialog("Retrieving doctor information..");
+        showProgressDialog(" " + getResources().getString(R.string.DoctorActivity_java_42) + " ..");
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("doctors",
-                new String[]{"code","name","pageIndex","pageSize","office_code","hospital_code"},
-                new Object[]{"","",page,PAGE_SIZE,office_code,hospital_code}), new Callback() {
+                new String[]{"code", "name", "pageIndex", "pageSize", "office_code", "hospital_code"},
+                new Object[]{"", "", page, PAGE_SIZE, office_code, hospital_code}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(DoctorActivity.this, "onFailure：" + e.getMessage());
+                        ToastUtil.show(DoctorActivity.this,  "onFailure：" + e.getMessage());
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 if ("+".equals(type)) {
                     mPage ++;
                 }
@@ -225,10 +225,10 @@ public class DoctorActivity extends BaseActivity implements View.OnClickListener
                     mPage --;
                 }
                 String result = response.body().string();
-                LogUtil.d(TAG,"onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code",result))) {
-                    String doctors = JsonUtil.getObjectByKey("doctors",result);
-                    List<Doctor> tempList = JsonUtil.mGson.fromJson(doctors,new TypeToken<List<Doctor>>() {}.getType());
+                LogUtil.d(TAG, "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
+                    String doctors = JsonUtil.getObjectByKey("doctors", result);
+                    List<Doctor> tempList = JsonUtil.mGson.fromJson(doctors, new TypeToken<List<Doctor>>() {}.getType());
                     mIsLastPage = false;
                     if (tempList.size() < PAGE_SIZE) {
                         mIsLastPage = true;
@@ -248,7 +248,7 @@ public class DoctorActivity extends BaseActivity implements View.OnClickListener
                         @Override
                         public void run() {
                             dismissProgressDialog();
-                            ToastUtil.show(DoctorActivity.this, "No doctor information");
+                            ToastUtil.show(DoctorActivity.this,  getResources().getString(R.string.DoctorActivity_java_64));
                         }
                     });
                 }
@@ -256,11 +256,11 @@ public class DoctorActivity extends BaseActivity implements View.OnClickListener
         }));
     }
 
-    private Button remoteBTN,questionBTN;
+    private Button remoteBTN, questionBTN;
     private void showDoctorSelect(int position) {
         if (mDoctorSelectPW == null) {
 
-            View view = LayoutInflater.from(this).inflate(R.layout.doctor_select,null);
+            View view = LayoutInflater.from(this).inflate(R.layout.doctor_select, null);
             int width = ScreenUtil.getWidth(this) * 3 /4;
 //            int height = ScreenUtil.getHeight(this) * 3 / 4;
             view.findViewById(R.id.doctor_select_close).setOnClickListener(this);
@@ -269,13 +269,13 @@ public class DoctorActivity extends BaseActivity implements View.OnClickListener
             remoteBTN.setOnClickListener(this);
             questionBTN.setOnClickListener(this);
 
-            mDoctorSelectPW = new PopupWindow(view,width, WindowManager.LayoutParams.WRAP_CONTENT,true);
+            mDoctorSelectPW = new PopupWindow(view, width,  WindowManager.LayoutParams.WRAP_CONTENT, true);
             mDoctorSelectPW.setBackgroundDrawable(new ColorDrawable(0x00000000));
             mDoctorSelectPW.setOutsideTouchable(false);
         }
         remoteBTN.setTag(position);
         questionBTN.setTag(position);
         remoteBTN.requestFocus();
-        mDoctorSelectPW.showAtLocation(mUpBtn, Gravity.CENTER,0,0);
+        mDoctorSelectPW.showAtLocation(mUpBtn,  Gravity.CENTER, 0, 0);
     }
 }

@@ -1,7 +1,7 @@
 package com.ningkangyuan.activity;
 
 /**
- * 挂号
+ *  " + getResources().getString(R.string.MainActivity_java_48)
  * Created by xuchun on 2016/9/1.
  */
 public class RegSaveActivity extends BaseActivity {

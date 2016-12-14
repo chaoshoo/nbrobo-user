@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textSize="34sp"
         android:textColor="@android:color/white"
-        android:text="Doctor schedule"/>
+        android:text="@string/Schedule_java_1"/>
 
     <View
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:id="@+id/schedule_up"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:text="Previous page"
+            android:text="@string/DeptActivity_java_27"
             android:textColor="#0072b9"
             android:textSize="18sp"
             android:background="@drawable/white_btn"
@@ -39,7 +39,7 @@
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
-            android:text="next page"
+            android:text="@string/DeptActivity_java_31"
             android:textColor="#0072b9"
             android:textSize="18sp"
             android:background="@drawable/white_btn"
@@ -50,7 +50,7 @@
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
-            android:text="Return"
+            android:text="@string/DoctorActivity_java_40"
             android:textColor="#0072b9"
             android:textSize="18sp"
             android:background="@drawable/white_btn"

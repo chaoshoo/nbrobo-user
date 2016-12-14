@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="40sp"
                 android:textColor="@android:color/white"
-                android:text="height"/>
+                android:text="@string/Measure_java_10"/>
             <TextView
                 android:id="@+id/main_xingti_height"
                 android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="40sp"
                 android:textColor="@android:color/white"
-                android:text="weight"/>
+                android:text="@string/Measure_java_11"/>
             <TextView
                 android:id="@+id/main_xingti_weight"
                 android:layout_width="wrap_content"

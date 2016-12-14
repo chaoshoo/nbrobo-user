@@ -35,6 +35,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import com.ningkangyuan.MyApplication;
+import com.ningkangyuan.R;
 
 /**
  * Service for managing connection and data communication with a GATT server
@@ -67,21 +69,21 @@ public class BluetoothLeService extends Service {
 	private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
 
 		/**
-		 * ����״̬�仯�Ļص�
+		 * ����״̬� " + MyApplication.mContext.getResources().getString(R.string.BluetoothLeService_java_5)�Ļص�
 		 */
 		@Override
 		public void onConnectionStateChange(BluetoothGatt gatt, int status,
 				int newState) {
 			String intentAction;
 			if (newState == BluetoothProfile.STATE_CONNECTED) {
-				Log.e(TAG, "78chenggong");
+				Log.e(TAG, "78 " + MyApplication.mContext.getResources().getString(R.string.BluetoothLeService_java_9) + " ");
 				mBluetoothGatt.discoverServices();
 				intentAction = ACTION_GATT_CONNECTED;
 				mConnectionState = STATE_CONNECTED;
 				broadcastUpdate(intentAction);
 
 			} else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-				Log.e(TAG, "83fail");
+				Log.e(TAG, "83 " + MyApplication.mContext.getResources().getString(R.string.BluetoothLeService_java_11) + " ");
 				intentAction = ACTION_GATT_DISCONNECTED;
 				mConnectionState = STATE_DISCONNECTED;
 				broadcastUpdate(intentAction);
@@ -186,7 +188,7 @@ public class BluetoothLeService extends Service {
 			//
 			// }
 
-			// Log.e(TAG, "183=结束" );
+			// Log.e(TAG, "183= " + MyApplication.mContext.getResources().getString(R.string.BluetoothLeService_java_34) + " " );
 
 			intent.putExtra(extra, data);
 			sendBroadcast(intent);
@@ -194,7 +196,7 @@ public class BluetoothLeService extends Service {
 	}
 
 	/**
-	 * 对数据进行缓存
+	 *  " + MyApplication.mContext.getResources().getString(R.string.BluetoothLeService_java_36)
 	 * 
 	 * @param bytes
 	 */

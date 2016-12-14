@@ -57,12 +57,12 @@ public class DeviceSelectAcitivity extends BaseActivity {
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.device_select, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.device_select,  null));
 
         mAxiList  = new ArrayList<Axi>();
-        mAxiList.add(new Axi("blood pressure","BPM", 0));
-        mAxiList.add(new Axi("blood sugar","BGM", 0));
+        mAxiList.add(new Axi(getResources().getString(R.string.DeviceSelectAcitivity_java_3), "BPM",  0));
+        mAxiList.add(new Axi(getResources().getString(R.string.DeviceSelectAcitivity_java_6), "BGM",  0));
 
         mGridView = (GridView) findViewById(R.id.device_select_list);
         mGridView.setAdapter(new DeviceSelectAdapter(this));
@@ -72,7 +72,7 @@ public class DeviceSelectAcitivity extends BaseActivity {
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = mBluetoothManager.getAdapter();
         if (mBluetoothAdapter == null) {
-            ToastUtil.show(this,"Bluetooth module was not detected.");
+            ToastUtil.show(this, getResources().getString(R.string.DeviceSelectAcitivity_java_10));
             finish();
             return;
         }
@@ -84,16 +84,16 @@ public class DeviceSelectAcitivity extends BaseActivity {
 
     BluetoothAdapter.LeScanCallback leScanCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
-        public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+        public void onLeScan(BluetoothDevice device,  int rssi,  byte[] scanRecord) {
             String macName = device.getName();
-            LogUtil.d(TAG,"macName：" + macName);
+            LogUtil.d(TAG, "macName：" + macName);
             if (macName != null && macName.startsWith("Bioland") && macName.endsWith(mDeviceType)) {
                 dismissProgressDialog();
                 String macAddress = device.getAddress();
-                LogUtil.d(TAG, "macAddress：" + macAddress);
-                Intent intent = new Intent(DeviceSelectAcitivity.this, DeviceControlActivity.class);
-                intent.putExtra("DEVICE_NAME",macName);
-                intent.putExtra("DEVICE_ADDRESS",macAddress);
+                LogUtil.d(TAG,  "macAddress：" + macAddress);
+                Intent intent = new Intent(DeviceSelectAcitivity.this,  DeviceControlActivity.class);
+                intent.putExtra("DEVICE_NAME", macName);
+                intent.putExtra("DEVICE_ADDRESS", macAddress);
                 startActivity(intent);
                 mBluetoothAdapter.stopLeScan(leScanCallback);
             }
@@ -106,7 +106,7 @@ public class DeviceSelectAcitivity extends BaseActivity {
             Integer position = (Integer) v.getTag(R.id.position);
             String name = mAxiList.get(position).getName();
             mDeviceType = mAxiList.get(position).getCode();
-            showProgressDialog("Scanning" + name + "equipment,请确保该equipment已打开");
+            showProgressDialog(getResources().getString(R.string.DeviceSelectAcitivity_java_18) + name + getResources().getString(R.string.DeviceSelectAcitivity_java_19));
             mBluetoothAdapter.startLeScan(leScanCallback);
         }
     };
@@ -118,7 +118,7 @@ public class DeviceSelectAcitivity extends BaseActivity {
 
         public DeviceSelectAdapter(Context context) {
             this.context = context;
-            this.itmeHeight = ScreenUtil.dip2px(context, 80);
+            this.itmeHeight = ScreenUtil.dip2px(context,  80);
         }
 
         @Override
@@ -137,22 +137,22 @@ public class DeviceSelectAcitivity extends BaseActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position,  View convertView,  ViewGroup parent) {
             ViewHolder viewHolder = null;
             if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.device_item,null);
-                AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, itmeHeight);
+                convertView = LayoutInflater.from(context).inflate(R.layout.device_item, null);
+                AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT,  itmeHeight);
                 convertView.setLayoutParams(layoutParams);
                 viewHolder = new ViewHolder();
                 viewHolder.contentTV = (TextView) convertView.findViewById(R.id.device_item_name);
-                convertView.setTag(R.id.holder,viewHolder);
+                convertView.setTag(R.id.holder, viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag(R.id.holder);
             }
 
             viewHolder.contentTV.setText(mAxiList.get(position).getName());
 
-            convertView.setTag(R.id.position, position);
+            convertView.setTag(R.id.position,  position);
             convertView.setOnClickListener(onItemClickListener);
 
             return convertView;

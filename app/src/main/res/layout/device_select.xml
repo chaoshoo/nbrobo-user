@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Equipment selection"
+            android:text="@string/device_select_xml_1"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Click to scan devices"
+            android:text="@string/device_select_xml_2"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 

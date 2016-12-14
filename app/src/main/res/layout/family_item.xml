@@ -23,6 +23,6 @@
         android:layout_marginTop="15dp"
         android:textColor="@android:color/white"
         android:textSize="24dp"
-        android:text="Bind member"/>
+        android:text="@string/FamilyActivity_java_23"/>
 
 </LinearLayout>

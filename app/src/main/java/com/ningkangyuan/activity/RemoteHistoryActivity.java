@@ -33,13 +33,13 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 远程咨询历史
+ *  " + getResources().getString(R.string.RemoteHistoryActivity_java_1)
  * Created by xuchun on 2016/8/26.
  */
-public class RemoteHistoryActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class RemoteHistoryActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
     private static final String TAG = "RemoteListActivity";
 
-    private Button mUpBtn,mNextBtn,mBackBtn;
+    private Button mUpBtn, mNextBtn, mBackBtn;
     private RecyclerViewTV mRecyclerViewTV;
     private MainUpView mMainUpView;
     private RemoteHistorydapter mRemoteHistorydapter;
@@ -62,8 +62,8 @@ public class RemoteHistoryActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.remote_history, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.remote_history,  null));
 
         mUpBtn = (Button) findViewById(R.id.remote_history_up);
         mNextBtn = (Button) findViewById(R.id.remote_history_next);
@@ -79,56 +79,56 @@ public class RemoteHistoryActivity extends BaseActivity implements View.OnClickL
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.remote_history_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,4);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 4);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.VERTICAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mRemoteHistorydapter = new RemoteHistorydapter(mRemoteHistoryList));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
-                Intent intent = new Intent(RemoteHistoryActivity.this, RemoteDetailsActivity.class);
-                intent.putExtra("remote", mRemoteHistoryList.get(position));
-                startActivityForResult(intent, 0);
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
+                Intent intent = new Intent(RemoteHistoryActivity.this,  RemoteDetailsActivity.class);
+                intent.putExtra("remote",  mRemoteHistoryList.get(position));
+                startActivityForResult(intent,  0);
             }
         });
-        qryRemote(mPage, null);
+        qryRemote(mPage,  null);
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode,  int resultCode,  Intent data) {
         if (requestCode == 0 && resultCode == RESULT_OK) {
             mRemoteHistoryList.clear();
             mRemoteHistorydapter.notifyDataSetChanged();
-            qryRemote(mPage, null);
+            qryRemote(mPage,  null);
         }
     }
 
@@ -136,32 +136,32 @@ public class RemoteHistoryActivity extends BaseActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.remote_history_up:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 if (mPage == 1) {
-                    ToastUtil.show(this,"First page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_29));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryRemote(mPage, "-");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryRemote(mPage,  "-");
                 break;
             case R.id.remote_history_next:
-                //下一页
+                // " + getResources().getString(R.string.DeptActivity_java_31)
                 if (mIsLastPage) {
-                    ToastUtil.show(this,"Last page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_33));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryRemote(mPage, "+");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryRemote(mPage,  "+");
                 break;
             case R.id.remote_history_back:
-                //返回
+                // " + getResources().getString(R.string.DoctorActivity_java_40)
                 finish();
                 break;
         }
     }
 
-    private void qryRemote(int page, final String type) {
-        showProgressDialog("Being loaded..");
+    private void qryRemote(int page,  final String type) {
+        showProgressDialog(" " + getResources().getString(R.string.GuideActivity_java_8) + " ..");
         if ("+".equals(type)) {
             page ++;
         }
@@ -170,21 +170,21 @@ public class RemoteHistoryActivity extends BaseActivity implements View.OnClickL
         }
         mCallList.add(OkHttpHelper.get(
                 OkHttpHelper.makeJsonParams("remotelist",
-                        new String[]{"vip_code", "pageIndex", "pageSize"},
-                        new Object[]{mVip.getVip_code(), page, Constant.PAGE_SIZE_8}), new Callback() {
+                        new String[]{"vip_code",  "pageIndex",  "pageSize"},
+                        new Object[]{mVip.getVip_code(),  page,  Constant.PAGE_SIZE_8}),  new Callback() {
                     @Override
-                    public void onFailure(Call call, final IOException e) {
+                    public void onFailure(Call call,  final IOException e) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 dismissProgressDialog();
-                                ToastUtil.show(RemoteHistoryActivity.this, "onFailure：" + e.getMessage());
+                                ToastUtil.show(RemoteHistoryActivity.this,  "onFailure：" + e.getMessage());
                             }
                         });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
+                    public void onResponse(Call call,  Response response) throws IOException {
                         if ("+".equals(type)) {
                             mPage++;
                         }
@@ -192,10 +192,10 @@ public class RemoteHistoryActivity extends BaseActivity implements View.OnClickL
                             mPage--;
                         }
                         String result = response.body().string();
-                        LogUtil.d(TAG, "onResponse：" + result);
-                        if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                            String remotes = JsonUtil.getObjectByKey("remotes", result);
-                            List<RemoteHistory> tempList = JsonUtil.mGson.fromJson(remotes, new TypeToken<List<RemoteHistory>>() {
+                        LogUtil.d(TAG,  "onResponse：" + result);
+                        if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                            String remotes = JsonUtil.getObjectByKey("remotes",  result);
+                            List<RemoteHistory> tempList = JsonUtil.mGson.fromJson(remotes,  new TypeToken<List<RemoteHistory>>() {
                             }.getType());
                             mIsLastPage = false;
                             if (tempList.size() < Constant.PAGE_SIZE_8) {
@@ -216,7 +216,7 @@ public class RemoteHistoryActivity extends BaseActivity implements View.OnClickL
                                 @Override
                                 public void run() {
                                     dismissProgressDialog();
-                                    ToastUtil.show(RemoteHistoryActivity.this, "No information");
+                                    ToastUtil.show(RemoteHistoryActivity.this,  getResources().getString(R.string.MessageListActivity_java_53));
                                 }
                             });
                         }

@@ -6,13 +6,13 @@
     <string name="label_device_address">Device address:</string>
     <string name="label_state">State:</string>
     <string name="no_data">No data</string>
-    <string name="connected">Connected</string>
-    <string name="disconnected">Disconnected</string>
+    <string name="connected">已连接</string>
+    <string name="disconnected">已断开</string>
 
-    <string name="send">Send</string>
-    <string name="uuid_service">service UUID</string>
-    <string name="uuid_write">write UUID</string>
-    <string name="uuid_read">read UUID</string>
+    <string name="send">发送</string>
+    <string name="uuid_service">服务 UUID</string>
+    <string name="uuid_write">写 UUID</string>
+    <string name="uuid_read">读 UUID</string>
 
 
     <!-- Menu items -->
@@ -22,25 +22,25 @@
     <string name="menu_stop">Stop</string>
 
 
-    <string name="action_settings">Set up</string>
-    <string name="action_about">about</string>
+    <string name="action_settings">设置</string>
+    <string name="action_about">关于</string>
 
     <string name="button_audio">Audio</string>
     <string name="button_video">Video</string>
 
 
-    <string name="setting_title">Set up</string>
-    <string name="setting_net">network</string>
-    <string name="setting_voe">voice call</string>
-    <string name="setting_vie">Video call</string>
-    <string name="setting_live">Interactive live broadcast</string>
-    <string name="setting_other">Other</string>
+    <string name="setting_title">设置</string>
+    <string name="setting_net">网络</string>
+    <string name="setting_voe">语音通话</string>
+    <string name="setting_vie">视频通话</string>
+    <string name="setting_live">互动直播</string>
+    <string name="setting_other">其它</string>
 
     <string name="setting_vie_crop_key">setting_vie_crop_key</string>
-    <string name="setting_vie_crop">Picture clipping</string>
+    <string name="setting_vie_crop">画面裁剪</string>
 
     <string name="setting_vie_quality_key">setting_vie_quality_key</string>
-    <string name="setting_vie_quality">Video definition</string>
+    <string name="setting_vie_quality">视频清晰度</string>
     <string-array name="setting_vie_quality_entries"> 
         <item>Default</item> 
         <item>Low</item> 
@@ -60,7 +60,7 @@
 
 
     <string name="setting_vie_frame_scale_type_key">setting_vie_frame_scale_type_key</string>
-    <string name="setting_vie_frame_scale_type">Zoom mode</string>
+    <string name="setting_vie_frame_scale_type">缩放模式</string>
     <string-array name="setting_vie_frame_scale_type_entries"> 
         <item>FIT</item> 
         <item>FILL</item> 
@@ -73,7 +73,7 @@
     </string-array>
 
     <string name="setting_vie_frame_rate_key">setting_vie_frame_rate_key</string>
-    <string name="setting_vie_frame_rate">Video fps</string>
+    <string name="setting_vie_frame_rate">视频帧率</string>
     <string-array name="setting_vie_frame_rate_entries"> 
         <item>5</item> 
         <item>10</item> 
@@ -91,9 +91,9 @@
 
 
     <string-array name="setting_vie_hw_encoder_entries"> 
-        <item>automatic</item> 
-        <item>Disable</item> 
-        <item>force</item> 
+        <item>自动</item> 
+        <item>禁用</item> 
+        <item>强制</item> 
     </string-array>
     <string-array name="setting_vie_hw_encoder_values"> 
         <item>0</item> 
@@ -115,9 +115,9 @@
     </string-array>
 
     <string-array name="setting_vie_hw_decoder_entries"> 
-        <item>automatic</item> 
-        <item>Disable</item> 
-        <item>force</item> 
+        <item>自动</item> 
+        <item>禁用</item> 
+        <item>强制</item> 
     </string-array>
     <string-array name="setting_vie_hw_decoder_values"> 
         <item>0</item> 
@@ -138,80 +138,80 @@
     </string-array>
 
     <string name="setting_other_device_default_rotation_key">setting_other_device_default_rotation_key</string>
-    <string name="setting_other_device_default_rotation">Device default rotation angle(Use of special equipment)</string>
+    <string name="setting_other_device_default_rotation">设备默认旋转角度(特殊设备使用)</string>
 
     <string name="setting_other_device_rotation_fixed_offset_key">setting_other_device_rotation_fixed_offset_key</string>
-    <string name="setting_other_device_rotation_fixed_offset">Device rotation angle correction(Use of special equipment)</string>
+    <string name="setting_other_device_rotation_fixed_offset">设备旋转角度修正偏移量(特殊设备使用)</string>
 
     <string name="setting_vie_rotation_key">setting_vie_rotation_key</string>
-    <string name="setting_vie_rotation">Picture rotation</string>
+    <string name="setting_vie_rotation">画面旋转</string>
 
     <string name="setting_vie_default_front_camera_key">setting_vie_default_front_camera_key</string>
-    <string name="setting_vie_default_front_camera">Default front camera</string>
+    <string name="setting_vie_default_front_camera">默认前置摄像头</string>
 
     <string name="setting_vie_hw_encoder_key">setting_vie_hw_encoder_key</string>
-    <string name="setting_vie_hw_encoder">Hardware coding(Only part of the device support)</string>
+    <string name="setting_vie_hw_encoder">硬件编码(仅部分设备支持)</string>
 
     <string name="setting_vie_hw_decoder_key">setting_vie_hw_decoder_key</string>
-    <string name="setting_vie_hw_decoder">Hardware decoding(Only part of the device support)</string>
+    <string name="setting_vie_hw_decoder">硬件解码(仅部分设备支持)</string>
 
     <string name="setting_other_server_record_audio_key">setting_other_server_record_audio_key</string>
-    <string name="setting_other_server_record_audio">Audio recording</string>
+    <string name="setting_other_server_record_audio">音频服务器录制</string>
 
     <string name="setting_other_server_record_video_key">setting_other_server_record_video_key</string>
-    <string name="setting_other_server_record_video">Video server recording</string>
+    <string name="setting_other_server_record_video">视频服务器录制</string>
 
     <string name="setting_voe_call_proximity_key">setting_voe_call_proximity_key</string>
-    <string name="setting_voe_call_proximity">Turn off the screen during the call</string>
+    <string name="setting_voe_call_proximity">通话期间关闭屏幕</string>
 
     <string name="setting_voe_muted_key">setting_voe_muted_key</string>
-    <string name="setting_voe_muted">Voice stream mute processing</string>
+    <string name="setting_voe_muted">语音流静音处理</string>
 
     <string name="setting_vie_muted_key">setting_vie_muted_key</string>
-    <string name="setting_vie_muted">Silent video stream processing</string>
+    <string name="setting_vie_muted">视频流静音处理</string>
 
     <string name="setting_vie_fps_reported_key">setting_vie_fps_reported_key</string>
-    <string name="setting_vie_fps_reported">Fps report</string>
+    <string name="setting_vie_fps_reported">帧率汇报</string>
 
     <string name="setting_live_status_key">setting_live_status_key</string>
-    <string name="setting_live_status">Interactive live broadcast</string>
+    <string name="setting_live_status">互动直播</string>
 
     <string name="setting_live_url_key">setting_live_url_key</string>
-    <string name="setting_live_url">Bypass direct current address</string>
+    <string name="setting_live_url">旁路直播推流地址</string>
 
     <string name="setting_vie_max_bitrate_key">setting_vie_max_bitrate_key</string>
-    <string name="setting_vie_max_bitrate">Maximum Bitrate(Kbps)</string>
+    <string name="setting_vie_max_bitrate">最大码率(Kbps)</string>
 
 
     <string name="setting_voe_audio_aec_key">setting_voe_audio_aec_key</string>
-    <string name="setting_voe_audio_aec">Echo reduction</string>
+    <string name="setting_voe_audio_aec">回音消除</string>
 
     <string name="setting_voe_audio_agc_key">setting_voe_audio_agc_key</string>
-    <string name="setting_voe_audio_agc">automatic gain</string>
+    <string name="setting_voe_audio_agc">自动增益</string>
 
     <string name="setting_voe_audio_ns_key">setting_voe_audio_ns_key</string>
-    <string name="setting_voe_audio_ns">noise reduction</string>
+    <string name="setting_voe_audio_ns">降噪</string>
 
     <string name="setting_voe_report_speaker_key">setting_voe_audio_report_speaker_key</string>
-    <string name="setting_voe_report_speaker">Real-time reporting to the user</string>
+    <string name="setting_voe_report_speaker">实时汇报说话用户</string>
 
     <string name="setting_net_proxy_key">setting_net_proxy_key</string>
-    <string name="setting_net_proxy">Network agent</string>
+    <string name="setting_net_proxy">网络代理</string>
 
     <string name="setting_net_proxy_user_name_key">setting_net_proxy_user_name_key</string>
-    <string name="setting_net_proxy_user_name">User name</string>
+    <string name="setting_net_proxy_user_name">用户名</string>
 
     <string name="setting_net_proxy_user_password_key">setting_net_proxy_user_password_key</string>
-    <string name="setting_net_proxy_user_password">Password</string>
+    <string name="setting_net_proxy_user_password">密码</string>
 
     <string name="setting_net_proxy_addr_ip_key">setting_net_proxy_addr_ip_key</string>
-    <string name="setting_net_proxy_addr_ip">address</string>
+    <string name="setting_net_proxy_addr_ip">地址</string>
 
     <string name="setting_net_proxy_addr_port_key">setting_net_proxy_addr_port_key</string>
-    <string name="setting_net_proxy_addr_port">port</string>
+    <string name="setting_net_proxy_addr_port">端口</string>
 
 
-    <string name="about_title">about</string>
+    <string name="about_title">关于</string>
     <string name="about_nrtc_sdk">NRTC SDK</string>
     <string name="about_nrtc_demo">NRTC Demo</string>
 
@@ -249,20 +249,584 @@
     <string name="about_nrtc_demo_version_server_env">Server</string>
 
 
-    <string name="button_call">Call</string>
-    <string name="button_handup">Hang up</string>
+    <string name="button_call">呼叫</string>
+    <string name="button_handup">挂断</string>
 
-    <string name="button_start_record">start recording</string>
-    <string name="button_stop_record">Stop recording</string>
+    <string name="button_start_record">开始录制</string>
+    <string name="button_stop_record">停止录制</string>
 
-    <string name="button_mute">Mute</string>
-    <string name="button_speaker">speaker</string>
+    <string name="button_mute">静音</string>
+    <string name="button_speaker">扬声器</string>
 
-    <string name="button_camera">Camera</string>
+    <string name="button_camera">摄像头</string>
 
-    <string name="button_switch_camera">Switch camera</string>
-    <string name="button_switch_render">Switching screen</string>
-    <string name="button_switch_mode">Switching mode</string>
+    <string name="button_switch_camera">切换摄像头</string>
+    <string name="button_switch_render">切换画面</string>
+    <string name="button_switch_mode">切换模式</string>
 
-    <string name="button_snapshot">screenshot</string>
+    <string name="button_snapshot">截图</string>
+
+    <string name="main_consulting">Consulting</string>
+    <string name="main_register">Register</string>
+    <string name="main_me">Me</string>
+    <string name="main_membership">Membership</string>
+    <string name="main_message">Message</string>
+    <string name="main_history">History</string>
+    <string name="main_setting">Setting</string>
+    <string name="main_instruction">Instruction</string>
+
+    <string name="Axi_java_1">Types of testing equipment</string>
+<string name="BDPushReceiver_java_1">Baidu push receiver</string>
+<string name="BDPushReceiver_java_25">receive messages</string>
+<string name="BDPushReceiver_java_27">Save this message and then display it at the message center.</string>
+<string name="BaseActivity_java_10">Determine</string>
+<string name="BaseActivity_java_11">cancel</string>
+<string name="BaseActivity_java_13">Video request</string>
+<string name="BaseActivity_java_14">Request with your video, whether or not to answer</string>
+<string name="BaseActivity_java_18">Connecting server</string>
+<string name="BaseActivity_java_2">Please login first</string>
+<string name="BaseActivity_java_23">Unable to connect to the server, please check the network</string>
+<string name="BaseActivity_java_40">Acquisition failure</string>
+<string name="BluetoothLeService_java_11">fail</string>
+<string name="BluetoothLeService_java_34">End</string>
+<string name="BluetoothLeService_java_36">Caching data</string>
+<string name="BluetoothLeService_java_5">Chao</string>
+<string name="BluetoothLeService_java_9">Success</string>
+<string name="BluetoothScanService_java_1">Call only when the first was created.</string>
+<string name="BluetoothScanService_java_17">Scanning the end to continue a new round of scanning</string>
+<string name="BluetoothScanService_java_20">Bluetooth open</string>
+<string name="BluetoothScanService_java_21">Direct scan</string>
+<string name="BluetoothScanService_java_5">Has been opened on the direct scan</string>
+<string name="BluetoothScanService_java_6">To turn on Bluetooth</string>
+<string name="BluetoothScanService_java_7">As long as the Executive</string>
+<string name="BluetoothScanService_java_8">This method will be called</string>
+<string name="Commands_java_1">Baotou</string>
+<string name="Commands_java_2">Packet class</string>
+<string name="Commands_java_3">Packet length</string>
+<string name="Constant_java_13">temperature</string>
+<string name="Constant_java_16">Oxygen</string>
+<string name="Constant_java_19">Urine routine</string>
+<string name="DeptActivity_java_1">Registered office</string>
+<string name="DeptActivity_java_27">Previous page</string>
+<string name="DeptActivity_java_29">Already is the first page.</string>
+<string name="DeptActivity_java_31">next page</string>
+<string name="DeptActivity_java_33">Already the last page.</string>
+<string name="DeptActivity_java_37">Querying data</string>
+<string name="DeptActivity_java_55">No data show</string>
+<string name="DeptActivity_java_6">Card number</string>
+<string name="DeptActivity_java_8">Set the picture to move the border.</string>
+<string name="DeptActivity_java_9">Set the shadow of the moving border</string>
+<string name="Dept_java_1">Registered hospital department</string>
+<string name="DetectionKPI_java_1">Detection index</string>
+<string name="DeviceControlActivity_java_100">heart</string>
+<string name="DeviceControlActivity_java_102">Pulse rate</string>
+<string name="DeviceControlActivity_java_103">systolic pressure</string>
+<string name="DeviceControlActivity_java_105">diastolic pressure</string>
+<string name="DeviceControlActivity_java_14">Display command value</string>
+<string name="DeviceControlActivity_java_144">Uploading data</string>
+<string name="DeviceControlActivity_java_153">Low</string>
+<string name="DeviceControlActivity_java_154">normal</string>
+<string name="DeviceControlActivity_java_155">High</string>
+<string name="DeviceControlActivity_java_158">Upload success, please close the measuring device, click OK to exit this interface.</string>
+<string name="DeviceControlActivity_java_16">Here to connect to send the two command, or blood pressure can not be received in the process and the outcome of the package</string>
+<string name="DeviceControlActivity_java_160">Data upload failed</string>
+<string name="DeviceControlActivity_java_167">Set five to four</string>
+<string name="DeviceControlActivity_java_168">Set the minimum number of decimal places</string>
+<string name="DeviceControlActivity_java_169">Set the maximum number of decimal places</string>
+<string name="DeviceControlActivity_java_23">Get device upload data</string>
+<string name="DeviceControlActivity_java_25">Data is back</string>
+<string name="DeviceControlActivity_java_26">Check command package</string>
+<string name="DeviceControlActivity_java_28">Get the model no.</string>
+<string name="DeviceControlActivity_java_32">Start package</string>
+<string name="DeviceControlActivity_java_34">End package</string>
+<string name="DeviceControlActivity_java_36">I have received the package.</string>
+<string name="DeviceControlActivity_java_37">Blood pressure result package</string>
+<string name="DeviceControlActivity_java_39">Result</string>
+<string name="DeviceControlActivity_java_41">Results of blood glucose package</string>
+<string name="DeviceControlActivity_java_56">Display device upload data</string>
+<string name="DeviceControlActivity_java_57">Because there are a number of packet data, in the package with</string>
+<string name="DeviceControlActivity_java_58">Number separated</string>
+<string name="DeviceControlActivity_java_59">Converted data</string>
+<string name="DeviceControlActivity_java_88">Send a command to the device</string>
+<string name="DeviceControlActivity_java_93">According to different equipment</string>
+<string name="DeviceControlActivity_java_94">Display the results of the measurement</string>
+<string name="DeviceControlActivity_java_97">high pressure</string>
+<string name="DeviceControlActivity_java_99">low</string>
+<string name="DeviceSelectAcitivity_java_10">The Bluetooth module was not detected.</string>
+<string name="DeviceSelectAcitivity_java_18">Being scanned</string>
+<string name="DeviceSelectAcitivity_java_19">Equipment, please make sure that the device has been opened</string>
+<string name="DeviceSelectAcitivity_java_3">blood pressure</string>
+<string name="DeviceSelectAcitivity_java_6">blood glucose</string>
+<string name="DocActivity_java_1">Registered doctor</string>
+<string name="DoctorActivity_java_19">Get doctor data</string>
+<string name="DoctorActivity_java_20">Query doctor data</string>
+<string name="DoctorActivity_java_24">Remote consultation and diagnosis</string>
+<string name="DoctorActivity_java_27">Leaving a message.</string>
+<string name="DoctorActivity_java_40">Return</string>
+<string name="DoctorActivity_java_42">Getting doctor information</string>
+<string name="DoctorActivity_java_64">No doctor information</string>
+<string name="DoctorAdapter_java_6">Full name</string>
+<string name="DoctorAdapter_java_7">Title</string>
+<string name="DoctorAdapter_java_8">Education</string>
+<string name="DoctorAdapter_java_9">brief introduction</string>
+<string name="FamilyActivity_java_1">Member management</string>
+<string name="FamilyActivity_java_22">binding</string>
+<string name="FamilyActivity_java_23">Bind member</string>
+<string name="FamilyActivity_java_24">WeChat sweep me</string>
+<string name="FamilyActivity_java_25">Querying member data</string>
+<string name="FamilyActivity_java_37">Construct a</string>
+<string name="FamilyActivity_java_38">, as the first to use</string>
+<string name="FamilyActivity_java_5">Current member：</string>
+<string name="FamilyActivity_java_50">Please enter your ID number.</string>
+<string name="FamilyActivity_java_52">Please input a password</string>
+<string name="FamilyActivity_java_53">Being bound</string>
+<string name="FamilyActivity_java_69">Switch members</string>
+<string name="FamilyActivity_java_74">Members switch to success</string>
+<string name="FamilyActivity_java_75">Is lifting the binding</string>
+<string name="FamilyActivity_java_91">Prompt</string>
+<string name="FamilyActivity_java_92">Please select operation</string>
+<string name="FamilyActivity_java_93">Click the wrong place</string>
+<string name="FamilyActivity_java_95">Switch to this member</string>
+<string name="FamilyActivity_java_98">Bind this member</string>
+<string name="GuideActivity_java_1">Operation guide</string>
+<string name="GuideActivity_java_8">Being loaded</string>
+<string name="HistoryActivity_java_1">History detection</string>
+<string name="HosActivity_java_1">Registered hospital</string>
+<string name="InitActivity_java_1">this</string>
+<string name="InitActivity_java_11">Initialization Bluetooth</string>
+<string name="InitActivity_java_13">No Bluetooth module detected</string>
+<string name="InitActivity_java_16">Jump here</string>
+<string name="InitActivity_java_18">Use</string>
+<string name="InitActivity_java_19">Login</string>
+<string name="InitActivity_java_2">Do some project initialization operation</string>
+<string name="InitActivity_java_20">Gets the server time to update the local system time</string>
+<string name="InitActivity_java_3">enterprise</string>
+<string name="InitActivity_java_31">Test setup time</string>
+<string name="InitActivity_java_32">Time format</string>
+<string name="InitActivity_java_4">My</string>
+<string name="InitActivity_java_49">Save login data</string>
+<string name="InitActivity_java_52">Jump to main page</string>
+<string name="InitActivity_java_56">Download progress</string>
+<string name="InitActivity_java_58">Download completed, install</string>
+<string name="InitActivity_java_6">The current network is not available</string>
+<string name="InitActivity_java_7">Baidu initialization</string>
+<string name="InitActivity_java_73">Discover new</string>
+<string name="InitActivity_java_8">Gets the server time to update the local time</string>
+<string name="InitActivity_java_9">Check version update</string>
+<string name="JsonUtil_java_1">according to</string>
+<string name="JsonUtil_java_2">Obtain</string>
+<string name="JsonUtil_java_3">Unexpected return</string>
+<string name="LoginActivity_java_28">Save the current login account and password</string>
+<string name="LoginActivity_java_35">Check login parameters</string>
+<string name="LoginActivity_java_37">Please enter your ID card or cell phone number.</string>
+<string name="LoginActivity_java_39">ID card or phone number to fill at least one</string>
+<string name="LoginActivity_java_42">Please enter the correct cell phone number.</string>
+<string name="LoginActivity_java_6">Sign in</string>
+<string name="LoginActivity_java_8">Being logged in</string>
+<string name="MainActivity_java_100">Department</string>
+<string name="MainActivity_java_101">Doctor</string>
+<string name="MainActivity_java_102">No registration information</string>
+<string name="MainActivity_java_123">Random blood glucose</string>
+<string name="MainActivity_java_124">Pre meal blood glucose</string>
+<string name="MainActivity_java_125">Postprandial blood glucose</string>
+<string name="MainActivity_java_129">Reference threshold</string>
+<string name="MainActivity_java_130">Recent detection</string>
+<string name="MainActivity_java_133">body</string>
+<string name="MainActivity_java_135">Last detection time</string>
+<string name="MainActivity_java_14">Querying measured data</string>
+<string name="MainActivity_java_28">yes</string>
+<string name="MainActivity_java_34">no</string>
+<string name="MainActivity_java_37">Scan again</string>
+<string name="MainActivity_java_40">Has been detected</string>
+<string name="MainActivity_java_41">Equipment, whether or not to measure</string>
+<string name="MainActivity_java_46">Remote consultation</string>
+<string name="MainActivity_java_48">Register</string>
+<string name="MainActivity_java_50">Personal Center</string>
+<string name="MainActivity_java_54">news</string>
+<string name="MainActivity_java_56">Detection history</string>
+<string name="MainActivity_java_58">System settings</string>
+<string name="MainActivity_java_60">No this function</string>
+<string name="MainActivity_java_67">Query registration information</string>
+<string name="MainActivity_java_95">Pre consultation time</string>
+<string name="MainActivity_java_96">Order number</string>
+<string name="MainActivity_java_97">Registration fee</string>
+<string name="MainActivity_java_98">element</string>
+<string name="MainActivity_java_99">Hospital</string>
+<string name="Measure_java_10">height</string>
+<string name="Measure_java_11">weight</string>
+<string name="Measure_java_14">blood</string>
+<string name="Measure_java_15">white blood cell</string>
+<string name="Measure_java_16">nitrite</string>
+<string name="Measure_java_17">Urinary bladder</string>
+<string name="MessageListActivity_java_1">Message list</string>
+<string name="MessageListActivity_java_35">Load data</string>
+<string name="MessageListActivity_java_53">No information data</string>
+<string name="MultiChatActivity_java_11">frame rate</string>
+<string name="MultiChatActivity_java_113">Open sound</string>
+<string name="MultiChatActivity_java_114">Close sound</string>
+<string name="MultiChatActivity_java_115">Change your voice</string>
+<string name="MultiChatActivity_java_117">Kmap</string>
+<string name="MultiChatActivity_java_118">Guan Mai</string>
+<string name="MultiChatActivity_java_121">Local operating voice mute</string>
+<string name="MultiChatActivity_java_122">Local operation video</string>
+<string name="MultiChatActivity_java_123">Remote operation video</string>
+<string name="MultiChatActivity_java_124">Remote operation voice</string>
+<string name="MultiChatActivity_java_125">The user is currently in the audio and video mode</string>
+<string name="MultiChatActivity_java_126">Is it allowed to switch the camera</string>
+<string name="MultiChatActivity_java_127">canvas</string>
+<string name="MultiChatActivity_java_128">Whether in recording</string>
+<string name="MultiChatActivity_java_129">Video frame rate</string>
+<string name="MultiChatActivity_java_131">Role type</string>
+<string name="MultiChatActivity_java_132">User transfer parameters</string>
+<string name="MultiChatActivity_java_141">Close the kidney</string>
+<string name="MultiChatActivity_java_142">Open speaker</string>
+<string name="MultiChatActivity_java_148">There are problems with the call flow.</string>
+<string name="MultiChatActivity_java_149">Update status</string>
+<string name="MultiChatActivity_java_151">Processing check</string>
+<string name="MultiChatActivity_java_152">The following will be the state of the run</string>
+<string name="MultiChatActivity_java_153">Rate setting</string>
+<string name="MultiChatActivity_java_154">On the status of whether there is a voice video, and</string>
+<string name="MultiChatActivity_java_155">Contrary</string>
+<string name="MultiChatActivity_java_156">local</string>
+<string name="MultiChatActivity_java_158">Remote</string>
+<string name="MultiChatActivity_java_160">Whether to record</string>
+<string name="MultiChatActivity_java_199">Excellent</string>
+<string name="MultiChatActivity_java_200">good</string>
+<string name="MultiChatActivity_java_201">not good</string>
+<string name="MultiChatActivity_java_202">range</string>
+<string name="MultiChatActivity_java_21">Leave the room</string>
+<string name="MultiChatActivity_java_22">Switch camera</string>
+<string name="MultiChatActivity_java_227">The default is converted into</string>
+<string name="MultiChatActivity_java_23">Select user</string>
+<string name="MultiChatActivity_java_24">Swap layout file</string>
+<string name="MultiChatActivity_java_30">Leave conversation</string>
+<string name="MultiChatActivity_java_34">Switch to ordinary users</string>
+<string name="MultiChatActivity_java_38">Switch to audience user</string>
+<string name="MultiChatActivity_java_46">Open video send</string>
+<string name="MultiChatActivity_java_47">Turn off video</string>
+<string name="MultiChatActivity_java_51">Open voice send</string>
+<string name="MultiChatActivity_java_52">Close voice transmission</string>
+<string name="MultiChatActivity_java_56">Close recording</string>
+<string name="MultiChatActivity_java_57">Open recording</string>
+<string name="MultiChatActivity_java_61">Open video reception</string>
+<string name="MultiChatActivity_java_62">Close video reception</string>
+<string name="MultiChatActivity_java_66">Open voice reception</string>
+<string name="MultiChatActivity_java_67">Close voice reception</string>
+<string name="MultiChatActivity_java_75">uncheck</string>
+<string name="MultiChatActivity_java_79">Exchange layout</string>
+<string name="MultiChatActivity_java_83">screenshot</string>
+<string name="MultiChatActivity_java_85">Selected</string>
+<string name="MultiChatActivity_java_9">Definition</string>
+<string name="NRtcActivity_java_1">Global setting parameters</string>
+<string name="NRtcActivity_java_23">Network agent</string>
+<string name="NRtcActivity_java_31">Agent can not be enabled</string>
+<string name="NetworkUtil_java_1">To determine whether the current network</string>
+<string name="OkHttpHelper_java_10">structure</string>
+<string name="OkHttpHelper_java_11">parameter</string>
+<string name="OkHttpHelper_java_4">Extranet</string>
+<string name="OkHttpHelper_java_5">request</string>
+<string name="OrderActivity_java_110">Failed to confirm</string>
+<string name="OrderActivity_java_123">Are you sure you cancel the order</string>
+<string name="OrderActivity_java_130">Please enter the reason</string>
+<string name="OrderActivity_java_131">Is canceling the order</string>
+<string name="OrderActivity_java_150">Order cancellation failed</string>
+<string name="OrderActivity_java_20">Display confirmation order</string>
+<string name="OrderActivity_java_21">Cancellation of order</string>
+<string name="OrderActivity_java_22">Operation order</string>
+<string name="OrderActivity_java_24">The order is not available</string>
+<string name="OrderActivity_java_37">Confirm order</string>
+<string name="OrderActivity_java_38">Payment order</string>
+<string name="OrderActivity_java_77">Order number：</string>
+<string name="OrderActivity_java_78">Registration fee</string>
+<string name="OrderActivity_java_80">Lock success</string>
+<string name="OrderActivity_java_82">Confirm success</string>
+<string name="OrderActivity_java_83">To pay</string>
+<string name="OrderActivity_java_84">Payment success</string>
+<string name="OrderActivity_java_85">Payment status：</string>
+<string name="OrderActivity_java_89">Are you sure you confirm the order</string>
+<string name="OrderActivity_java_95">Confirming order</string>
+<string name="OrderAdapter_java_10">To be paid</string>
+<string name="OrderAdapter_java_11">Confirmation time</string>
+<string name="OrderAdapter_java_12">Has confirmed</string>
+<string name="OrderAdapter_java_14">Payment time</string>
+<string name="OrderAdapter_java_15">Already paid</string>
+<string name="OrderAdapter_java_17">Payment failure</string>
+<string name="OrderAdapter_java_18">Cancellation time</string>
+<string name="OrderAdapter_java_19">Cancel reason</string>
+<string name="OrderAdapter_java_20">Has been canceled</string>
+<string name="OrderAdapter_java_21">Registration failure</string>
+<string name="OrderAdapter_java_8">Order amount：</string>
+<string name="PWMessage_java_1">Push messages to arrive</string>
+<string name="PersonalCenterActivity_java_4">remote diagnosis</string>
+<string name="PersonalCenterActivity_java_8">Consultation</string>
+<string name="QuestionDetailsActivity_java_10">The next message</string>
+<string name="QuestionDetailsActivity_java_11">On a message</string>
+<string name="QuestionDetailsActivity_java_15">No news</string>
+<string name="QuestionDetailsActivity_java_17">It was the last one.</string>
+<string name="QuestionDetailsActivity_java_19">Already was the first one.</string>
+<string name="QuestionDetailsActivity_java_20">Recovery time</string>
+<string name="QuestionDetailsActivity_java_57">Please enter an additional content</string>
+<string name="QuestionDetailsActivity_java_58">Is submitting</string>
+<string name="QuestionDetailsActivity_java_8">Commit time</string>
+<string name="QuestionDetailsActivity_java_9">Identify additional comments</string>
+<string name="QuestionHistoryActivity_java_38">Loading data</string>
+<string name="QuestionSaveActivity_java_12">Please enter a title</string>
+<string name="QuestionSaveActivity_java_14">Please fill in the content</string>
+<string name="RegisterActivity_java_11">Please enter your mobile phone number</string>
+<string name="RegisterActivity_java_14">Submit</string>
+<string name="RegisterActivity_java_16">Re acquisition</string>
+<string name="RegisterActivity_java_32">Please enter your ID card</string>
+<string name="RegisterActivity_java_39">Please enter the verification code</string>
+<string name="RegisterActivity_java_41">Please enter the phone number to receive text messages</string>
+<string name="RegisterActivity_java_70">login was successful</string>
+<string name="RegisterActivity_java_9">Get verification code</string>
+<string name="RemoteAdapter_java_2">Default Department</string>
+<string name="RemoteDetailsActivity_java_14">evaluate</string>
+<string name="RemoteDetailsActivity_java_15">At this time not to cancel the appointment</string>
+<string name="RemoteDetailsActivity_java_17">This remote consultation has been processed, can not be canceled</string>
+<string name="RemoteDetailsActivity_java_20">Doctor\'s information acquisition failure</string>
+<string name="RemoteDetailsActivity_java_21">Query doctor information</string>
+<string name="RemoteDetailsActivity_java_36">Being canceled</string>
+<string name="RemoteHistoryActivity_java_1">History of remote consultation</string>
+<string name="RemoteHistory_java_2">Remote diagnosis</string>
+<string name="RemoteHistory_java_3">Doctor name</string>
+<string name="RemoteHistorydapter_java_10">Has refused</string>
+<string name="RemoteHistorydapter_java_11">Untreated</string>
+<string name="RemoteHistorydapter_java_12">Already video</string>
+<string name="RemoteHistorydapter_java_15">Special status</string>
+<string name="RemoteHistorydapter_java_16">Video status</string>
+<string name="RemoteHistorydapter_java_6">make an appointment</string>
+<string name="RemoteHistorydapter_java_7">Time of appointment:</string>
+<string name="RemoteHistorydapter_java_8">Appointment notes</string>
+<string name="RemoteHistorydapter_java_9">Already answer</string>
+<string name="RemoteSaveActivity_java_1">Diagnostic appointment</string>
+<string name="RemoteSaveActivity_java_14">Select date</string>
+<string name="RemoteSaveActivity_java_15">year</string>
+<string name="RemoteSaveActivity_java_17">month</string>
+<string name="RemoteSaveActivity_java_19">day</string>
+<string name="RemoteSaveActivity_java_24">Please select a date</string>
+<string name="RemoteSaveActivity_java_28">Select time</string>
+<string name="RemoteSaveActivity_java_29">morning</string>
+<string name="RemoteSaveActivity_java_30">Afternoon</string>
+<string name="RemoteSaveActivity_java_32">hour</string>
+<string name="RemoteSaveActivity_java_34">Minute</string>
+<string name="RemoteSaveActivity_java_39">Please select the time</string>
+<string name="RemoteSaveActivity_java_44">Please enter a date</string>
+<string name="RemoteSaveActivity_java_46">Please enter time</string>
+<string name="SampleGattAttributes_java_5">Zhi</string>
+<string name="ScheduleActivity_java_103">The success of the lock, can be</string>
+<string name="ScheduleActivity_java_106">To view</string>
+<string name="ScheduleActivity_java_108">Lock number failed,</string>
+<string name="ScheduleActivity_java_109">Determine the lock on this number source</string>
+<string name="ScheduleActivity_java_126">Registration Time</string>
+<string name="ScheduleActivity_java_27">Temporarily not registered</string>
+<string name="ScheduleActivity_java_40">Confirmation of registration</string>
+<string name="ScheduleActivity_java_64">No scheduling data</string>
+<string name="ScheduleActivity_java_65">Lock signal source</string>
+<string name="ScheduleAdapter_java_10">already expired</string>
+<string name="ScheduleAdapter_java_11">Has been all hung up</string>
+<string name="ScheduleAdapter_java_12">close</string>
+<string name="ScheduleAdapter_java_13">Doctors Tingzhen, stop the appointment, have been booking number Tingzhen "</string>
+<string name="ScheduleAdapter_java_14">About</string>
+<string name="ScheduleAdapter_java_15">The hospital did not officially confirmed the schedule, just according to the practice production scheduling</string>
+<string name="ScheduleAdapter_java_16">Be overdue</string>
+<string name="ScheduleAdapter_java_17">Has been appointment scheduling</string>
+<string name="ScheduleAdapter_java_18">No</string>
+<string name="ScheduleAdapter_java_19">Not to allow the appointment time schedule</string>
+<string name="ScheduleAdapter_java_20">Time</string>
+<string name="ScheduleAdapter_java_22">Can be about and have time</string>
+<string name="ScheduleAdapter_java_6">Can not be registered</string>
+<string name="ScheduleAdapter_java_7">Avaliable(The hospital officially confirmed the scheduling table)</string>
+<string name="ScheduleAdapter_java_8">The hospital officially confirmed the scheduling table</string>
+<string name="ScheduleAdapter_java_9">Click registration</string>
+<string name="Schedule_java_1">Doctor scheduling</string>
+<string name="ScreenUtil_java_1">turn</string>
+<string name="ScreenUtil_java_5">Get screen width</string>
+<string name="ScreenUtil_java_6">Get screen height</string>
+<string name="SettingActivity_java_1">Set up</string>
+<string name="SettingActivity_java_14">Being rushed to treatment</string>
+<string name="SettingActivity_java_17">The current version number is</string>
+<string name="SettingActivity_java_22">Whether to quit the current account</string>
+<string name="SettingActivity_java_53">The current version is the latest</string>
+<string name="SettingsFragment_java_7">automatic</string>
+<string name="SettingsFragment_java_8">Software</string>
+<string name="SettingsFragment_java_9">Hardware</string>
+<string name="Shared_java_1">Get logged in</string>
+<string name="Shared_java_5">Get login account</string>
+<string name="Shared_java_8">Get the login password</string>
+<string name="TimeScheduleActivity_java_58">No time scheduling data</string>
+<string name="TimeScheduleAdapter_java_6">start time: </string>
+<string name="TimeScheduleAdapter_java_7">End time: </string>
+<string name="TimeSchedule_java_1">Time schedule</string>
+<string name="ToastUtil_java_4">Release creation</string>
+<string name="ToastUtil_java_5">Object used</string>
+<string name="VerifyUtil_java_1">Record error messages</string>
+<string name="VerifyUtil_java_10">The identity card number is all numbers</string>
+<string name="VerifyUtil_java_100">Jilin</string>
+<string name="VerifyUtil_java_102">Heilongjiang</string>
+<string name="VerifyUtil_java_104">Shanghai</string>
+<string name="VerifyUtil_java_106">Jiangsu</string>
+<string name="VerifyUtil_java_108">Zhejiang</string>
+<string name="VerifyUtil_java_110">Anhui</string>
+<string name="VerifyUtil_java_112">Fujian</string>
+<string name="VerifyUtil_java_114">Jiangxi</string>
+<string name="VerifyUtil_java_116">Shandong</string>
+<string name="VerifyUtil_java_118">Henan</string>
+<string name="VerifyUtil_java_120">Hubei</string>
+<string name="VerifyUtil_java_122">Hunan</string>
+<string name="VerifyUtil_java_124">Guangdong</string>
+<string name="VerifyUtil_java_126">Guangxi</string>
+<string name="VerifyUtil_java_128">Hainan</string>
+<string name="VerifyUtil_java_130">Chongqing</string>
+<string name="VerifyUtil_java_132">Sichuan</string>
+<string name="VerifyUtil_java_134">Guizhou</string>
+<string name="VerifyUtil_java_136">Yunnan</string>
+<string name="VerifyUtil_java_138">Tibet</string>
+<string name="VerifyUtil_java_14">ID</string>
+<string name="VerifyUtil_java_140">Shaanxi</string>
+<string name="VerifyUtil_java_142">Gansu</string>
+<string name="VerifyUtil_java_144">Qinghai</string>
+<string name="VerifyUtil_java_146">Ningxia</string>
+<string name="VerifyUtil_java_148">Xinjiang</string>
+<string name="VerifyUtil_java_15">Bit numbers should be numeric</string>
+<string name="VerifyUtil_java_150">Taiwan</string>
+<string name="VerifyUtil_java_152">Hong Kong</string>
+<string name="VerifyUtil_java_154">Macao</string>
+<string name="VerifyUtil_java_156">abroad</string>
+<string name="VerifyUtil_java_157">Determine whether the string is numeric,</string>
+<string name="VerifyUtil_java_158">repeat</string>
+<string name="VerifyUtil_java_159">Times or times</string>
+<string name="VerifyUtil_java_16">All digits except the last one.</string>
+<string name="VerifyUtil_java_160">function</string>
+<string name="VerifyUtil_java_161">To determine whether the date of birth of the string is consistent with the regular expression</string>
+<string name="VerifyUtil_java_162">Including the date, a leap year</string>
+<string name="VerifyUtil_java_163">Year and month</string>
+<string name="VerifyUtil_java_164">day</string>
+<string name="VerifyUtil_java_165">Day and leap</string>
+<string name="VerifyUtil_java_166">Day or</string>
+<string name="VerifyUtil_java_168">Cell phone number verification</string>
+<string name="VerifyUtil_java_169">Verify by return</string>
+<string name="VerifyUtil_java_17">To judge whether the date of birth is valid</string>
+<string name="VerifyUtil_java_173">Verify phone number</string>
+<string name="VerifyUtil_java_19">Particular year</string>
+<string name="VerifyUtil_java_2">Number of length</string>
+<string name="VerifyUtil_java_21">Month</string>
+<string name="VerifyUtil_java_23">Date,</string>
+<string name="VerifyUtil_java_24">Id date of birth is not valid.</string>
+<string name="VerifyUtil_java_25">ID card birthday is not valid.</string>
+<string name="VerifyUtil_java_26">ID card month is not valid</string>
+<string name="VerifyUtil_java_27">Id date is invalid</string>
+<string name="VerifyUtil_java_28">To determine whether the regional code is valid</string>
+<string name="VerifyUtil_java_29">If the ID card is not in the top two area code</string>
+<string name="VerifyUtil_java_3">Or</string>
+<string name="VerifyUtil_java_30">, then the area code is incorrect.</string>
+<string name="VerifyUtil_java_32">ID area code error.</string>
+<string name="VerifyUtil_java_34">ID check code is invalid, is not a valid ID card number</string>
+<string name="VerifyUtil_java_35">Judgment of the first</string>
+<string name="VerifyUtil_java_36">Bit parity check code is correct</string>
+<string name="VerifyUtil_java_37">No.</string>
+<string name="VerifyUtil_java_38">Calculation method of bit parity check code</string>
+<string name="VerifyUtil_java_39">On the front</string>
+<string name="VerifyUtil_java_4">position</string>
+<string name="VerifyUtil_java_40">Bit digital ontology code weighted sum</string>
+<string name="VerifyUtil_java_41">Formula for</string>
+<string name="VerifyUtil_java_45">among</string>
+<string name="VerifyUtil_java_46">Expressed in</string>
+<string name="VerifyUtil_java_47">Number of identity card numbers on a location,</string>
+<string name="VerifyUtil_java_49">The position of the weighted factor, the corresponding value of the</string>
+<string name="VerifyUtil_java_5">ID number length should be</string>
+<string name="VerifyUtil_java_50">use</string>
+<string name="VerifyUtil_java_51">The calculation results of the model</string>
+<string name="VerifyUtil_java_53">According to the model is worth the corresponding check code</string>
+<string name="VerifyUtil_java_54">Corresponding relation is</string>
+<string name="VerifyUtil_java_55">value</string>
+<string name="VerifyUtil_java_56">Check code</string>
+<string name="VerifyUtil_java_7">A.</string>
+<string name="VerifyUtil_java_8">Before an ID card</string>
+<string name="VerifyUtil_java_84">Save all address code in one</string>
+<string name="VerifyUtil_java_85">in</string>
+<string name="VerifyUtil_java_86">object</string>
+<string name="VerifyUtil_java_88">Beijing</string>
+<string name="VerifyUtil_java_9">Bit number, if it is</string>
+<string name="VerifyUtil_java_90">Tianjin</string>
+<string name="VerifyUtil_java_92">Hebei</string>
+<string name="VerifyUtil_java_94">Shanxi</string>
+<string name="VerifyUtil_java_96">Inner Mongolia</string>
+<string name="VerifyUtil_java_98">Liaoning</string>
+<string name="Vip_java_1">user</string>
+<string name="Vip_java_2">member</string>
+<string name="device_select_xml_1">Equipment selection</string>
+<string name="device_select_xml_2">Click on the device to scan</string>
+<string name="doctor_details_xml_1">Zhangsaa</string>
+<string name="doctor_details_xml_2">Heart blood section</string>
+<string name="doctor_details_xml_3">Huazhong University of Science and Technology is a drop of anti virus</string>
+<string name="doctor_details_xml_4">The dialog box is an excellent time to see the time and the accountant is very quick to go to class.</string>
+<string name="doctor_details_xml_5">Juhuasuan high prices and construction side and the nuclear accident made a few songs on the</string>
+<string name="doctor_item_xml_1">Shi Long Yu</string>
+<string name="doctor_item_xml_2">Internal Medicine-Cardiovascular Department</string>
+<string name="doctor_item_xml_3">Huazhong University of Science and Technology, la la la la la la la la la la</string>
+<string name="doctor_item_xml_4">To lose weight quickly word class delivery to see the world is excited to start Haikou airline stewardess feedback switch</string>
+<string name="family_save_xml_2">Please enter your ID card or cell phone number.</string>
+<string name="family_xml_2">Click members to switch status</string>
+<string name="gatt_services_characteristics_xml_10">measurement result：</string>
+<string name="gatt_services_characteristics_xml_5">If you don\'t begin to measure, please point me.</string>
+<string name="gatt_services_characteristics_xml_6">Device address：</string>
+<string name="gatt_services_characteristics_xml_7">Connection status：</string>
+<string name="gatt_services_characteristics_xml_8">send data：</string>
+<string name="gatt_services_characteristics_xml_9">receive data：</string>
+<string name="login_xml_2">Please enter your ID card or phone number.</string>
+<string name="login_xml_3">Please enter your phone number</string>
+<string name="login_xml_6">No account number？Fast registration</string>
+<string name="main_tiwen_xml_2">Reference interval</string>
+<string name="main_xml_2">And babe</string>
+<string name="main_xueya_xml_2">low pressure</string>
+<string name="message_item_xml_1">Obama said</string>
+<string name="message_item_xml_2">Watching TV points for the hotel to see the integration of good things also happened to be out of the city of Kashi is the vast majority of calls to the Vatican in line with the norms</string>
+<string name="multi_chat_layout_xml_1">direct seeding</string>
+<string name="multi_chat_layout_xml_5">Sign out</string>
+<string name="my_picker_xml_1">Title</string>
+<string name="my_picker_xml_3">complete</string>
+<string name="order_xml_1">Order list</string>
+<string name="pop_locknum_success_xml_3">Lock time：</string>
+<string name="pop_order_cancel_xml_1">Please enter the reason for cancellation</string>
+<string name="pop_order_pay_xml_1">Please use WeChat scan to pay. After successful, please click to complete the payment</string>
+<string name="pop_order_pay_xml_3">Complete payment</string>
+<string name="pop_order_pay_xml_4">Temporarily not pay</string>
+<string name="pop_xuetang_type_xml_1">Please select the type of blood glucose measurement</string>
+<string name="pw_message_xml_1">I am the title</string>
+<string name="pw_message_xml_2">I am content</string>
+<string name="question_details_xml_2">nothing</string>
+<string name="question_details_xml_5">Additional comment</string>
+<string name="question_item_xml_2">processing time: </string>
+<string name="question_item_xml_3">Already reply</string>
+<string name="question_save_xml_2">What do you want to say</string>
+<string name="register_xml_1">register</string>
+<string name="register_xml_5">Verification Code</string>
+<string name="remote_details_xml_11">cancel reservation</string>
+<string name="remote_details_xml_2">Whether accept:</string>
+<string name="remote_details_xml_4">Reception time:</string>
+<string name="remote_details_xml_5">Whether to deal with:</string>
+<string name="remote_details_xml_8">Remarks: </string>
+<string name="remote_details_xml_9">UOB shares will be better in the high prices and low power points</string>
+<string name="remote_history_item_xml_2">Cheng doctor</string>
+<string name="remote_history_item_xml_5">Click no better crash aircraft gray space where the delivery of the goods will soon receive the Deputy Secretary of the party, such as the crazy</string>
+<string name="remote_history_item_xml_6">state</string>
+<string name="remote_save_xml_1">format</string>
+<string name="remote_save_xml_3">Please enter remarks</string>
+<string name="setting_xml_2">Detection update</string>
+<string name="setting_xml_3">Current version number</string>
+<string name="setting_xml_4">Exit current account</string>
+<string name="talk_video_xml_1">Call person</string>
+<string name="talk_video_xml_2">Connect</string>
+<string name="talk_video_xml_4">Sound off</string>
+<string name="time_schedule_xml_1">The doctor time scheduling</string>
+<string name="universal_xml_1">Intelligent health management</string>
+<string name="universal_xml_3">GD Health</string>
+<string name="universal_xml_4">GD Health</string>
+<string name="universal_xml_5">hotline</string>
+<string name="video_evaluate_xml_1">Input evaluation</string>
+<string name="video_evaluate_xml_2">Mark</string>
+<string name="xue_ya_xml_6">Connecting blood pressure equipment</string>
+<string name="xue_ya_xml_7">Start measuring</string>
+
 </resources>

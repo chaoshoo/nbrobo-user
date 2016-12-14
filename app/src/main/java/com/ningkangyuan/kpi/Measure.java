@@ -8,53 +8,53 @@ public class Measure {
 
     public static class XueYa {
         /**
-         * 血压
+         *  " + getResources().getString(R.string.DeviceSelectAcitivity_java_3)
          */
         public static final String INSPECT_CODE = "C01";
         /**
-         * 收缩压
+         *  " + getResources().getString(R.string.DeviceControlActivity_java_103)
          */
         public static final String CODE_SYS = "SYS";
         /**
-         * 舒张压
+         *  " + getResources().getString(R.string.DeviceControlActivity_java_105)
          */
         public static final String CODE_DIA = "DIA";
         /**
-         * 脉率
+         *  " + getResources().getString(R.string.DeviceControlActivity_java_102)
          */
         public static final String CODE_PR = "PR";
     }
 
     public static class XueTang {
         /**
-         * 血糖
+         *  " + getResources().getString(R.string.DeviceSelectAcitivity_java_6)
          */
         public static final String INSPECT_CODE = "C02";
         /**
-         * 随机血糖
+         *  " + getResources().getString(R.string.MainActivity_java_123)
          */
         public static final String CODE_GLU0 = "GLU0";
         /**
-         * 餐前血糖
+         *  " + getResources().getString(R.string.MainActivity_java_124)
          */
         public static final String CODE_GLU1 = "GLU1";
         /**
-         * 餐后血糖
+         *  " + getResources().getString(R.string.MainActivity_java_125)
          */
         public static final String CODE_GLU2 = "GLU2";
     }
 
     public static class XingTi {
         /**
-         * 形体
+         *  " + getResources().getString(R.string.MainActivity_java_133)
          */
         public static final String INSPECT_CODE = "C03";
         /**
-         * 身高
+         *  " + getResources().getString(R.string.Measure_java_10)
          */
         public static final String HEIGHT = "HEIGHT";
         /**
-         * 体重
+         *  " + getResources().getString(R.string.Measure_java_11)
          */
         public static final String WEIGHT = "WEIGHT";
         /**
@@ -65,30 +65,30 @@ public class Measure {
 
     public static class TiWen {
         /**
-         * 体温
+         *  " + getResources().getString(R.string.Constant_java_13)
          */
         public static final String INSPECT_CODE = "C04";
         /**
-         * 体温
+         *  " + getResources().getString(R.string.Constant_java_13)
          */
         public static final String TEMP = "TEMP";
     }
 
     public static class XueYe {
         /**
-         * 血液
+         *  " + getResources().getString(R.string.Measure_java_14)
          */
         public static final String INSPECT_CODE = "C06";
         /**
-         * 白细胞
+         *  " + getResources().getString(R.string.Measure_java_15)
          */
         public static final String LEU = "LEU";
         /**
-         * 亚硝酸盐
+         *  " + getResources().getString(R.string.Measure_java_16)
          */
         public static final String NIT = "NIT";
         /**
-         * 尿胆原
+         *  " + getResources().getString(R.string.Measure_java_17)
          */
         public static final String UBG = "UBG";
     }

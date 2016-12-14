@@ -10,9 +10,9 @@ public class ToastUtil {
 
     private static Toast mToast;
 
-    public static void show(Context context,String content) {
+    public static void show(Context context, String content) {
         if (mToast == null) {
-            mToast = Toast.makeText(context,content,Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(context, content, Toast.LENGTH_SHORT);
         } else {
             mToast.setText(content);
         }
@@ -20,7 +20,7 @@ public class ToastUtil {
     }
 
     /**
-     * 释放创建Toast对象使用的Context
+     *  " + getResources().getString(R.string.ToastUtil_java_4)Toast " + getResources().getString(R.string.ToastUtil_java_5)Context
      */
     public static void destory() {
         if (mToast != null) {

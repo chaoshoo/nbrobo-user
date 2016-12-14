@@ -7,11 +7,11 @@ public class Commands {
 	private Time time = null;
 
 	/**
-	 * 包头
+	 *  " + getResources().getString(R.string.Commands_java_1)
 	 */
 	public final static byte CMD_HEAD = 0x5A;
 	/**
-	 * 包类别
+	 *  " + getResources().getString(R.string.Commands_java_2)
 	 */
 	public final static byte CMD_CATEGORY_ONE = 0x01;
 	public final static byte CMD_CATEGORY_TWO = 0x02;
@@ -20,7 +20,7 @@ public class Commands {
 	public final static byte CMD_CATEGORY_FIVE = 0x05;
 	public final static byte CMD_CATEGORY_SIX = 0x06;
 	/**
-	 * 包长
+	 *  " + getResources().getString(R.string.Commands_java_3)
 	 */
 	public final static byte CMD_LENGTH_TEN = 0x0A;
 	public final static byte CMD_LENGTH_ELEVEN = 0x0B;
@@ -31,11 +31,11 @@ public class Commands {
 	public final static byte CMD_SIXTEEN_THIRTEEN = 0x10;
 
 	/**
-	 * 血糖
+	 *  " + getResources().getString(R.string.DeviceSelectAcitivity_java_6)
 	 */
 
 	/**
-	 * 血压
+	 *  " + getResources().getString(R.string.DeviceSelectAcitivity_java_3)
 	 */
 	byte[] cmdData = new byte[] {};
 

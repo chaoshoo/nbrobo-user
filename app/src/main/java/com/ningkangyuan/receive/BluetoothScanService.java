@@ -28,7 +28,7 @@ public class BluetoothScanService extends Service {
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
 
-    //只在第一次被创建的时候调用
+    // " + getResources().getString(R.string.BluetoothScanService_java_1)
     @Override
     public void onCreate() {
         super.onCreate();
@@ -50,17 +50,17 @@ public class BluetoothScanService extends Service {
         mBluetoothBinder = new BluetoothBinder();
 
         if (mBluetoothAdapter.isEnabled()) {
-            //已打开就直接扫描
+            // " + getResources().getString(R.string.BluetoothScanService_java_5)
             mBluetoothAdapter.startDiscovery();
             return;
         }
-        //去打开蓝牙
+        // " + getResources().getString(R.string.BluetoothScanService_java_6)
         mBluetoothAdapter.enable();
 //        openBluetooth();
 
     }
 
-    //只要执行startservice此方法都会被调用
+    // " + getResources().getString(R.string.BluetoothScanService_java_7)startservice " + getResources().getString(R.string.BluetoothScanService_java_8)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         LogUtil.d(TAG, "onStartCommand");
@@ -129,14 +129,14 @@ public class BluetoothScanService extends Service {
                     mMacAddress = macAddress;
                 }
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                //扫描结束继续新一轮的扫描
+                // " + getResources().getString(R.string.BluetoothScanService_java_17)
                 LogUtil.d(TAG,"ACTION_DISCOVERY_FINISHED");
                 mBluetoothAdapter.startDiscovery();
             } else if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
                 int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,BluetoothAdapter.ERROR);
-                //蓝牙打开
+                // " + getResources().getString(R.string.BluetoothScanService_java_20)
                 if (state == BluetoothAdapter.STATE_ON) {
-                    //直接扫描
+                    // " + getResources().getString(R.string.BluetoothScanService_java_21)
                     mBluetoothAdapter.startDiscovery();
                 }
             }

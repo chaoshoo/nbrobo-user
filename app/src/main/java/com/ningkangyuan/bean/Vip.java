@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 用户(成员)
+ *  " + getResources().getString(R.string.Vip_java_1)( " + getResources().getString(R.string.Vip_java_2))
  * Created by xuchun on 2016/8/25.
  */
 public class Vip implements Serializable {

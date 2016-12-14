@@ -11,29 +11,29 @@ import android.view.WindowManager;
 public class ScreenUtil {
 
     /**
-     * dip转px
+     * dip " + getResources().getString(R.string.ScreenUtil_java_1)px
      * @param context
      * @param dpValue
      * @return
      */
-    public static int dip2px(Context context,float dpValue) {
+    public static int dip2px(Context context, float dpValue) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int)(dpValue * scale + 0.5f);
     }
 
     /**
-     * px转dip
+     * px " + getResources().getString(R.string.ScreenUtil_java_1)dip
      * @param context
      * @param pxValue
      * @return
      */
-    public static int px2dix(Context context,float pxValue) {
+    public static int px2dix(Context context, float pxValue) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int)(pxValue / scale + 0.5f);
     }
 
     /**
-     * 获取屏幕宽度
+     *  " + getResources().getString(R.string.ScreenUtil_java_5)
      * @param context
      * @return
      */
@@ -42,7 +42,7 @@ public class ScreenUtil {
     }
 
     /**
-     * 获取屏幕高度
+     *  " + getResources().getString(R.string.ScreenUtil_java_6)
      * @param context
      * @return
      */

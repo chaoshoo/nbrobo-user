@@ -33,7 +33,7 @@ import android.util.Log;
  * demonstration purposes.
  */
 public class SampleGattAttributes {
-	// ע�������UUID��ͨ�������豸���ӡ����
+	// ע�������UUID��ͨ������� " + getResources().getString(R.string.SampleGattAttributes_java_5)���ӡ����
 	/**
 	 * ������uuid��gatt������BluetoothGattService�����
 	 */

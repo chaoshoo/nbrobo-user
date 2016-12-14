@@ -12,8 +12,10 @@ import com.ningkangyuan.bean.RemoteHistory;
 
 import java.util.List;
 
+import com.ningkangyuan.MyApplication;
+import com.ningkangyuan.R;
 /**
- * 挂号医院
+ *  " + MyApplication.mContext.getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class RemoteHistorydapter extends RecyclerView.Adapter<RemoteHistorydapter.MyViewHolder> {
@@ -32,25 +34,25 @@ public class RemoteHistorydapter extends RecyclerView.Adapter<RemoteHistorydapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         RemoteHistory remoteHistory = mRemoteHistoryList.get(position);
-        holder.doctor.setText("make an appointment：" + remoteHistory.getName() + "\nAppointment time：" + remoteHistory.getOrder_time());
-        holder.remark.setText("Appointment notes：\n" + remoteHistory.getRemark());
+        holder.doctor.setText(" " + MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_6) + " ：" + remoteHistory.getName() + "\n " + MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_7) + " ：" + remoteHistory.getOrder_time());
+        holder.remark.setText(" " + MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_8) + "：\n" + remoteHistory.getRemark());
         String isZd = remoteHistory.getIszd();
         if ("1".equals(isZd)) {
-            isZd = "Answered";
+            isZd = MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_9);
         } else if ("2".equals(isZd)) {
-            isZd = "Refused";
+            isZd = MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_10);
         } else {
-            isZd = "Untreated";
+            isZd = MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_11);
         }
         String isDeal = remoteHistory.getIsdeal();
         if ("1".equals(isDeal)) {
-            isDeal = "Chatted";
+            isDeal = MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_12);
         } else if ("2".equals(isDeal)) {
-            isDeal = "Refused";
+            isDeal = MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_10);
         } else {
-            isDeal = "Untreated";
+            isDeal = MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_11);
         }
-        holder.status.setText("Visit status：" + isZd + "\nVideo status：" + isDeal);
+        holder.status.setText(" " + MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_15) + " ：" + isZd + "\n " + MyApplication.mContext.getResources().getString(R.string.RemoteHistorydapter_java_16) + " ：" + isDeal);
     }
 
     @Override

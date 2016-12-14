@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:background="@drawable/item"
         android:gravity="center"
-        android:text="Return"
+        android:text="@string/DoctorActivity_java_40"
         android:textSize="24sp"
         android:textColor="@android:color/white"
         android:nextFocusDown="@+id/setting_current_version"/>
@@ -23,7 +23,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/item"
         android:gravity="center"
-        android:text="Detection update"
+        android:text="@string/setting_xml_2"
         android:textSize="24sp"
         android:textColor="@android:color/white"
         android:nextFocusDown="@+id/setting_current_version"/>
@@ -35,7 +35,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/item"
         android:gravity="center"
-        android:text="Current version"
+        android:text="@string/setting_xml_3"
         android:textSize="24sp"
         android:textColor="@android:color/white"
         android:nextFocusDown="@+id/setting_exit"
@@ -48,7 +48,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/item"
         android:gravity="center"
-        android:text="Logout current account"
+        android:text="@string/setting_xml_4"
         android:textSize="24sp"
         android:textColor="@android:color/white"
         android:nextFocusUp="@+id/setting_current_version"/>

@@ -220,7 +220,7 @@
                 android:textSize="10sp"
                 android:layout_margin="1px"
                 android:background="@drawable/chat_button"
-                android:text="direct seeding"
+                android:text="@string/multi_chat_layout_xml_1"
                 android:visibility="gone"/>
 
             <Button
@@ -231,7 +231,7 @@
                 android:textSize="24sp"
                 android:layout_margin="1px"
                 android:background="@drawable/chat_button"
-                android:text="Set up"
+                android:text="@string/SettingActivity_java_1"
                 android:nextFocusRight="@+id/switch_speaker"
                 android:focusable="true"
                 />
@@ -244,7 +244,7 @@
                 android:textSize="24sp"
                 android:layout_margin="1px"
                 android:background="@drawable/chat_button"
-                android:text="Mute"
+                android:text="@string/MultiChatActivity_java_114"
                 android:nextFocusRight="@+id/switch_microphone"
                 android:nextFocusLeft="@+id/settings"
                 android:focusable="true"/>
@@ -257,7 +257,7 @@
                 android:textSize="24sp"
                 android:layout_margin="1px"
                 android:background="@drawable/chat_button"
-                android:text="Voice off"
+                android:text="@string/MultiChatActivity_java_118"
                 android:nextFocusRight="@+id/back"
                 android:nextFocusLeft="@+id/switch_speaker"
                 android:focusable="true"/>
@@ -270,7 +270,7 @@
                 android:textSize="24sp"
                 android:layout_margin="1px"
                 android:background="@drawable/chat_button"
-                android:text="Sign out"
+                android:text="@string/multi_chat_layout_xml_5"
                 android:nextFocusLeft="@+id/switch_microphone"
                 android:focusable="true"/>
 

@@ -17,7 +17,7 @@ import com.ningkangyuan.R;
  */
 public class NRtcActivity extends AppCompatActivity {
 
-    //全局设置参数
+    // " + getResources().getString(R.string.NRtcActivity_java_1)
     private boolean videoAutoCrop;
     private boolean videoAutoRotate;
     private int videoQuality;
@@ -78,7 +78,7 @@ public class NRtcActivity extends AppCompatActivity {
         deviceRotationOffset = Integer.parseInt(TextUtils.isDigitsOnly(value3) && !TextUtils.isEmpty(value3) ? value3 : 0 + "");
 
 
-        //网络代理
+        // " + getResources().getString(R.string.NRtcActivity_java_23)
         boolean proxy = preferences.getBoolean(getString(R.string.setting_net_proxy_key), false);
         if (proxy) {
             String userName = preferences.getString(getString(R.string.setting_net_proxy_user_name_key), "");
@@ -90,7 +90,7 @@ public class NRtcActivity extends AppCompatActivity {
             networkProxy.scheme = NRtcNetworkProxy.SOCKS5;
             if (TextUtils.isEmpty(host) || TextUtils.isEmpty(port) || !port.matches("[0-9]+")) {
                 preferences.edit().putBoolean(getString(R.string.setting_net_proxy_key), false).apply();
-                Toast.makeText(this, "host or port is wrong，Unable to enable proxy", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "host or port is wrong " + getResources().getString(R.string.NRtcActivity_java_31) + " ", Toast.LENGTH_SHORT).show();
                 return;
             }
             networkProxy.host = host;

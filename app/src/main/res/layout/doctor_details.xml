@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
-                android:text="Zhangsaa"
+                android:text="@string/doctor_details_xml_1"
                 android:textSize="30sp"/>
             <TextView
                 android:id="@+id/doctor_details_job"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:textColor="@android:color/white"
-                android:text="Heart blood section"
+                android:text="@string/doctor_details_xml_2"
                 android:textSize="28sp"/>
             <TextView
                 android:id="@+id/doctor_details_edu"
@@ -47,7 +47,7 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textColor="@android:color/white"
-                android:text="Huazhong University of Science and Technology is a drop of anti virus"
+                android:text="@string/doctor_details_xml_3"
                 android:textSize="24sp"/>
         </LinearLayout>
     </LinearLayout>
@@ -59,6 +59,6 @@
         android:layout_marginTop="10dp"
         android:lineSpacingMultiplier="1.5"
         android:textSize="20sp"
-        android:text="  The dialog box is an excellent time to see the time and the accountant is very quick to go to class.vsjshdghsdgjsgdhsgdjhsgdjhsdgJuhuasuan high prices and construction side and the nuclear accident made a few songs on the"
+        android:text="  @string/doctor_details_xml_4vsjshdghsdgjsgdhsgdjhsgdjhsdg@string/doctor_details_xml_5"
         android:textColor="@android:color/white"/>
 </LinearLayout>

@@ -30,8 +30,8 @@ public class QuestionSaveActivity extends BaseActivity implements View.OnClickLi
     private static final String TAG = "QuestionSaveActivity";
 
     private ImageView mProtraitIV;
-    private TextView mNameTV,mJobTV,mHistoryTV,mIntroTV;
-    private EditText mTitleET,mContentET;
+    private TextView mNameTV, mJobTV, mHistoryTV, mIntroTV;
+    private EditText mTitleET, mContentET;
 
     private Doctor mDoctor;
 
@@ -49,8 +49,8 @@ public class QuestionSaveActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.question_save, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.question_save,  null));
 
         mProtraitIV = (ImageView) findViewById(R.id.doctor_details_protrait);
         mNameTV = (TextView) findViewById(R.id.doctor_details_name);
@@ -66,7 +66,7 @@ public class QuestionSaveActivity extends BaseActivity implements View.OnClickLi
         mDoctor = (Doctor) getIntent().getSerializableExtra("doctor");
         if (mDoctor != null) {
 
-//            ImageLoaderHelper.getInstance().loader("",mProtraitIV,ImageLoaderHelper.makeImageOptions());
+//            ImageLoaderHelper.getInstance().loader("", mProtraitIV, ImageLoaderHelper.makeImageOptions());
 
             mNameTV.setText(mDoctor.getName());
             mJobTV.setText(mDoctor.getTitle());
@@ -79,11 +79,11 @@ public class QuestionSaveActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.question_save_confirm:
-                //确定
+                // " + getResources().getString(R.string.BaseActivity_java_10)
                 submit();
                 break;
             case R.id.question_save_cancel:
-                //取消
+                // " + getResources().getString(R.string.BaseActivity_java_11)
                 finish();
                 break;
         }
@@ -92,40 +92,40 @@ public class QuestionSaveActivity extends BaseActivity implements View.OnClickLi
     public void submit() {
         String title = mTitleET.getText().toString().trim();
         if (TextUtils.isEmpty(title)) {
-            ToastUtil.show(this,"Please enter a title");
+            ToastUtil.show(this, getResources().getString(R.string.QuestionSaveActivity_java_12));
             return;
         }
         final String content = mContentET.getText().toString().trim();
         if (TextUtils.isEmpty(content)) {
-            ToastUtil.show(this,"Please input content");
+            ToastUtil.show(this, getResources().getString(R.string.QuestionSaveActivity_java_14));
             return;
         }
-        showProgressDialog("Submitting..");
+        showProgressDialog(" " + getResources().getString(R.string.QuestionDetailsActivity_java_58) + " ..");
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("questionsave",
-                new String[]{"vip_code", "doctor_code", "title", "content", "attachement"},
-                new Object[]{mVip.getVip_code(), mDoctor.getCode(), title, content, ""}), new Callback() {
+                new String[]{"vip_code",  "doctor_code",  "title",  "content",  "attachement"},
+                new Object[]{mVip.getVip_code(),  mDoctor.getCode(),  title,  content,  ""}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(QuestionSaveActivity.this, e.getMessage());
+                        ToastUtil.show(QuestionSaveActivity.this,  e.getMessage());
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                final String code = JsonUtil.getObjectByKey("code", result);
-                final String message = JsonUtil.getObjectByKey("message", result);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                final String code = JsonUtil.getObjectByKey("code",  result);
+                final String message = JsonUtil.getObjectByKey("message",  result);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(QuestionSaveActivity.this, message);
+                        ToastUtil.show(QuestionSaveActivity.this,  message);
                         if ("1".equals(code)) {
                             finish();
                         }

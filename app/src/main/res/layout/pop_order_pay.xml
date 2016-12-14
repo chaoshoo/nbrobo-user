@@ -14,7 +14,7 @@
         android:layout_marginTop="10dp"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        android:text="Please use WeChat scan to pay（After registered, please click to complete the payment）"/>
+        android:text="@string/pop_order_pay_xml_1"/>
     
     <ImageView
         android:id="@+id/pop_order_pay_erweima"
@@ -38,7 +38,7 @@
             android:textSize="24sp"
             android:textColor="@android:color/white"
             android:background="@drawable/blue_btn"
-            android:text="Payment done"
+            android:text="@string/pop_order_pay_xml_3"
             android:nextFocusUp="@+id/pop_order_operation_close"
             android:nextFocusRight="@+id/pop_order_operation_cancel"/>
 
@@ -50,7 +50,7 @@
             android:textSize="24sp"
             android:textColor="@android:color/white"
             android:background="@drawable/cyan_btn"
-            android:text="Temporarily not pay"
+            android:text="@string/pop_order_pay_xml_4"
             android:nextFocusUp="@+id/pop_order_operation_close"
             android:nextFocusLeft="@+id/pop_order_operation_yes"/>
     </LinearLayout>

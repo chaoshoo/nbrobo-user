@@ -82,11 +82,11 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	private final static String TAG = DeviceControlActivity.class
 			.getSimpleName();
 	/**
-	 * 血压
+	 *  " + getResources().getString(R.string.DeviceSelectAcitivity_java_3)
 	 */
 	private final static int BP = 1;
 	/**
-	 * 血糖
+	 *  " + getResources().getString(R.string.DeviceSelectAcitivity_java_6)
 	 */
 	private final static int GLU = 2;
 	// private final static int BP = 1;
@@ -134,7 +134,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 				displayData(notifyString);
 				break;
 			case 1:
-				// 显示发送的命令值
+				//  " + getResources().getString(R.string.DeviceControlActivity_java_14)
 				StringBuilder builder = new StringBuilder(sendDataByte.length);
 				for (byte b : sendDataByte) {
 					builder.append(String.format("%02X ", b));
@@ -144,7 +144,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 				break;
 			case 2:
 
-				// 此处要连接发送两次命令，不然血压收不到过程和结果包．
+				//  " + getResources().getString(R.string.DeviceControlActivity_java_16)．
 				sendDataByte();
 				// sendDataByte();
 				break;
@@ -208,12 +208,12 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 				}
 
 			} else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
-				// 获取设备上传的数据
+				//  " + getResources().getString(R.string.DeviceControlActivity_java_23)
 
 				byte[] notify = intent
 						.getByteArrayExtra(BluetoothLeService.EXTRA_NOTIFY_DATA); // Log.e(TAG,
 																					// //
-																					// "有数据回来了"
+																					// getResources().getString(R.string.DeviceControlActivity_java_25)
 
 				if (notify != null) {
 
@@ -227,7 +227,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	ArrayList<Byte> dataPackage = new ArrayList<Byte>();
 
 	/**
-	 * 校验命令包
+	 *  " + getResources().getString(R.string.DeviceControlActivity_java_26)
 	 */
 	private void checkDataPackage(byte[] data) {
 		for (int i = 0; i < data.length; i++) {
@@ -240,27 +240,27 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 		Log.e(TAG, "227=" + notify.length);
 		if (notify[0] == 0x55) {
 			if (notify.length >= 10 && notify[1] == 0x10 && notify[2] == 0) {
-				deviceType = notify[5];// 得到机种号：blood pressure1；blood sugar2；
+				deviceType = notify[5];//  " + getResources().getString(R.string.DeviceControlActivity_java_28)： " + getResources().getString(R.string.DeviceSelectAcitivity_java_3)1； " + getResources().getString(R.string.DeviceSelectAcitivity_java_6)2；
 				mHandler.postDelayed(mRunnable, 300);
 			}
 			if (deviceType == 1) {
 				if (notify.length == 6 && notify[1] == 0x06) {
-					if (notify[2] == 1) {// 开始包
+					if (notify[2] == 1) {//  " + getResources().getString(R.string.DeviceControlActivity_java_32)
 						mHandler.postDelayed(mRunnable, 300);
-					} else if (notify[2] == 4) {// 结束包
-						// Log.e(TAG, "238我收到结束包了");
+					} else if (notify[2] == 4) {//  " + getResources().getString(R.string.DeviceControlActivity_java_34)
+						// Log.e(TAG, "238 " + getResources().getString(R.string.DeviceControlActivity_java_36) + " ");
 					}
 				} else if (notify.length >= 13 && notify[1] == (byte) 0x0f
 						&& notify[2] == 3) {
-					// 血压的结果包
-					Log.e(TAG, "结果");
+					//  " + getResources().getString(R.string.DeviceControlActivity_java_37)
+					Log.e(TAG, getResources().getString(R.string.DeviceControlActivity_java_39));
 					getDeviceData(deviceType, notify);
 					sendDataByte();
 				}
 
 			} else if (deviceType == 2) {
 				if (notify[1] == 14 && notify[2] == 3) {
-					// 血糖的结果包
+					//  " + getResources().getString(R.string.DeviceControlActivity_java_41)
 					getDeviceData(deviceType, notify);
 					sendDataByte();
 				}
@@ -294,7 +294,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 		commands = new Commands();
 
 		((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.gatt_services_characteristics, null));
-		((TextView)findViewById(R.id.universal_checkcard_num)).setText("Check card number" + mVip.getCard_code());
+		((TextView)findViewById(R.id.universal_checkcard_num)).setText(getResources().getString(R.string.DeptActivity_java_6) + mVip.getCard_code());
 		// Sets up UI references.
 		((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
 //		mGattServicesList = (ExpandableListView) findViewById(R.id.gatt_services_list);
@@ -306,12 +306,12 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 		txt_message.setMovementMethod(ScrollingMovementMethod.getInstance());
 
 		/**
-		 * 血糖
+		 *  " + getResources().getString(R.string.DeviceSelectAcitivity_java_6)
 		 */
 
 		// btn_bs_send = (Button) findViewById(R.id.btn_bs_send);
 		/**
-		 * 血压
+		 *  " + getResources().getString(R.string.DeviceSelectAcitivity_java_3)
 		 */
 		btn_bp_send = (Button) findViewById(R.id.btn_bp_send);
 
@@ -388,7 +388,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	}
 
 	/**
-	 * 显示设备上传的数据；因有多个包数据，在包后用;号隔开．
+	 *  " + getResources().getString(R.string.DeviceControlActivity_java_56)； " + getResources().getString(R.string.DeviceControlActivity_java_57); " + getResources().getString(R.string.DeviceControlActivity_java_58)．
 	 * 
 	 * @param data
 	 */
@@ -405,7 +405,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	}
 
 	/**
-	 * 转换后的数据
+	 *  " + getResources().getString(R.string.DeviceControlActivity_java_59)
 	 */
 	private void displayTransformationData(String data) {
 		// StringBuffer
@@ -498,7 +498,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	}
 
 	/**
-	 * 向设备发送命令
+	 *  " + getResources().getString(R.string.DeviceControlActivity_java_88)
 	 */
 	private void sendDataByte() {
 
@@ -510,7 +510,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	}
 
 	/**
-	 * 根据不同的设备　显示测量的结果值
+	 *  " + getResources().getString(R.string.DeviceControlActivity_java_93)　 " + getResources().getString(R.string.DeviceControlActivity_java_94)
 	 * 
 	 * @param type
 	 */
@@ -524,8 +524,8 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 					Log.e(TAG, "463===" + b[i]);
 				}
 
-				String resultBG = "high pressure：" + getShort(b, 8) + " low：" + b[10]
-						+ " heart：" + b[11];
+				String resultBG = " " + getResources().getString(R.string.DeviceControlActivity_java_97) + " ：" + getShort(b, 8) + "  " + getResources().getString(R.string.DeviceControlActivity_java_99) + " ：" + b[10]
+						+ "  " + getResources().getString(R.string.DeviceControlActivity_java_100) + " ：" + b[11];
 				displayTransformationData(resultBG);
 				uploadResult();
 			}
@@ -550,7 +550,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 		}
 		mResultList.clear();
         if (BP == mType) {
-			//脉率
+			// " + getResources().getString(R.string.DeviceControlActivity_java_102)
 			DetectionKPI frKPI = new DetectionKPI();
 			frKPI.setInspect_code(Measure.XueYa.INSPECT_CODE);
 			frKPI.setKpi_code(Measure.XueYa.CODE_PR);
@@ -560,7 +560,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			frKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 			mResultList.add(frKPI);
 
-			//收缩压
+			// " + getResources().getString(R.string.DeviceControlActivity_java_103)
 			DetectionKPI sysKPI = new DetectionKPI() ;
 			sysKPI.setInspect_code(Measure.XueYa.INSPECT_CODE);
 			sysKPI.setKpi_code(Measure.XueYa.CODE_SYS);
@@ -569,7 +569,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			sysKPI.setInspect_value("" + getShort(mB, 8));
 			mResultList.add(sysKPI);
 
-			//舒张压
+			// " + getResources().getString(R.string.DeviceControlActivity_java_105)
 			DetectionKPI diaKPI = new DetectionKPI() ;
 			diaKPI.setInspect_code(Measure.XueYa.INSPECT_CODE);
 			diaKPI.setKpi_code(Measure.XueYa.CODE_DIA);
@@ -579,14 +579,14 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			mResultList.add(diaKPI);
 
             return OkHttpHelper.makeJsonParams("measure",
-                    new String[]{"inspect_code","card_code","device_sn","inspect_time","SYS","DIA","PR"},
+                    new String[]{"inspect_codegetResources().getString(R.string.BaseActivity_java_1)card_codegetResources().getString(R.string.BaseActivity_java_1)device_sngetResources().getString(R.string.BaseActivity_java_1)inspect_timegetResources().getString(R.string.BaseActivity_java_1)SYSgetResources().getString(R.string.BaseActivity_java_1)DIAgetResources().getString(R.string.BaseActivity_java_1)PR"},
                     new Object[]{Measure.XueYa.INSPECT_CODE,mVip.getCard_code(),
 							ScreenUtil.getDeviceId(this),new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
                             "" + getShort(mB, 8) ,
 							"" + mB[10],
 							"" + mB[11]});
         } else if (GLU == mType) {
-			//血糖
+			// " + getResources().getString(R.string.DeviceSelectAcitivity_java_6)
 			DetectionKPI xtKPI = new DetectionKPI() ;
 			xtKPI.setInspect_code(Measure.XueTang.INSPECT_CODE);
 			xtKPI.setKpi_code(mXueTangType);
@@ -596,7 +596,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			xtKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 			mResultList.add(xtKPI);
             return OkHttpHelper.makeJsonParams("measure",
-                    new String[]{"inspect_code","card_code","device_sn","inspect_time",mXueTangType},
+                    new String[]{"inspect_codegetResources().getString(R.string.BaseActivity_java_1)card_codegetResources().getString(R.string.BaseActivity_java_1)device_sngetResources().getString(R.string.BaseActivity_java_1)inspect_time",mXueTangType},
                     new Object[]{Measure.XueTang.INSPECT_CODE,mVip.getCard_code(),
 							ScreenUtil.getDeviceId(this),new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
 							swithXueTang(getShort(mB, 9) + "")});
@@ -609,15 +609,15 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 		public void onClick(View v) {
 			switch (v.getId()) {
 				case R.id.pop_xuetang_glu0:
-					//随机血糖
+					// " + getResources().getString(R.string.MainActivity_java_123)
 					mXueTangType = "GLU0";
 					break;
 				case R.id.pop_xuetang_glu1:
-					//餐前血糖
+					// " + getResources().getString(R.string.MainActivity_java_124)
 					mXueTangType = "GLU1";
 					break;
 				case R.id.pop_xuetang_glu2:
-					//餐后血糖
+					// " + getResources().getString(R.string.MainActivity_java_125)
 					mXueTangType = "GLU2";
 					break;
 			}
@@ -647,7 +647,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	}
 
 	private void uploadResult() {
-        showProgressDialog("Uploading data");
+        showProgressDialog(getResources().getString(R.string.DeviceControlActivity_java_144));
         mCallList.add(OkHttpHelper.get(makeUploadParams(), new Callback() {
 			@Override
 			public void onFailure(Call call, final IOException e) {
@@ -657,7 +657,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 						dismissProgressDialog();
 						String msg = e.getMessage();
 						if (msg.startsWith("Failed")) {
-							msg = "Unable to connect to the server，Please check the network";
+							msg = getResources().getString(R.string.BaseActivity_java_23);
 						}
 						ToastUtil.show(DeviceControlActivity.this, msg);
 					}
@@ -677,11 +677,11 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 						public void run() {
 //							String status = "";
 //							if ("-1".equals(inspect_is_normal)) {
-//								status = "偏低";
+//								status = getResources().getString(R.string.DeviceControlActivity_java_153);
 //							} else if ("0".equals(inspect_is_normal)) {
-//								status = "正常";
+//								status = getResources().getString(R.string.DeviceControlActivity_java_154);
 //							} else if ("1".equals(inspect_is_normal)) {
-//								status = "偏高";
+//								status = getResources().getString(R.string.DeviceControlActivity_java_155);
 //							}
 							dismissProgressDialog();
 							if (mResultList != null && !mResultList.isEmpty()) {
@@ -690,7 +690,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 							Intent intent = new Intent();
 							intent.putExtra("data", (Serializable) mResultList);
 							setResult(RESULT_OK, intent);
-							showConfirmMsg("Upload success，Please close device and click OK to exit。");
+							showConfirmMsg(getResources().getString(R.string.DeviceControlActivity_java_158));
 						}
 					});
 				} else {
@@ -699,7 +699,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 						@Override
 						public void run() {
 							dismissProgressDialog();
-							showConfirmMsg("Data upload failed：" + remark);
+							showConfirmMsg(" " + getResources().getString(R.string.DeviceControlActivity_java_160) + " ：" + remark);
 						}
 					});
 				}
@@ -711,8 +711,8 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	private void showConfirmMsg(String msg) {
 		if (mUploadOverHintDialog == null) {
 			mUploadOverHintDialog = new AlertDialog.Builder(this);
-			mUploadOverHintDialog.setTitle("Prompt");
-			mUploadOverHintDialog.setPositiveButton("Confirmed", new DialogInterface.OnClickListener() {
+			mUploadOverHintDialog.setTitle(getResources().getString(R.string.FamilyActivity_java_91));
+			mUploadOverHintDialog.setPositiveButton(getResources().getString(R.string.BaseActivity_java_10), new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.dismiss();
@@ -734,9 +734,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 		double resultValue = Double.parseDouble(result);
 		resultValue = resultValue / 18;
 		NumberFormat nf = NumberFormat.getInstance();
-		nf.setRoundingMode(RoundingMode.HALF_UP);// 设置四舍五入
-		nf.setMinimumFractionDigits(1);// 设置最小保留几位小数
-		nf.setMaximumFractionDigits(1);// 设置最大保留几位小数
+		nf.setRoundingMode(RoundingMode.HALF_UP);//  " + getResources().getString(R.string.DeviceControlActivity_java_167)
+		nf.setMinimumFractionDigits(1);//  " + getResources().getString(R.string.DeviceControlActivity_java_168)
+		nf.setMaximumFractionDigits(1);//  " + getResources().getString(R.string.DeviceControlActivity_java_169)
 		return nf.format(resultValue);
 	}
 }

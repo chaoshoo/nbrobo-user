@@ -22,7 +22,7 @@
             android:layout_marginLeft="10dp"
             android:textSize="24sp"
             android:textColor="@android:color/white"
-            android:text="GD Health"/>
+            android:text="@string/universal_xml_3"/>
 
         <TextView
             android:id="@+id/universal_checkcard_num"
@@ -31,8 +31,7 @@
             android:layout_marginLeft="30dp"
             android:textSize="20sp"
             android:textColor="@android:color/black"
-            android:text="Check card number：420521199210111111"/>
-
+            android:text="@string/DeptActivity_java_6"/>
     </LinearLayout>
 
     <FrameLayout
@@ -55,7 +54,7 @@
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:textSize="20sp"-->
-            <!--android:text="Wuhan ROBO software services hotline 027-88880000"-->
+            <!--android:text="@string/universal_xml_4 @string/universal_xml_5 027-88880000"-->
             <!--android:textColor="@android:color/black"/>-->
     <!--</LinearLayout>-->
 

@@ -22,7 +22,7 @@ public class Shared {
     }
 
     /**
-     * 得到登录的vip
+     *  " + getResources().getString(R.string.Shared_java_1)vip
      * @param context
      * @return
      */
@@ -36,7 +36,7 @@ public class Shared {
     }
 
     /**
-     * 得到登录的账号
+     *  " + getResources().getString(R.string.Shared_java_5)
      * @param context
      * @return
      */
@@ -46,7 +46,7 @@ public class Shared {
     }
 
     /**
-     * 得到登录的密码
+     *  " + getResources().getString(R.string.Shared_java_8)
      * @param context
      * @return
      */

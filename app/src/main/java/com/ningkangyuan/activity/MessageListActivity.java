@@ -32,13 +32,13 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 消息列表
+ *  " + getResources().getString(R.string.MessageListActivity_java_1)
  * Created by xuchun on 2016/8/24.
  */
-public class MessageListActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class MessageListActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
     private static final String TAG = "DoctorActivity";
 
-    private Button mUpBtn,mNextBtn,mBackBtn;
+    private Button mUpBtn, mNextBtn, mBackBtn;
     private MessageAdapter mMessageAdapter;
     private RecyclerViewTV mRecyclerViewTV;
     private MainUpView mMainUpView;
@@ -61,8 +61,8 @@ public class MessageListActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.message, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.message,  null));
 
         mUpBtn = (Button) findViewById(R.id.message_up);
         mNextBtn = (Button) findViewById(R.id.message_next);
@@ -78,45 +78,45 @@ public class MessageListActivity extends BaseActivity implements View.OnClickLis
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.message_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,4);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 4);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.VERTICAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mMessageAdapter = new MessageAdapter(mMessageList));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
 
 
             }
         });
 
-        qryMessage(mPage,null);
+        qryMessage(mPage, null);
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -126,54 +126,54 @@ public class MessageListActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.message_up:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 if (mPage == 1) {
-                    ToastUtil.show(this,"First page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_29));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryMessage(mPage, "-");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryMessage(mPage,  "-");
                 break;
             case R.id.message_next:
-                //下一页
+                // " + getResources().getString(R.string.DeptActivity_java_31)
                 if (mIsLastPage) {
-                    ToastUtil.show(this,"Last page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_33));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryMessage(mPage, "+");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryMessage(mPage,  "+");
                 break;
             case R.id.message_back:
-                //返回
+                // " + getResources().getString(R.string.DoctorActivity_java_40)
                 finish();
                 break;
         }
     }
 
-    private void qryMessage(int page, final String type) {
+    private void qryMessage(int page,  final String type) {
         if ("+".equals(type)) {
             page ++;
         }
         if ("-".equals(type)) {
             page --;
         }
-        showProgressDialog("Load data..");
+        showProgressDialog(" " + getResources().getString(R.string.MessageListActivity_java_35) + " ..");
         mCallList.add(OkHttpHelper.get(
-                OkHttpHelper.makeJsonParams("messagelist",new String[]{"msg_type","vip_id","pageIndex","pageSize"},
-                        new Object[]{"",mVip.getId(),page, Constant.PAGE_SIZE_8}), new Callback() {
+                OkHttpHelper.makeJsonParams("messagelist", new String[]{"msg_type", "vip_id", "pageIndex", "pageSize"},
+                        new Object[]{"", mVip.getId(), page,  Constant.PAGE_SIZE_8}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(MessageListActivity.this, "onFailure：" + e.getMessage());
+                        ToastUtil.show(MessageListActivity.this,  "onFailure：" + e.getMessage());
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 if ("+".equals(type)) {
                     mPage++;
                 }
@@ -181,10 +181,10 @@ public class MessageListActivity extends BaseActivity implements View.OnClickLis
                     mPage--;
                 }
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                    String doctors = JsonUtil.getObjectByKey("messages", result);
-                    List<Message> tempList = JsonUtil.mGson.fromJson(doctors, new TypeToken<List<Message>>() {
+                LogUtil.d(TAG,  "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                    String doctors = JsonUtil.getObjectByKey("messages",  result);
+                    List<Message> tempList = JsonUtil.mGson.fromJson(doctors,  new TypeToken<List<Message>>() {
                     }.getType());
                     mIsLastPage = false;
                     if (tempList.size() <Constant.PAGE_SIZE_8) {
@@ -205,7 +205,7 @@ public class MessageListActivity extends BaseActivity implements View.OnClickLis
                         @Override
                         public void run() {
                             dismissProgressDialog();
-                            ToastUtil.show(MessageListActivity.this, "No information");
+                            ToastUtil.show(MessageListActivity.this,  getResources().getString(R.string.MessageListActivity_java_53));
                         }
                     });
                 }

@@ -36,11 +36,11 @@ import okhttp3.Response;
 /**
  * Created by xuchun on 2016/8/22.
  */
-public class RemoteActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class RemoteActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String TAG = "DepartmentActivity";
 
-    private Button mOffcieBtn,mHospital,mUpBtn,mNextBtn,mBackBtn;
+    private Button mOffcieBtn, mHospital, mUpBtn, mNextBtn, mBackBtn;
     private RemoteAdapter mRemoteAdapter;
     private RecyclerViewTV mRecyclerViewTV;
     private MainUpView mMainUpView;
@@ -65,8 +65,8 @@ public class RemoteActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.remote, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.remote,  null));
 
         mOffcieBtn = (Button) findViewById(R.id.remote_office);
         mHospital = (Button) findViewById(R.id.remote_hospital);
@@ -90,53 +90,53 @@ public class RemoteActivity extends BaseActivity implements View.OnClickListener
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRemoteAdapter = new RemoteAdapter();
-        mRemoteAdapter.setData(mOfficeList,mHospitalsList,mDataType);
+        mRemoteAdapter.setData(mOfficeList, mHospitalsList, mDataType);
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.remote_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,5);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 5);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.VERTICAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mRemoteAdapter);
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
-                Intent intent = new Intent(RemoteActivity.this,DoctorActivity.class);
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
+                Intent intent = new Intent(RemoteActivity.this, DoctorActivity.class);
                 if (mDataType.equals("offices")) {
-                    intent.putExtra("office_code", mOfficeList.get(position).getCode());
+                    intent.putExtra("office_code",  mOfficeList.get(position).getCode());
                 } else if (mDataType.equals("hospitals")) {
-                    intent.putExtra("hospital_code",mHospitalsList.get(position).getCode());
+                    intent.putExtra("hospital_code", mHospitalsList.get(position).getCode());
                 }
                 startActivity(intent);
             }
         });
 
-        showProgressDialog("Querying data..");
-        qryOffices(mPage, null);
+        showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+        qryOffices(mPage,  null);
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -146,45 +146,45 @@ public class RemoteActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.remote_office:
-                //科室
+                // " + getResources().getString(R.string.MainActivity_java_100)
                 mDataType = "offices";
                 mPage = 1;
-                showProgressDialog("Querying data..");
-                qryOffices(mPage,null);
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryOffices(mPage, null);
                 break;
             case R.id.remote_hospital:
-                //医院
+                // " + getResources().getString(R.string.MainActivity_java_99)
                 mDataType = "hospitals";
                 mPage = 1;
-                showProgressDialog("Querying data..");
-                qryOffices(mPage,null);
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryOffices(mPage, null);
                 break;
             case R.id.remote_up:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 if (mPage == 1) {
-                    ToastUtil.show(this,"First page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_29));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryOffices(mPage,"-");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryOffices(mPage, "-");
                 break;
             case R.id.remote_next:
-                //下一页
+                // " + getResources().getString(R.string.DeptActivity_java_31)
                 if (isLastPage) {
-                    ToastUtil.show(this,"Last page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_33));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryOffices(mPage,"+");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryOffices(mPage, "+");
                 break;
             case R.id.remote_back:
-                //返回
+                // " + getResources().getString(R.string.DoctorActivity_java_40)
                 finish();
                 break;
         }
     }
 
-    private void qryOffices(int page, final String type) {
+    private void qryOffices(int page,  final String type) {
         if ("+".equals(type)) {
             page ++;
         }
@@ -192,25 +192,25 @@ public class RemoteActivity extends BaseActivity implements View.OnClickListener
             page --;
         }
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams(mDataType,
-                new String[]{"code","pageIndex","pageSize"},
-                new Object[]{"",page, Constant.PAGE_SIZE_10}), new Callback() {
+                new String[]{"code", "pageIndex", "pageSize"},
+                new Object[]{"", page,  Constant.PAGE_SIZE_10}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed"))  {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(RemoteActivity.this, msg);
+                        ToastUtil.show(RemoteActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 if ("+".equals(type)) {
                     mPage ++;
                 }
@@ -218,11 +218,11 @@ public class RemoteActivity extends BaseActivity implements View.OnClickListener
                     mPage --;
                 }
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
+                LogUtil.d(TAG,  "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
                     if (mDataType.equals("offices")) {
-                        String offices = JsonUtil.getObjectByKey("offices", result);
-                        List<Office> tempList = JsonUtil.mGson.fromJson(offices, new TypeToken<List<Office>>() {}.getType());
+                        String offices = JsonUtil.getObjectByKey("offices",  result);
+                        List<Office> tempList = JsonUtil.mGson.fromJson(offices,  new TypeToken<List<Office>>() {}.getType());
                         isLastPage = false;
                         if (tempList.size() < Constant.PAGE_SIZE_10) {
                             isLastPage = true;
@@ -230,8 +230,8 @@ public class RemoteActivity extends BaseActivity implements View.OnClickListener
                         mOfficeList.clear();
                         mOfficeList.addAll(tempList);
                     } else if(mDataType.equals("hospitals")) {
-                        String hospitals = JsonUtil.getObjectByKey("hospitals", result);
-                        List<Hospital> tempList = JsonUtil.mGson.fromJson(hospitals, new TypeToken<List<Hospital>>() {}.getType());
+                        String hospitals = JsonUtil.getObjectByKey("hospitals",  result);
+                        List<Hospital> tempList = JsonUtil.mGson.fromJson(hospitals,  new TypeToken<List<Hospital>>() {}.getType());
                         isLastPage = false;
                         if (tempList.size() < Constant.PAGE_SIZE_10) {
                             isLastPage = true;
@@ -243,7 +243,7 @@ public class RemoteActivity extends BaseActivity implements View.OnClickListener
                         @Override
                         public void run() {
                             dismissProgressDialog();
-                            mRemoteAdapter.setData(mOfficeList,mHospitalsList,mDataType);
+                            mRemoteAdapter.setData(mOfficeList, mHospitalsList, mDataType);
                             mRemoteAdapter.notifyDataSetChanged();
                         }
                     });
@@ -253,7 +253,7 @@ public class RemoteActivity extends BaseActivity implements View.OnClickListener
                         @Override
                         public void run() {
                             dismissProgressDialog();
-                            ToastUtil.show(RemoteActivity.this, "No data show");
+                            ToastUtil.show(RemoteActivity.this,  getResources().getString(R.string.DeptActivity_java_55));
                         }
                     });
                 }

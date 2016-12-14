@@ -8,39 +8,41 @@ import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.ningkangyuan.MyApplication;
+import com.ningkangyuan.R;
 /**
  * Created by xuchun on 2016/8/22.
  */
 public class VerifyUtil {
 
     public static String IDCardValidate(String IDStr) {
-        String tipInfo = "";// 记录错误信息
+        String tipInfo = "";//  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_1)
         String Ai = "";
-        // 判断号码的长度 15位或18位
+        //  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_2) 15 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_3)18 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_4)
         if (IDStr.length() != 15 && IDStr.length() != 18) {
-            tipInfo = "ID number length should be15Or18position。";
+            tipInfo = " " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_5) + "15 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_3) + "18 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_7) + " ";
             return tipInfo;
         }
 
 
-        // 18位身份证前17位位数字，如果是15位的身份证则所有号码都为数字
+        // 18 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_8)17 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_9)15 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_10)
         if (IDStr.length() == 18) {
-            Ai = IDStr.substring(0, 17);
+            Ai = IDStr.substring(0,  17);
         } else if (IDStr.length() == 15) {
-            Ai = IDStr.substring(0, 6) + "19" + IDStr.substring(6, 15);
+            Ai = IDStr.substring(0,  6) + "19" + IDStr.substring(6,  15);
         }
         if (isNumeric(Ai) == false) {
-            tipInfo = "ID15Bit numbers should be numeric ; 18Bit number in addition to the last one，All should be numbers。";
+            tipInfo = " " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_14) + "15 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_15) + " ; 18 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_16) + " ";
             return tipInfo;
         }
 
 
-        // 判断出生年月是否有效
-        String strYear = Ai.substring(6, 10);// 年份
-        String strMonth = Ai.substring(10, 12);// 月份
-        String strDay = Ai.substring(12, 14);// Date,
+        //  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_17)
+        String strYear = Ai.substring(6,  10);//  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_19)
+        String strMonth = Ai.substring(10,  12);//  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_21)
+        String strDay = Ai.substring(12,  14);//  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_23)
         if (isDate(strYear + "-" + strMonth + "-" + strDay) == false) {
-            tipInfo = "Birth date is not valid。";
+            tipInfo = MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_24);
             return tipInfo;
         }
         GregorianCalendar gc = new GregorianCalendar();
@@ -49,7 +51,7 @@ public class VerifyUtil {
             if ((gc.get(Calendar.YEAR) - Integer.parseInt(strYear)) > 150
                     || (gc.getTime().getTime() - s.parse(
                     strYear + "-" + strMonth + "-" + strDay).getTime()) < 0) {
-                tipInfo = "ID card birthday is not valid。";
+                tipInfo = MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_25);
                 return tipInfo;
             }
         } catch (NumberFormatException e) {
@@ -58,25 +60,25 @@ public class VerifyUtil {
             e.printStackTrace();
         }
         if (Integer.parseInt(strMonth) > 12 || Integer.parseInt(strMonth) == 0) {
-            tipInfo = "ID card month is invalid";
+            tipInfo = MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_26);
             return tipInfo;
         }
         if (Integer.parseInt(strDay) > 31 || Integer.parseInt(strDay) == 0) {
-            tipInfo = "Id date is invalid";
+            tipInfo = MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_27);
             return tipInfo;
         }
 
 
-        // 判断地区码是否有效
+        //  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_28)
         Hashtable areacode = GetAreaCode();
-        //如果身份证前两位的地区码不在Hashtable，则地区码有误
-        if (areacode.get(Ai.substring(0, 2)) == null) {
-            tipInfo = "ID area code error。";
+        // " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_29)Hashtable " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_30)
+        if (areacode.get(Ai.substring(0,  2)) == null) {
+            tipInfo = MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_32);
             return tipInfo;
         }
 
-        if(isVarifyCode(Ai,IDStr)==false){
-            tipInfo = "ID check code is invalid，Not a valid ID number.";
+        if(isVarifyCode(Ai, IDStr)==false){
+            tipInfo = MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_34);
             return tipInfo;
         }
 
@@ -86,21 +88,21 @@ public class VerifyUtil {
 
 
     /*
-     * 判断第18位校验码是否正确
-    * 第18位校验码的计算方式：
-       　　1. 对前17位数字本体码加权求和
-       　　公式为：S = Sum(Ai * Wi), i = 0, ... , 16
-       　　其中Ai表示第i个位置上的身份证号码数字值，Wi表示第i位置上的加权因子，其各位对应的值依次为： 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2
-       　　2. 用11对计算结果取模
-       　　Y = mod(S, 11)
-       　　3. 根据模的值得到对应的校验码
-       　　对应关系为：
-       　　 Y值：     0  1  2  3  4  5  6  7  8  9  10
-       　　校验码： 1  0  X  9  8  7  6  5  4  3   2
+     *  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_35)18 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_36)
+    *  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_37)18 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_38)：
+       　　1.  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_39)17 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_40)
+       　　 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_41)：S = Sum(Ai * Wi),  i = 0,  ... ,  16
+       　　 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_45)Ai " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_46)i " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_47)Wi " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_46)i " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_49)： 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2
+       　　2.  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_50)11 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_51)
+       　　Y = mod(S,  11)
+       　　3.  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_53)
+       　　 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_54)：
+       　　 Y " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_55)：     0  1  2  3  4  5  6  7  8  9  10
+       　　 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_56)： 1  0  X  9  8  7  6  5  4  3   2
     */
-    private static boolean isVarifyCode(String Ai,String IDStr) {
-        String[] VarifyCode = { "1", "0", "X", "9", "8", "7", "6", "5", "4","3", "2" };
-        String[] Wi = { "7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7","9", "10", "5", "8", "4", "2" };
+    private static boolean isVarifyCode(String Ai, String IDStr) {
+        String[] VarifyCode = { "1",  "0",  "X",  "9",  "8",  "7",  "6",  "5",  "4", "3",  "2" };
+        String[] Wi = { "7",  "9",  "10",  "5",  "8",  "4",  "2",  "1",  "6",  "3",  "7", "9",  "10",  "5",  "8",  "4",  "2" };
         int sum = 0;
         for (int i = 0; i < 17; i++) {
             sum = sum + Integer.parseInt(String.valueOf(Ai.charAt(i))) * Integer.parseInt(Wi[i]);
@@ -119,52 +121,52 @@ public class VerifyUtil {
 
 
     /**
-     * 将所有地址编码保存在一个Hashtable中
-     * @return Hashtable 对象
+     *  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_84)Hashtable " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_85)
+     * @return Hashtable  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_86)
      */
 
     private static Hashtable GetAreaCode() {
         Hashtable hashtable = new Hashtable();
-        hashtable.put("11", "beijing");
-        hashtable.put("12", "tianjin");
-        hashtable.put("13", "hebei");
-        hashtable.put("14", "shanxi");
-        hashtable.put("15", "innermongolia");
-        hashtable.put("21", "liaoning");
-        hashtable.put("22", "jilin");
-        hashtable.put("23", "heilongjiang");
-        hashtable.put("31", "shanghai");
-        hashtable.put("32", "jiangsu");
-        hashtable.put("33", "zhejiang");
-        hashtable.put("34", "anhui");
-        hashtable.put("35", "fujian");
-        hashtable.put("36", "jiangxi");
-        hashtable.put("37", "shandong");
-        hashtable.put("41", "henan");
-        hashtable.put("42", "hubei");
-        hashtable.put("43", "hunan");
-        hashtable.put("44", "guangdong");
-        hashtable.put("45", "guangxi");
-        hashtable.put("46", "hainan");
-        hashtable.put("50", "chongqing");
-        hashtable.put("51", "sichuan");
-        hashtable.put("52", "guizhou");
-        hashtable.put("53", "yunnan");
-        hashtable.put("54", "tibet");
-        hashtable.put("61", "shaanxi");
-        hashtable.put("62", "gansu");
-        hashtable.put("63", "qinghai");
-        hashtable.put("64", "ningxia");
-        hashtable.put("65", "xinjiang");
-        hashtable.put("71", "taiwan");
-        hashtable.put("81", "hongkong");
-        hashtable.put("82", "macau");
-        hashtable.put("91", "abroad");
+        hashtable.put("11",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_88));
+        hashtable.put("12",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_90));
+        hashtable.put("13",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_92));
+        hashtable.put("14",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_94));
+        hashtable.put("15",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_96));
+        hashtable.put("21",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_98));
+        hashtable.put("22",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_100));
+        hashtable.put("23",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_102));
+        hashtable.put("31",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_104));
+        hashtable.put("32",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_106));
+        hashtable.put("33",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_108));
+        hashtable.put("34",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_110));
+        hashtable.put("35",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_112));
+        hashtable.put("36",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_114));
+        hashtable.put("37",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_116));
+        hashtable.put("41",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_118));
+        hashtable.put("42",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_120));
+        hashtable.put("43",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_122));
+        hashtable.put("44",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_124));
+        hashtable.put("45",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_126));
+        hashtable.put("46",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_128));
+        hashtable.put("50",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_130));
+        hashtable.put("51",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_132));
+        hashtable.put("52",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_134));
+        hashtable.put("53",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_136));
+        hashtable.put("54",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_138));
+        hashtable.put("61",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_140));
+        hashtable.put("62",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_142));
+        hashtable.put("63",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_144));
+        hashtable.put("64",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_146));
+        hashtable.put("65",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_148));
+        hashtable.put("71",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_150));
+        hashtable.put("81",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_152));
+        hashtable.put("82",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_154));
+        hashtable.put("91",  MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_156));
         return hashtable;
     }
 
     /**
-     * 判断字符串是否为数字,0-9重复0次或者多次
+     *  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_157)0-9 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_158)0 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_159)
      * @param strnum
      * @return
      */
@@ -179,7 +181,7 @@ public class VerifyUtil {
     }
 
     /**
-     * 功能：判断字符串出生日期是否符合正则表达式：包括年月日，闰年、平年和每月31天、30天和闰月的28天或者29天
+     *  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_160)： " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_161)： " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_162)、 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_163)31 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_164)、30 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_165)28 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_166)29 " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_164)
      *
      * @param strDate
      * @return
@@ -196,16 +198,16 @@ public class VerifyUtil {
 
 
     /**
-     * 手机号验证
+     *  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_168)
      *
      * @param  str
-     * @return 验证通过返回true
+     * @return  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_169)true
      */
     public static boolean isMobile(String str) {
         Pattern p = null;
         Matcher m = null;
         boolean b = false;
-        p = Pattern.compile("^[1][3,4,5,8][0-9]{9}$"); // 验证手机号
+        p = Pattern.compile("^[1][3, 4, 5, 8][0-9]{9}$"); //  " + MyApplication.mContext.getResources().getString(R.string.VerifyUtil_java_173)
         m = p.matcher(str);
         b = m.matches();
         return b;

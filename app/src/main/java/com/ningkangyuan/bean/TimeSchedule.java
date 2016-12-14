@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 分时排班
+ *  " + getResources().getString(R.string.TimeSchedule_java_1)
  * Created by xuchun on 2016/9/22.
  */
 public class TimeSchedule implements Serializable {

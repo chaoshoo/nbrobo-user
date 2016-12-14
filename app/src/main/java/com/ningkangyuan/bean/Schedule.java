@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 医生排班
+ *  " + getResources().getString(R.string.Schedule_java_1)
  * Created by xuchun on 2016/9/22.
  */
 public class Schedule implements Serializable {

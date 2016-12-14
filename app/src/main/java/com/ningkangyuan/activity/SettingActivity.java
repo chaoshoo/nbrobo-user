@@ -36,10 +36,10 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 设置
+ *  " + getResources().getString(R.string.SettingActivity_java_1)
  * Created by xuchun on 2016/8/29.
  */
-public class SettingActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class SettingActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String TAG = "SettingActivity";
 
@@ -47,7 +47,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private EffectNoDrawBridge mEffectNoDrawBridge;
 //    private RecyclerViewBridge mRecyclerViewBridge;
 
-    private Button mBackBtn,mUpdateBtn,mVersionBtn,mExitBtn;
+    private Button mBackBtn, mUpdateBtn, mVersionBtn, mExitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,20 +58,20 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.setting, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.setting,  null));
 
         mMainUpView = (MainUpView) findViewById(R.id.setting_mainupview);
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         mEffectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         mEffectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 //        mMainUpView.setEffectBridge(new RecyclerViewBridge());
 //        mRecyclerViewBridge = (RecyclerViewBridge) mMainUpView.getEffectBridge();
 //        mRecyclerViewBridge.setUpRectResource(R.drawable.video_cover_cursor);
 //        float density = getResources().getDisplayMetrics().density;
-//        RectF rectF = new RectF(35.0f * density,30.0f * density,35.0f * density,30.0f * density);
+//        RectF rectF = new RectF(35.0f * density, 30.0f * density, 35.0f * density, 30.0f * density);
 //        mRecyclerViewBridge.setDrawUpRectPadding(rectF);
 
         mBackBtn = (Button) findViewById(R.id.setting_version_back);
@@ -96,14 +96,14 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.setting_version_update:
                 //
-//                ToastUtil.show(this,"正在火速处理");
+//                ToastUtil.show(this, getResources().getString(R.string.SettingActivity_java_14));
                 checkNewVersion();
                 break;
             case R.id.setting_current_version:
                 PackageManager packageManager = getPackageManager();
                 try {
-                    PackageInfo packageInfo = packageManager.getPackageInfo(getPackageName(),0);
-                    ToastUtil.show(this,"The current version is：" + packageInfo.versionName);
+                    PackageInfo packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
+                    ToastUtil.show(this, " " + getResources().getString(R.string.SettingActivity_java_17) + " ：" + packageInfo.versionName);
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -118,9 +118,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1,1f);
+            mMainUpView.setFocusView(v, 1, 1f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -130,20 +130,20 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private void showExitDialog() {
         if (mExitDialog == null) {
             mExitDialog = new AlertDialog.Builder(this);
-            mExitDialog.setTitle("Prompt");
-            mExitDialog.setMessage("Confirm to quit the current account？");
-            mExitDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            mExitDialog.setTitle(getResources().getString(R.string.FamilyActivity_java_91));
+            mExitDialog.setMessage(" " + getResources().getString(R.string.SettingActivity_java_22) + "？");
+            mExitDialog.setPositiveButton(getResources().getString(R.string.MainActivity_java_28),  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    getSharedPreferences("login",0).edit().putString("identityStr",null).commit();
-                    getSharedPreferences("login",0).edit().putString("passwordStr",null).commit();
-                    Intent intent = new Intent(SettingActivity.this,LoginActivity.class);
+                public void onClick(DialogInterface dialog,  int which) {
+                    getSharedPreferences("login", 0).edit().putString("identityStr", null).commit();
+                    getSharedPreferences("login", 0).edit().putString("passwordStr", null).commit();
+                    Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                 }
             });
-            mExitDialog.setNegativeButton("no", null);
+            mExitDialog.setNegativeButton(getResources().getString(R.string.MainActivity_java_34),  null);
         }
         mExitDialog.show();
     }
@@ -154,13 +154,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             switch (msg.what) {
                 case 1:
                     int progress = msg.arg1;
-                    ToastUtil.show(SettingActivity.this,"Download progress:" + progress + "%");
+                    ToastUtil.show(SettingActivity.this, " " + getResources().getString(R.string.InitActivity_java_56) + " :" + progress + "%");
                     break;
                 case 2:
                     String apkPath = (String) msg.obj;
-                    ToastUtil.show(SettingActivity.this,"Download completed，To install");
+                    ToastUtil.show(SettingActivity.this, getResources().getString(R.string.InitActivity_java_58));
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.fromFile(new File(apkPath)),"application/vnd.android.package-archive");
+                    intent.setDataAndType(Uri.fromFile(new File(apkPath)), "application/vnd.android.package-archive");
                     startActivity(intent);
                     break;
             }
@@ -172,34 +172,34 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private void checkNewVersion() {
         mDownLoadCall = OkHttpHelper.get(OkHttpHelper.makeJsonParams("getappversion",
                 new String[]{},
-                new Object[]{}), new Callback() {
+                new Object[]{}),  new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(Call call,  IOException e) {
                 String msg = e.getMessage();
                 if (msg.startsWith("Failed")) {
-                    msg = "Unable to connect to the server，Please check the network";
+                    msg = getResources().getString(R.string.BaseActivity_java_23);
                 }
-                ToastUtil.show(SettingActivity.this, msg);
+                ToastUtil.show(SettingActivity.this,  msg);
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                    String version_code = JsonUtil.getObjectByKey("version_code", result);
-                    String version_url = JsonUtil.getObjectByKey("version_url", result);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                    String version_code = JsonUtil.getObjectByKey("version_code",  result);
+                    String version_url = JsonUtil.getObjectByKey("version_url",  result);
 
                     if (version_code != null && version_url != null) {
                         PackageManager packageManager = SettingActivity.this.getPackageManager();
                         try {
-                            PackageInfo packageInfo = packageManager.getPackageInfo(SettingActivity.this.getPackageName(), 0);
+                            PackageInfo packageInfo = packageManager.getPackageInfo(SettingActivity.this.getPackageName(),  0);
                             String versionCode = String.valueOf(packageInfo.versionCode);
                             if (!versionCode.equals(version_code)) {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        ToastUtil.show(SettingActivity.this, "Discover new");
+                                        ToastUtil.show(SettingActivity.this,  getResources().getString(R.string.InitActivity_java_73));
                                     }
                                 });
                                 update(version_url);
@@ -207,7 +207,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        ToastUtil.show(SettingActivity.this, "The current version is the latest");
+                                        ToastUtil.show(SettingActivity.this,  getResources().getString(R.string.SettingActivity_java_53));
                                     }
                                 });
                             }
@@ -218,7 +218,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                ToastUtil.show(SettingActivity.this, "The current version is the latest");
+                                ToastUtil.show(SettingActivity.this,  getResources().getString(R.string.SettingActivity_java_53));
                             }
                         });
                     }
@@ -226,7 +226,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.show(SettingActivity.this, "The current version is the latest");
+                            ToastUtil.show(SettingActivity.this,  getResources().getString(R.string.SettingActivity_java_53));
                         }
                     });
                 }
@@ -236,23 +236,23 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
 
     private void update(String url) {
-        OkHttpHelper.download(url, new Callback() {
+        OkHttpHelper.download(url,  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed")) {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(SettingActivity.this, msg);
+                        ToastUtil.show(SettingActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 InputStream is = null;
                 byte[] buff = new byte[2048];
                 int len = 0;
@@ -261,7 +261,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
-                    File apkFile = new File(sdPath, "nky.apk");
+                    File apkFile = new File(sdPath,  "nky.apk");
                     if (apkFile.exists()) {
                         apkFile.delete();
                     }
@@ -269,7 +269,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
                     long sum = 0;
                     while ((len = is.read(buff)) != -1) {
-                        fos.write(buff, 0, len);
+                        fos.write(buff,  0,  len);
                         sum += len;
                         int progress = (int) ((sum * 1.0f / total) * 100);
                         Message message = mUpdateApkHandler.obtainMessage();

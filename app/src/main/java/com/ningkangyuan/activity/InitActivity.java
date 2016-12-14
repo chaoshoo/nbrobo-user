@@ -38,17 +38,17 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 此activity做一些项目初始化的操作
+ *  " + getResources().getString(R.string.InitActivity_java_1)activity " + getResources().getString(R.string.InitActivity_java_2)
  * Created by xuchun on 2016/8/15.
  */
 public class InitActivity extends Activity {
 
     private static final String TAG = "InitActivity";
 
-    //企业
+    // " + getResources().getString(R.string.InitActivity_java_3)
     private static final String PUSH_API_KEY = "iO2Kd9I9Sv2Cn4Djmm8YFBaD";
 
-    //我的
+    // " + getResources().getString(R.string.InitActivity_java_4)
 //    private static final String PUSH_API_KEY = "kuE3h2aj59tuyoVlttTxI4ZO";
 
     private ProgressBar mProgressBar;
@@ -84,20 +84,20 @@ public class InitActivity extends Activity {
         mProgressBar = (ProgressBar) findViewById(R.id.init_loading);
 
         if (!NetworkUtil.isHaveNet(this)) {
-            ToastUtil.show(this,"Network is not available");
+            ToastUtil.show(this, getResources().getString(R.string.InitActivity_java_6));
             finish();
             return;
         }
 
-        //初始化百度push
+        // " + getResources().getString(R.string.InitActivity_java_7)push
         initBDPush();
 
         initBluetooth();
 
-//        获取服务器时间更新本地时间
+//         " + getResources().getString(R.string.InitActivity_java_8)
         updateSystemDate();
 
-        //检查版本更新
+        // " + getResources().getString(R.string.InitActivity_java_9)
         checkNewVersion();
 
         mTimer.schedule(new TimerTask() {
@@ -109,14 +109,14 @@ public class InitActivity extends Activity {
                 }
 //                leave();
             }
-        }, 3 * 1000);
+        },  3 * 1000);
     }
 
-    //初始化蓝牙
+    // " + getResources().getString(R.string.InitActivity_java_11)
     private void initBluetooth() {
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         if (bluetoothManager.getAdapter() == null) {
-            ToastUtil.show(this,"No Bluetooth module detected");
+            ToastUtil.show(this, getResources().getString(R.string.InitActivity_java_13));
             return;
         }
         bluetoothManager.getAdapter().enable();
@@ -126,13 +126,13 @@ public class InitActivity extends Activity {
 //        if (PushManager.isPushEnabled(MyApplication.mContext)) {
 //            return;
 //        }
-        PushManager.startWork(MyApplication.mContext, PushConstants.LOGIN_TYPE_API_KEY, PUSH_API_KEY);
+        PushManager.startWork(MyApplication.mContext,  PushConstants.LOGIN_TYPE_API_KEY,  PUSH_API_KEY);
     }
 
     private void leave() {
         if (mAccount == null || mPassword == null) {
-            //这里跳转
-            Intent intent = new Intent(InitActivity.this, LoginActivity.class);
+            // " + getResources().getString(R.string.InitActivity_java_16)
+            Intent intent = new Intent(InitActivity.this,  LoginActivity.class);
             startActivity(intent);
             finish();;
         } else {
@@ -146,40 +146,40 @@ public class InitActivity extends Activity {
 //        if (vip == null) {
 //            return;
 //        }
-//        //使用vip_code进行登录
+//        // " + getResources().getString(R.string.InitActivity_java_18)vip_code " + getResources().getString(R.string.InitActivity_java_19)
 //        VoipHelper.getInstance().login(vip.getVip_code());
 //    }
 
-    //获取服务器时间更新本地系统时间
+    // " + getResources().getString(R.string.InitActivity_java_20)
     private void updateSystemDate() {
-        OkHttpHelper.get(OkHttpHelper.makeJsonParams("getsystemtime", new String[]{}, new Object[]{}), new Callback() {
+        OkHttpHelper.get(OkHttpHelper.makeJsonParams("getsystemtime",  new String[]{},  new Object[]{}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed"))  {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(InitActivity.this, msg);
+                        ToastUtil.show(InitActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 final String result = response.body().string();
-                LogUtil.d(TAG, result);
-                final String code = JsonUtil.getObjectByKey("code", result);
+                LogUtil.d(TAG,  result);
+                final String code = JsonUtil.getObjectByKey("code",  result);
                 if ("1".equals(code)) {
-                    final String time = JsonUtil.getObjectByKey("datetime", result);
+                    final String time = JsonUtil.getObjectByKey("datetime",  result);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try {
                                 Process process = Runtime.getRuntime().exec("su");
-//                                String datetime="20160917.102800"; //测试的设置的时间【时间格式 yyyyMMdd.HHmmss】
+//                                String datetime="20160917.102800"; // " + getResources().getString(R.string.InitActivity_java_31)【 " + getResources().getString(R.string.InitActivity_java_32) yyyyMMdd.HHmmss】
                                 DataOutputStream os = new DataOutputStream(process.getOutputStream());
                                 os.writeBytes("setprop persist.sys.timezone GMT\n");
                                 os.writeBytes("/system/bin/date -s " + time + "\n");
@@ -198,42 +198,42 @@ public class InitActivity extends Activity {
 
     private void login() {
         OkHttpHelper.get(OkHttpHelper.makeJsonParams("userlogin",
-                new String[]{"num","password","android_tv_channel_id"},
-                new Object[]{mAccount,mPassword, BDPushReceiver.android_tv_channel_id}), new Callback() {
+                new String[]{"num", "password", "android_tv_channel_id"},
+                new Object[]{mAccount, mPassword,  BDPushReceiver.android_tv_channel_id}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed"))  {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(InitActivity.this, msg);
+                        ToastUtil.show(InitActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 final String result = response.body().string();
-                LogUtil.d(TAG, result);
-                final String code = JsonUtil.getObjectByKey("code", result);
-                final String message= JsonUtil.getObjectByKey("message", result);
-                final String vip_info= JsonUtil.getObjectByKey("vip_info", result);
+                LogUtil.d(TAG,  result);
+                final String code = JsonUtil.getObjectByKey("code",  result);
+                final String message= JsonUtil.getObjectByKey("message",  result);
+                final String vip_info= JsonUtil.getObjectByKey("vip_info",  result);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.show(InitActivity.this, message);
+                        ToastUtil.show(InitActivity.this,  message);
                         Intent intent = new Intent();
                         if ("1".equals(code)) {
-                            //将登陆数据存起来
-                            getSharedPreferences("login", 0).edit().putString("vip", vip_info).commit();
+                            // " + getResources().getString(R.string.InitActivity_java_49)
+                            getSharedPreferences("login",  0).edit().putString("vip",  vip_info).commit();
 
-                            //跳转至主页面
-                            intent.setClass(InitActivity.this,MainActivity.class);
+                            // " + getResources().getString(R.string.InitActivity_java_52)
+                            intent.setClass(InitActivity.this, MainActivity.class);
                         } else {
-                            intent.setClass(InitActivity.this,LoginActivity.class);
+                            intent.setClass(InitActivity.this, LoginActivity.class);
                         }
                         startActivity(intent);
                         finish();
@@ -249,13 +249,13 @@ public class InitActivity extends Activity {
             switch (msg.what) {
                 case 1:
                     int progress = msg.arg1;
-                    ToastUtil.show(InitActivity.this,"Download progress:" + progress + "%");
+                    ToastUtil.show(InitActivity.this, " " + getResources().getString(R.string.InitActivity_java_56) + " :" + progress + "%");
                     break;
                 case 2:
                     String apkPath = (String) msg.obj;
-                    ToastUtil.show(InitActivity.this,"Download completed，To install");
+                    ToastUtil.show(InitActivity.this, getResources().getString(R.string.InitActivity_java_58));
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.fromFile(new File(apkPath)),"application/vnd.android.package-archive");
+                    intent.setDataAndType(Uri.fromFile(new File(apkPath)), "application/vnd.android.package-archive");
                     startActivity(intent);
                     break;
             }
@@ -267,34 +267,34 @@ public class InitActivity extends Activity {
     private void checkNewVersion() {
         mDownLoadCall = OkHttpHelper.get(OkHttpHelper.makeJsonParams("getappversion",
                 new String[]{},
-                new Object[]{}), new Callback() {
+                new Object[]{}),  new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(Call call,  IOException e) {
                 String msg = e.getMessage();
                 if (msg.startsWith("Failed"))  {
-                    msg = "Unable to connect to the server，Please check the network";
+                    msg = getResources().getString(R.string.BaseActivity_java_23);
                 }
-                ToastUtil.show(InitActivity.this, msg);
+                ToastUtil.show(InitActivity.this,  msg);
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                    String version_code = JsonUtil.getObjectByKey("version_code", result);
-                    String version_url = JsonUtil.getObjectByKey("version_url", result);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                    String version_code = JsonUtil.getObjectByKey("version_code",  result);
+                    String version_url = JsonUtil.getObjectByKey("version_url",  result);
 
                     if (version_code != null && version_url != null) {
                         PackageManager packageManager = InitActivity.this.getPackageManager();
                         try {
-                            PackageInfo packageInfo = packageManager.getPackageInfo(InitActivity.this.getPackageName(), 0);
+                            PackageInfo packageInfo = packageManager.getPackageInfo(InitActivity.this.getPackageName(),  0);
                             String versionCode = String.valueOf(packageInfo.versionCode);
                             if (!versionCode.equals(version_code)) {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        ToastUtil.show(InitActivity.this,"Discover new");
+                                        ToastUtil.show(InitActivity.this, getResources().getString(R.string.InitActivity_java_73));
                                     }
                                 });
                                 update(version_url);
@@ -325,23 +325,23 @@ public class InitActivity extends Activity {
 
 
     private void update(String url) {
-        OkHttpHelper.download(url, new Callback() {
+        OkHttpHelper.download(url,  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed")) {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(InitActivity.this, msg);
+                        ToastUtil.show(InitActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 InputStream is = null;
                 byte[] buff = new byte[2048];
                 int len = 0;
@@ -350,7 +350,7 @@ public class InitActivity extends Activity {
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
-                    File apkFile = new File(sdPath, "nky.apk");
+                    File apkFile = new File(sdPath,  "nky.apk");
                     if (apkFile.exists()) {
                         apkFile.delete();
                     }
@@ -358,7 +358,7 @@ public class InitActivity extends Activity {
 
                     long sum = 0;
                     while ((len = is.read(buff)) != -1) {
-                        fos.write(buff, 0, len);
+                        fos.write(buff,  0,  len);
                         sum += len;
                         int progress = (int) ((sum * 1.0f / total) * 100);
                         Message message = mUpdateApkHandler.obtainMessage();

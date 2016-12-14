@@ -25,7 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * 操作指南
+ *  " + getResources().getString(R.string.GuideActivity_java_1)
  * Created by xuchun on 2016/9/1.
  */
 public class GuideActivity extends BaseActivity {
@@ -43,8 +43,8 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.guide, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.guide,  null));
 
         findViewById(R.id.guide_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,24 +65,29 @@ public class GuideActivity extends BaseActivity {
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                LogUtil.d(TAG, "url：" + url);
+            public boolean shouldOverrideUrlLoading(WebView view,  String url) {
+                LogUtil.d(TAG,  "url：" + url);
                 view.loadUrl(url);
                 return true;
             }
 
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                showProgressDialog("Being loaded..");
+            public void onPageStarted(WebView view,  String url,  Bitmap favicon) {
+                showProgressDialog(" " + getResources().getString(R.string.GuideActivity_java_8) + " ..");
             }
 
             @Override
-            public void onPageFinished(WebView view, String url) {
+            public void onPageFinished(WebView view,  String url) {
                 dismissProgressDialog();
             }
         });
-        String url = "http://121.43.123.125:84/user-guide.html";
-        mWebView.loadUrl(url);
+        if (getResources().getConfiguration().locale.getCountry().equals("CN") ) {
+            String url = Constant.API_DOMAIN + "/user-guide-cn.html";
+            mWebView.loadUrl(url);
+        } else {
+            String url = Constant.API_DOMAIN + "/user-guide.html";
+            mWebView.loadUrl(url);
+        }
 
     }
 }

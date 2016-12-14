@@ -1,9 +1,14 @@
 package com.ningkangyuan.bean;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import com.ningkangyuan.MyApplication;
 
 /**
- * 检测指标
+ *  " + getResources().getString(R.string.DetectionKPI_java_1)
  * Created by xuchun on 2016/8/24.
  */
 public class DetectionKPI implements Serializable {
@@ -101,7 +106,53 @@ public class DetectionKPI implements Serializable {
     }
 
     public String getInspect_desc() {
+        if (MyApplication.mContext.getResources().getConfiguration().locale.getCountry().equals("CN") ) {
+            Iterator<Map.Entry<String, String>> iter = cnMap.entrySet().iterator();
+            while (iter.hasNext()) {
+                Map.Entry<String, String> entry = iter.next();
+                if (inspect_desc.contains(entry.getKey())) {
+                    return inspect_desc.replace(entry.getKey(), entry.getValue());
+                }
+            }
+        } else {
+            Iterator<Map.Entry<String, String>> iter = cnMap.entrySet().iterator();
+            while (iter.hasNext()) {
+                Map.Entry<String, String> entry = iter.next();
+                if (inspect_desc.contains(entry.getValue())) {
+                    return inspect_desc.replace(entry.getValue(), entry.getKey());
+                }
+            }
+        }
         return inspect_desc;
+    }
+
+    private Map<String, String> cnMap;
+
+    public DetectionKPI() {
+        super();
+        cnMap = new HashMap<>();
+        cnMap.put("systolic pressure", "收缩压");
+        cnMap.put("diastolic pressure", "舒张压");
+        cnMap.put("Pulse rate", "脉率");
+        cnMap.put("Random blood glucose", "随机血糖");
+        cnMap.put("Pre meal blood glucose", "餐前血糖");
+        cnMap.put("Postprandial blood glucose", "餐后血糖");
+        cnMap.put("height", "身高");
+        cnMap.put("weight", "体重");
+        cnMap.put("temperature", "体温");
+        cnMap.put("Oxygen", "血氧");
+        cnMap.put("Pulse rate 2", "脉率2");
+        cnMap.put("white blood cell", "白细胞");
+        cnMap.put("nitrite", "亚硝酸盐");
+        cnMap.put("Degree of acidity and alkalinity", "酸碱度");
+        cnMap.put("Glucose", "葡萄糖");
+        cnMap.put("white blood cell", "白细胞");
+        cnMap.put("Ketone", "酮体");
+        cnMap.put("Protein", "蛋白质");
+        cnMap.put("Vitamin", "维生素");
+        cnMap.put("proportion", "比重");
+        cnMap.put("bilirubin", "胆红素");
+        cnMap.put("Urinary bladder", "尿胆原");
     }
 
     public void setInspect_desc(String inspect_desc) {

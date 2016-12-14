@@ -14,12 +14,12 @@ import com.ningkangyuan.bean.Office;
 import java.util.List;
 
 /**
- * 挂号医院
+ *  " + getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class RemoteAdapter extends RecyclerView.Adapter<RemoteAdapter.MyViewHolder> {
 
-    //默认科室
+    // " + getResources().getString(R.string.RemoteAdapter_java_2)
     private String mType = "offices";
 
     private List<Office> mOfficeList;

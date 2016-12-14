@@ -4,7 +4,7 @@
 
 
     <!-- baidu push -->
-    <!-- AdaptationAndroid NSystem requiredContentProviderWrite permission declaration，Write permissions include application package names.-->
+    <!-- 适配Android N系统必需的ContentProvider写权限声明，写权限包含应用包名-->
     <uses-permission android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.ningkangyuan" />
     <permission
         android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.ningkangyuan"
@@ -20,7 +20,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
-    <!-- equipment -->
+    <!-- 设备 -->
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -257,18 +257,18 @@
         </service>
 
 
-        <!-- hereReceiverThe name is modified to the current package name path -->
+        <!-- 此处Receiver名字修改为当前包名路径 -->
         <receiver android:name=".push.BDPushReceiver">
             <intent-filter>
-                <!-- ReceivepushMessage -->
+                <!-- 接收push消息 -->
                 <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
-                <!-- Receivebind、setTagsetc.methodReturn result-->
+                <!-- 接收bind、setTags等method的返回结果-->
                 <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
-                <!-- Receive notification click event，Notification custom content -->
+                <!-- 接收通知点击事件，和通知自定义内容 -->
                 <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
             </intent-filter>
         </receiver>
-        <!-- pushNecessaryreceviverandservicestatement -->
+        <!-- push必须的receviver和service声明 -->
         <receiver android:name="com.baidu.android.pushservice.PushServiceReceiver"
             android:process=":bdservice_v1">
             <intent-filter>
@@ -276,7 +276,7 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
                 <action android:name="com.baidu.android.pushservice.action.media.CLICK" />
-                <!-- The following four items are optionalactionstatement，Can greatly improveserviceSurvival rate and message arrival rate -->
+                <!-- 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 -->
                 <action android:name="android.intent.action.MEDIA_MOUNTED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />

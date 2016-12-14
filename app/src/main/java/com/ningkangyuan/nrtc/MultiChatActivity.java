@@ -61,9 +61,9 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        //清晰度
+        // " + getResources().getString(R.string.MultiChatActivity_java_9)
         sharedPreferences.edit().putString(context.getString(R.string.setting_vie_quality_key), "3").commit();
-        //帧率
+        // " + getResources().getString(R.string.MultiChatActivity_java_11)
         sharedPreferences.edit().putString(context.getString(R.string.setting_vie_frame_rate_key), "15").commit();
 
         Intent intent = new Intent();
@@ -79,13 +79,13 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
 
     }
 
-    //离开房间
+    // " + getResources().getString(R.string.MultiChatActivity_java_21)
     private final static int MENU_QUIT = 1;
-    //切换摄像头
+    // " + getResources().getString(R.string.MultiChatActivity_java_22)
     private final static int MENU_SWITCH_CAMERA = 2;
-    //选中用户
+    // " + getResources().getString(R.string.MultiChatActivity_java_23)
     private final static int MENU_SELECTED = 3;
-    //交换布局文件
+    // " + getResources().getString(R.string.MultiChatActivity_java_24)
     private final static int MENU_SWITCH_RENDER = 5;
 
     private final static int MENU_AUDIO_MUTED = 10;
@@ -117,25 +117,25 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
             menu.setHeaderTitle(user.uid + "");
 
             if (user.uid == uid) {
-                menu.add(0, MENU_QUIT, Menu.NONE, "Leave conversation");
+                menu.add(0, MENU_QUIT, Menu.NONE, getResources().getString(R.string.MultiChatActivity_java_30));
 
                 if (nrtc.getRole() == NRtcConstants.UserRole.AUDIENCE) {
-                    menu.add(0, MENU_ROLE, Menu.NONE, "Switch to ordinary users");
+                    menu.add(0, MENU_ROLE, Menu.NONE, getResources().getString(R.string.MultiChatActivity_java_34));
                     return;
                 } else {
-                    menu.add(0, MENU_ROLE, Menu.NONE, "Switch to audience");
+                    menu.add(0, MENU_ROLE, Menu.NONE, getResources().getString(R.string.MultiChatActivity_java_38));
                 }
 
                 if (isCallEstablished) {
 
                     if (videoEnabled) {
                         if (nrtc.hasMultipleCameras()) {
-                            menu.add(0, MENU_SWITCH_CAMERA, Menu.NONE, "Switch camera");
+                            menu.add(0, MENU_SWITCH_CAMERA, Menu.NONE, getResources().getString(R.string.MultiChatActivity_java_22));
                         }
-                        menu.add(0, MENU_VIDEO_MUTED, Menu.NONE, nrtc.videoStreamMuted(uid) ? "Open video send" : "Turn off video");
+                        menu.add(0, MENU_VIDEO_MUTED, Menu.NONE, nrtc.videoStreamMuted(uid) ? getResources().getString(R.string.MultiChatActivity_java_46) : getResources().getString(R.string.MultiChatActivity_java_47));
                     }
-                    menu.add(0, MENU_AUDIO_MUTED, Menu.NONE, nrtc.audioStreamMuted(user.uid) ? "Open voice send" : "Stop voice transmission");
-                    menu.add(0, MENU_RECORD, Menu.NONE, nrtc.isLocalRecording() ? "Stop recording" : "Open recording");
+                    menu.add(0, MENU_AUDIO_MUTED, Menu.NONE, nrtc.audioStreamMuted(user.uid) ? getResources().getString(R.string.MultiChatActivity_java_51) : getResources().getString(R.string.MultiChatActivity_java_52));
+                    menu.add(0, MENU_RECORD, Menu.NONE, nrtc.isLocalRecording() ? getResources().getString(R.string.MultiChatActivity_java_56) : getResources().getString(R.string.MultiChatActivity_java_57));
                 }
 
 
@@ -143,9 +143,9 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
 
                 if (isCallEstablished) {
                     if (videoEnabled) {
-                        menu.add(0, MENU_VIDEO_MUTED, Menu.NONE, nrtc.videoStreamMuted(user.uid) ? "Open video reception" : "Stop video receiving");
+                        menu.add(0, MENU_VIDEO_MUTED, Menu.NONE, nrtc.videoStreamMuted(user.uid) ? getResources().getString(R.string.MultiChatActivity_java_61) : getResources().getString(R.string.MultiChatActivity_java_62));
                     }
-                    menu.add(0, MENU_AUDIO_MUTED, Menu.NONE, nrtc.audioStreamMuted(user.uid) ? "Open voice reception" : "Stop voice receiving");
+                    menu.add(0, MENU_AUDIO_MUTED, Menu.NONE, nrtc.audioStreamMuted(user.uid) ? getResources().getString(R.string.MultiChatActivity_java_66) : getResources().getString(R.string.MultiChatActivity_java_67));
                 }
 
             }
@@ -154,16 +154,16 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
             if (videoEnabled && isCallEstablished) {
 
                 if (selectedRenderUid == 0) {
-                    menu.add(0, MENU_SELECTED, Menu.NONE, "Selected user");
+                    menu.add(0, MENU_SELECTED, Menu.NONE, getResources().getString(R.string.MultiChatActivity_java_23));
                 } else {
                     if (selectedRenderUid == user.uid) {
-                        menu.add(0, MENU_SELECTED, Menu.NONE, "uncheck");
+                        menu.add(0, MENU_SELECTED, Menu.NONE, getResources().getString(R.string.MultiChatActivity_java_75));
                     } else {
-                        menu.add(0, MENU_SWITCH_RENDER, Menu.NONE, "Exchange layout");
+                        menu.add(0, MENU_SWITCH_RENDER, Menu.NONE, getResources().getString(R.string.MultiChatActivity_java_79));
                     }
                 }
 
-                menu.add(0, MENU_SNAPSHOT, Menu.NONE, "screenshot");
+                menu.add(0, MENU_SNAPSHOT, Menu.NONE, getResources().getString(R.string.MultiChatActivity_java_83));
             }
 
         }
@@ -198,11 +198,11 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
                         User user = findUser(uu);
 
                         if (uu == selectedRenderUid) {
-                            //取消选中
+                            // " + getResources().getString(R.string.MultiChatActivity_java_75)
                             selectedRenderUid = 0;
                             user.selected = false;
                         } else {
-                            //选中
+                            // " + getResources().getString(R.string.MultiChatActivity_java_85)
                             selectedRenderUid = uu;
                             user.selected = true;
                         }
@@ -394,13 +394,13 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
                         refreshHolder(user.holder, false);
                     }
                 }
-                speakerBtn.setText(isMute ? "Open sound" : "Mute");
+                speakerBtn.setText(isMute ? getResources().getString(R.string.MultiChatActivity_java_113) : getResources().getString(R.string.MultiChatActivity_java_114));
             }
             break;
             case R.id.switch_microphone: {
-                //改变自己声音状态
+                // " + getResources().getString(R.string.MultiChatActivity_java_115)
                 nrtc.muteAudioStream(uid,!nrtc.audioStreamMuted(uid));
-                microphoneBtn.setText(nrtc.audioStreamMuted(uid) ? "Start talking" : "Voice off");
+                microphoneBtn.setText(nrtc.audioStreamMuted(uid) ? getResources().getString(R.string.MultiChatActivity_java_117) : getResources().getString(R.string.MultiChatActivity_java_118));
 
                 User user = findUser(uid);
                 user.audioMuted = nrtc.audioStreamMuted(user.uid);
@@ -432,43 +432,43 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
 
     private class User {
 
-        //用户ID
+        // " + getResources().getString(R.string.Vip_java_1)ID
         public long uid;
 
-        //本地操作语音静音
+        // " + getResources().getString(R.string.MultiChatActivity_java_121)
         public boolean audioMuted = false;
 
-        //本地操作视频
+        // " + getResources().getString(R.string.MultiChatActivity_java_122)
         public boolean videoMuted = false;
 
-        //远端操作视频
+        // " + getResources().getString(R.string.MultiChatActivity_java_123)
         public boolean videoRemoteMuted = false;
 
-        //远端操作语音
+        // " + getResources().getString(R.string.MultiChatActivity_java_124)
         public boolean audioRemoteMuted = false;
 
-        //用户当前处于的音视频模式
+        // " + getResources().getString(R.string.MultiChatActivity_java_125)
         public int rtcMode = NRtcConstants.RtcMode.AUDIO;
 
-        //是否允许切换摄像头
+        // " + getResources().getString(R.string.MultiChatActivity_java_126)
         public boolean canSwitchCamera = false;
 
-        //画布
+        // " + getResources().getString(R.string.MultiChatActivity_java_127)
         public NRtcVideoRender render;
 
         //
         public PreviewHolder holder;
 
-        //是否在录制
+        // " + getResources().getString(R.string.MultiChatActivity_java_128)
         public boolean isRecording = false;
 
-        //视频画面帧率
+        // " + getResources().getString(R.string.MultiChatActivity_java_129)
         public int fps = 0;
 
-        //选中
+        // " + getResources().getString(R.string.MultiChatActivity_java_85)
         public boolean selected = false;
 
-        //角色类型
+        // " + getResources().getString(R.string.MultiChatActivity_java_131)
         public int role;
 
     }
@@ -486,7 +486,7 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
     }
 
 
-    //用户传递参数
+    // " + getResources().getString(R.string.MultiChatActivity_java_132)
     private long uid;
     private String channelName;
     private boolean videoEnabled;
@@ -560,9 +560,9 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
         refreshHolder(user.holder, false);
 
 //        if (videoEnabled) {
-//            speakerBtn.setText("关肾");
+//            speakerBtn.setText(getResources().getString(R.string.MultiChatActivity_java_141));
 //        } else {
-//            speakerBtn.setText("打开扬声器");
+//            speakerBtn.setText(getResources().getString(R.string.MultiChatActivity_java_142));
 //        }
 
         mSessionTimeMs = SystemClock.elapsedRealtime();
@@ -594,10 +594,10 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
         try {
             nrtc.dispose();
         } catch (Exception e) {
-            //调用流程出现了问题
+            // " + getResources().getString(R.string.MultiChatActivity_java_148)
             e.printStackTrace();
         }
-        //更新状态
+        // " + getResources().getString(R.string.MultiChatActivity_java_149)
         updateStatus();
     }
 
@@ -616,7 +616,7 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
             holder.container.setVisibility(View.VISIBLE);
         }
 
-        //处理选中
+        // " + getResources().getString(R.string.MultiChatActivity_java_151)
         String uid = String.valueOf(user.uid);
         if (user.selected) {
             uid = "✓" + uid;
@@ -627,21 +627,21 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
         holder.uid.setText(uid);
 
 
-        //以下将是各种运行时状态
+        // " + getResources().getString(R.string.MultiChatActivity_java_152)
         if (!isCallEstablished) return;
 
-        //帧率设置
+        // " + getResources().getString(R.string.MultiChatActivity_java_153)
         holder.fps.setText(String.valueOf(user.fps));
-        //UI上的状态表示是否有语音视频，和mute相反
-        //本地audio mute
+        //UI " + getResources().getString(R.string.MultiChatActivity_java_154)mute " + getResources().getString(R.string.MultiChatActivity_java_155)
+        // " + getResources().getString(R.string.MultiChatActivity_java_156)audio mute
         holder.audioMute.setText(user.audioMuted ? "✗" : "✓");
-        //本地video mute
+        // " + getResources().getString(R.string.MultiChatActivity_java_156)video mute
         holder.videoMute.setText(user.videoMuted ? "✗" : "✓");
-        //远端audio mute
+        // " + getResources().getString(R.string.MultiChatActivity_java_158)audio mute
         holder.audioRemoteMute.setText(user.audioRemoteMuted ? "✗" : "✓");
-        //远端video mute
+        // " + getResources().getString(R.string.MultiChatActivity_java_158)video mute
         holder.videoRemoteMute.setText(user.videoRemoteMuted ? "✗" : "✓");
-        //是否录制
+        // " + getResources().getString(R.string.MultiChatActivity_java_160)
         holder.isRecording.setText(user.isRecording ? "✓" : "✗");
 
         if (updateRender) {
@@ -898,16 +898,16 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
         NRtcParameters parameters = new NRtcParameters();
         int q = 1;
         switch (quality) {
-            case NRtcConstants.NetworkQuality.EXCELLENT:    //极好
+            case NRtcConstants.NetworkQuality.EXCELLENT:    // " + getResources().getString(R.string.MultiChatActivity_java_199)
                 q = 4;  //480p
                 break;
-            case NRtcConstants.NetworkQuality.GOOD: //好
+            case NRtcConstants.NetworkQuality.GOOD: // " + getResources().getString(R.string.MultiChatActivity_java_200)
                 q = 3; //high
                 break;
-            case NRtcConstants.NetworkQuality.POOR: //不好
+            case NRtcConstants.NetworkQuality.POOR: // " + getResources().getString(R.string.MultiChatActivity_java_201)
                 q = 2; //medium
                 break;
-//            case NRtcConstants.NetworkQuality.BAD:  //极差
+//            case NRtcConstants.NetworkQuality.BAD:  // " + getResources().getString(R.string.MultiChatActivity_java_202)
 //                q = 1; //medium
 //                break;
         }
@@ -998,7 +998,7 @@ public class MultiChatActivity extends NRtcActivity implements NRtcCallback, Vie
 
     @Override
     public int onVideoFrameFilter(NRtcVideoFrame frame) {
-        //默认都是转换成I420
+        // " + getResources().getString(R.string.MultiChatActivity_java_227)I420
         frame.format = NRtcVideoFrame.ImageFormat.I420;
         return mGPUEffect.apply(frame.data, frame.width, frame.height);
     }

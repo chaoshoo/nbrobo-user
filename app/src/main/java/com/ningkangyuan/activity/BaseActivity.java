@@ -61,7 +61,7 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
         if (isLoadVip) {
             mVip = Shared.getInstance().getLocalVip(this);
             if (mVip == null) {
-                ToastUtil.show(this,"Please login first");
+                ToastUtil.show(this, getResources().getString(R.string.BaseActivity_java_2));
                 return;
             }
         }
@@ -111,18 +111,18 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
         }
     }
 
-    private TextView mTitleTV,mContentTV;
-    private Button mConfirm,mCancel;
+    private TextView mTitleTV, mContentTV;
+    private Button mConfirm, mCancel;
     private String mPushMsg;
     @Override
     public void inMessage(String msg) {
         mPushMsg = msg;
-        LogUtil.d(TAG,"msg：" + msg);
+        LogUtil.d(TAG, "msg：" + msg);
         if (isFinishing()) {
             return;
         }
         if (mMsgPW == null) {
-            View view = LayoutInflater.from(this).inflate(R.layout.pw_message,null);
+            View view = LayoutInflater.from(this).inflate(R.layout.pw_message, null);
             mConfirm = (Button) view.findViewById(R.id.pw_message_confirm);
             mCancel = (Button) view.findViewById(R.id.pw_message_cancel);
             mConfirm.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +142,7 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
 
             int width = ScreenUtil.getWidth(this) * 3 /4;
 //            int height = ScreenUtil.getHeight(this) * 3 / 4;
-            mMsgPW = new PopupWindow(view,width, WindowManager.LayoutParams.WRAP_CONTENT,true);
+            mMsgPW = new PopupWindow(view, width,  WindowManager.LayoutParams.WRAP_CONTENT, true);
             mMsgPW.setBackgroundDrawable(new ColorDrawable(0x00000000));
             mMsgPW.setOutsideTouchable(false);
         }
@@ -158,13 +158,13 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
             titleStr = title;
             msgStr = description;
             mConfirm.setVisibility(View.GONE);
-            mCancel.setText("Confirmed");
+            mCancel.setText(getResources().getString(R.string.BaseActivity_java_10));
             if ("vedio".equals(title)) {
                 mConfirm.setVisibility(View.VISIBLE);
-                mCancel.setText("cancel");
-                String doctorName = description.split(",")[2];
-                titleStr = "Video request";
-                msgStr = doctorName + "Request a video call，Answer?？";
+                mCancel.setText(getResources().getString(R.string.BaseActivity_java_11));
+                String doctorName = description.split(", ")[2];
+                titleStr = getResources().getString(R.string.BaseActivity_java_13);
+                msgStr = doctorName + " " + getResources().getString(R.string.BaseActivity_java_14) + " ？";
             }
             mTitleTV.setText(titleStr);
             mContentTV.setText("" + msgStr);
@@ -172,42 +172,42 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
             e.printStackTrace();
         }
         if (getView() != null) {
-            mMsgPW.showAtLocation(getView(), Gravity.CENTER, 0, 0);
+            mMsgPW.showAtLocation(getView(),  Gravity.CENTER,  0,  0);
         }
 
     }
 
     private void goVedio(final String msg) {
-        showProgressDialog("Connecting server");
+        showProgressDialog(getResources().getString(R.string.BaseActivity_java_18));
         OkHttpHelper.get(OkHttpHelper.makeJsonParams("getvediotoken",
                 new String[]{"uid"},
-                new Object[]{mVip.getId()}), new Callback() {
+                new Object[]{mVip.getId()}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed"))  {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(BaseActivity.this, "" + msg);
+                        ToastUtil.show(BaseActivity.this,  "" + msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 final String result = response.body().string();
-                LogUtil.d(TAG, result);
-                final String code = JsonUtil.getObjectByKey("code", result);
+                LogUtil.d(TAG,  result);
+                final String code = JsonUtil.getObjectByKey("code",  result);
                 if ("1".equals(code)) {
-                    final String token = JsonUtil.getObjectByKey("token", result);
+                    final String token = JsonUtil.getObjectByKey("token",  result);
 
-                    String description = JsonUtil.getObjectByKey("description", msg);
-                    final String channel = description.split(",")[0];
-                    final String remoteId = description.split(",")[1];
+                    String description = JsonUtil.getObjectByKey("description",  msg);
+                    final String channel = description.split(", ")[0];
+                    final String remoteId = description.split(", ")[1];
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -229,7 +229,7 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(BaseActivity.this, "TokenAcquisition failed");
+                        ToastUtil.show(BaseActivity.this,  "Token " + getResources().getString(R.string.BaseActivity_java_40) + " ");
                     }
                 });
             }

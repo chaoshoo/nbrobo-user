@@ -32,7 +32,7 @@
                 android:id="@+id/doctor_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shi Long Yu"
+                android:text="@string/doctor_item_xml_1"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
 
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Internal Medicine-Cardiovascular Department"
+                android:text="@string/doctor_item_xml_2"
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
@@ -52,7 +52,7 @@
                 android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="Huazhong University of Science and Technology, la la la la la la la la la la"
+                android:text="@string/doctor_item_xml_3"
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -66,7 +66,7 @@
         android:layout_below="@+id/doctor_item_info"
         android:layout_marginTop="10dp"
         android:lineSpacingMultiplier="1.5"
-        android:text="To lose weight quickly word class delivery to see the world is excited to start Haikou airline stewardess feedback switch"
+        android:text="@string/doctor_item_xml_4"
         android:textColor="@android:color/white"
         android:textSize="14sp" />
 </LinearLayout>

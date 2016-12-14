@@ -32,16 +32,16 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 咨询(留言)
+ *  " + getResources().getString(R.string.PersonalCenterActivity_java_8)( " + getResources().getString(R.string.DoctorActivity_java_27))
  * Created by xuchun on 2016/8/25.
  */
-public class QuestionHistoryActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class QuestionHistoryActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String TAG = "QuestionHistoryActivity";
 
     private static final int PAGE_SIZE = 10;
 
-    private Button mUpBtn,mNextBtn,mBackBtn;
+    private Button mUpBtn, mNextBtn, mBackBtn;
     private QuestionHistoryAdapter mQuestionHistoryAdapter;
     private RecyclerViewTV mRecyclerViewTV;
     private MainUpView mMainUpView;
@@ -64,8 +64,8 @@ public class QuestionHistoryActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.question_history, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.question_history,  null));
 
         mUpBtn = (Button) findViewById(R.id.question_history_up);
         mNextBtn = (Button) findViewById(R.id.question_history_next);
@@ -81,47 +81,47 @@ public class QuestionHistoryActivity extends BaseActivity implements View.OnClic
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.question_history_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,4);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 4);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.VERTICAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mQuestionHistoryAdapter = new QuestionHistoryAdapter(mQuestionList));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
-                Intent intent = new Intent(QuestionHistoryActivity.this,QuestionDetailsActivity.class);
-                intent.putExtra("question",mQuestionList.get(position));
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
+                Intent intent = new Intent(QuestionHistoryActivity.this, QuestionDetailsActivity.class);
+                intent.putExtra("question", mQuestionList.get(position));
                 startActivity(intent);
             }
         });
 
-        qryQuestion(mPage, null);
+        qryQuestion(mPage,  null);
 
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -131,55 +131,55 @@ public class QuestionHistoryActivity extends BaseActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.question_history_up:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 if (mPage == 1) {
-                    ToastUtil.show(this,"First page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_29));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryQuestion(mPage, "-");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryQuestion(mPage,  "-");
                 break;
             case R.id.question_history_next:
-                //下一页
+                // " + getResources().getString(R.string.DeptActivity_java_31)
                 if (mIsLastPage) {
-                    ToastUtil.show(this,"Last page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_33));
                     return;
                 }
-                showProgressDialog("Querying data..");
-                qryQuestion(mPage, "+");
+                showProgressDialog(" " + getResources().getString(R.string.DeptActivity_java_37) + " ..");
+                qryQuestion(mPage,  "+");
                 break;
             case R.id.question_history_back:
-                //返回
+                // " + getResources().getString(R.string.DoctorActivity_java_40)
                 finish();
                 break;
         }
     }
 
-    private void qryQuestion(int page, final String type) {
+    private void qryQuestion(int page,  final String type) {
         if ("+".equals(type)) {
             page ++;
         }
         if ("-".equals(type)) {
             page --;
         }
-        showProgressDialog("Loading data..");
+        showProgressDialog(" " + getResources().getString(R.string.QuestionHistoryActivity_java_38) + " ..");
         mCallList.add(OkHttpHelper.get(
                 OkHttpHelper.makeJsonParams("questionlist",
-                        new String[]{"vip_code", "doctor_code", "pageIndex", "pageSize"},
-                        new Object[]{mVip.getVip_code(), "", page, PAGE_SIZE}), new Callback() {
+                        new String[]{"vip_code",  "doctor_code",  "pageIndex",  "pageSize"},
+                        new Object[]{mVip.getVip_code(),  "",  page,  PAGE_SIZE}),  new Callback() {
                     @Override
-                    public void onFailure(Call call, final IOException e) {
+                    public void onFailure(Call call,  final IOException e) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 dismissProgressDialog();
-                                ToastUtil.show(QuestionHistoryActivity.this, "onFailure：" + e.getMessage());
+                                ToastUtil.show(QuestionHistoryActivity.this,  "onFailure：" + e.getMessage());
                             }
                         });
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
+                    public void onResponse(Call call,  Response response) throws IOException {
                         if ("+".equals(type)) {
                             mPage++;
                         }
@@ -187,10 +187,10 @@ public class QuestionHistoryActivity extends BaseActivity implements View.OnClic
                             mPage--;
                         }
                         String result = response.body().string();
-                        LogUtil.d(TAG, "onResponse：" + result);
-                        if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                            String questions = JsonUtil.getObjectByKey("questions", result);
-                            List<QuestionHistory> tempList = JsonUtil.mGson.fromJson(questions, new TypeToken<List<QuestionHistory>>() {}.getType());
+                        LogUtil.d(TAG,  "onResponse：" + result);
+                        if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                            String questions = JsonUtil.getObjectByKey("questions",  result);
+                            List<QuestionHistory> tempList = JsonUtil.mGson.fromJson(questions,  new TypeToken<List<QuestionHistory>>() {}.getType());
                             mIsLastPage = false;
                             if (tempList.size() < PAGE_SIZE) {
                                 mIsLastPage = true;
@@ -210,7 +210,7 @@ public class QuestionHistoryActivity extends BaseActivity implements View.OnClic
                                 @Override
                                 public void run() {
                                     dismissProgressDialog();
-                                    ToastUtil.show(QuestionHistoryActivity.this, "No information");
+                                    ToastUtil.show(QuestionHistoryActivity.this,  getResources().getString(R.string.MessageListActivity_java_53));
                                 }
                             });
                         }

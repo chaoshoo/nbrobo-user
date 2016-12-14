@@ -38,7 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * 历史检测
+ *  " + getResources().getString(R.string.HistoryActivity_java_1)
  * Created by xuchun on 2016/8/29.
  */
 public class HistoryActivity extends BaseActivity implements View.OnFocusChangeListener {
@@ -69,8 +69,8 @@ public class HistoryActivity extends BaseActivity implements View.OnFocusChangeL
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.history, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.history,  null));
 
         findViewById(R.id.history_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,33 +84,33 @@ public class HistoryActivity extends BaseActivity implements View.OnFocusChangeL
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.history_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,1);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 1);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.VERTICAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mHistoryAdapter = new HistoryAdapter(Constant.NORM));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
                 JSONObject norm = Constant.NORM.get(position);
                 try {
                     String inspect_code = norm.getString("inspect_code");
@@ -137,19 +137,19 @@ public class HistoryActivity extends BaseActivity implements View.OnFocusChangeL
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                LogUtil.d(TAG, "url：" + url);
+            public boolean shouldOverrideUrlLoading(WebView view,  String url) {
+                LogUtil.d(TAG,  "url：" + url);
                 view.loadUrl(url);
                 return true;
             }
 
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                showProgressDialog("Being loaded..");
+            public void onPageStarted(WebView view,  String url,  Bitmap favicon) {
+                showProgressDialog(" " + getResources().getString(R.string.GuideActivity_java_8) + " ..");
             }
 
             @Override
-            public void onPageFinished(WebView view, String url) {
+            public void onPageFinished(WebView view,  String url) {
                 dismissProgressDialog();
             }
         });
@@ -169,23 +169,23 @@ public class HistoryActivity extends BaseActivity implements View.OnFocusChangeL
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v, 1.0f);
+            mMainUpView.setFocusView(v,  1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
     }
 
     private void load(String inspect_code) {
-        String url = "http://121.43.123.125:83/vipInspectData/chartall/" + mVip.getCard_code() + "/" + inspect_code + "/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html";
-        LogUtil.d(TAG,"url：" + url);
+        String url = Constant.PLATFORM_DOMAIN +  "/nkyplatform/vipInspectData/chartall/" + mVip.getCard_code() + "/" + inspect_code + "/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html";
+        LogUtil.d(TAG, "url：" + url);
         mWebView.loadUrl(url);
     }
 
     private void loadNiao() {
-        String url = "http://121.43.123.125:83/vipInspectData/getDatagrid/" + mVip.getCard_code() + "/C06/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html";
-        LogUtil.d(TAG,"url：" + url);
+        String url = Constant.PLATFORM_DOMAIN +  "/nkyplatform/vipInspectData/getDatagrid/" + mVip.getCard_code() + "/C06/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html";
+        LogUtil.d(TAG, "url：" + url);
         mWebView.loadUrl(url);
     }
 }

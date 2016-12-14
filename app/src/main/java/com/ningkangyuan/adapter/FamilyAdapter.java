@@ -14,7 +14,7 @@ import com.ningkangyuan.bean.Vip;
 import java.util.List;
 
 /**
- * 成员管理
+ *  " + getResources().getString(R.string.FamilyActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class FamilyAdapter extends RecyclerView.Adapter<FamilyAdapter.MyViewHolder> {

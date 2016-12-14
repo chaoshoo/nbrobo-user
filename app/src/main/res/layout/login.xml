@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:textSize="@dimen/title_size"
                 android:textColor="@android:color/white"
-                android:text="Sign in"/>
+                android:text="@string/LoginActivity_java_6"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -57,7 +57,7 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="center_vertical"
                 android:background="@null"
-                android:hint="Please enter your ID or phone number."/>
+                android:hint="@string/login_xml_2"/>
         </LinearLayout>
 
         <!--<LinearLayout-->
@@ -84,7 +84,7 @@
                 <!--android:gravity="center_vertical"-->
                 <!--android:background="@null"-->
                 <!--android:inputType="number"-->
-                <!--android:hint="Please enter your phone number"/>-->
+                <!--android:hint="@string/login_xml_3"/>-->
         <!--</LinearLayout>-->
 
         <LinearLayout
@@ -112,7 +112,7 @@
                 android:gravity="center_vertical"
                 android:background="@null"
                 android:inputType="textPassword"
-                android:hint="Please input a password"/>
+                android:hint="@string/FamilyActivity_java_52"/>
         </LinearLayout>
 
 
@@ -126,7 +126,7 @@
             android:nextFocusDown="@+id/login_register"
             android:background="@drawable/submit_btn"
             android:textColor="@android:color/white"
-            android:text="Sign in"/>
+            android:text="@string/LoginActivity_java_6"/>
 
         <TextView
             android:id="@+id/login_register"
@@ -137,6 +137,6 @@
             android:focusable="true"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:text="No account？Fast registration"/>
+            android:text="@string/login_xml_6"/>
     </LinearLayout>
 </ScrollView>

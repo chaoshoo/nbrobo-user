@@ -47,14 +47,14 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 挂号医院
+ *  " + getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/1.
  */
-public class OrderActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class OrderActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String TAG = "OrderActivity";
 
-    private Button mUpBtn,mNextBtn,mBackBtn;
+    private Button mUpBtn, mNextBtn, mBackBtn;
     private List<Order> mOrderList = new ArrayList<Order>();
     private OrderAdapter mOrderAdapter;
     private RecyclerViewTV mRecyclerViewTV;
@@ -79,8 +79,8 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.order, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.order,  null));
 
         mUpBtn = (Button) findViewById(R.id.order_up);
         mNextBtn = (Button) findViewById(R.id.order_next);
@@ -96,51 +96,51 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.order_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,4);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 4);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.VERTICAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mOrderAdapter = new OrderAdapter(mOrderList));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
-                //显示确认订单、取消订单
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
+                // " + getResources().getString(R.string.OrderActivity_java_20)、 " + getResources().getString(R.string.OrderActivity_java_21)
                 mOrder = mOrderList.get(position);
                 String status = mOrder.getStatus();
                 if ("1".equals(status) || "2".equals(status) || "3".equals(status)) {
-                    //操作订单
+                    // " + getResources().getString(R.string.OrderActivity_java_22)
                     showOrderOperationPop();
                     return;
                 }
-                ToastUtil.show(OrderActivity.this,"The order is not available");
+                ToastUtil.show(OrderActivity.this, getResources().getString(R.string.OrderActivity_java_24));
             }
         });
-        qryOrder(mPage, null);
+        qryOrder(mPage,  null);
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -150,23 +150,23 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.order_up:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 if (mPage == 1) {
-                    ToastUtil.show(this,"First page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_29));
                     return;
                 }
-                qryOrder(mPage, "-");
+                qryOrder(mPage,  "-");
                 break;
             case R.id.order_next:
-                //下一页
+                // " + getResources().getString(R.string.DeptActivity_java_31)
                 if (isLastPage) {
-                    ToastUtil.show(this,"Last page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_33));
                     return;
                 }
-                qryOrder(mPage, "+");
+                qryOrder(mPage,  "+");
                 break;
             case R.id.order_back:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 finish();
                 break;
             case R.id.pop_order_operation_close:
@@ -175,10 +175,10 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
             case R.id.pop_order_operation_yes:
                 String status = mOrder.getStatus();
                 if ("1".equals(status)) {
-                    //确认订单
+                    // " + getResources().getString(R.string.OrderActivity_java_37)
                     showConfirmHintDialog();
                 } else if ("2".equals(status)) {
-                    //支付订单
+                    // " + getResources().getString(R.string.OrderActivity_java_38)
                     showPayPop(mOrder.getOrderid());
                 }
                 break;
@@ -189,33 +189,33 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    private void qryOrder(int page, final String type) {
-        showProgressDialog("Querying data");
+    private void qryOrder(int page,  final String type) {
+        showProgressDialog(getResources().getString(R.string.DeptActivity_java_37));
         if ("+".equals(type)) {
             page ++;
         } else if ("-".equals(type)) {
             page --;
         }
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("getghorderlst",
-                new String[]{"orderId","status","hosid","vipcode","docid","deptid","patientname","pageIndex","pageSize"},
-                new Object[]{"","","",mVip.getVip_code(),"","","",page,Constant.PAGE_SIZE_8}), new Callback() {
+                new String[]{"orderId", "status", "hosid", "vipcode", "docid", "deptid", "patientname", "pageIndex", "pageSize"},
+                new Object[]{"", "", "", mVip.getVip_code(), "", "", "", page, Constant.PAGE_SIZE_8}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed"))  {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(OrderActivity.this, msg);
+                        ToastUtil.show(OrderActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 if ("+".equals(type)) {
                     mPage ++;
                 }
@@ -223,10 +223,10 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
                     mPage --;
                 }
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                    String orders = JsonUtil.getObjectByKey("orders", result);
-                    List<Order> tempList = JsonUtil.mGson.fromJson(orders, new TypeToken<List<Order>>() {}.getType());
+                LogUtil.d(TAG,  "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                    String orders = JsonUtil.getObjectByKey("orders",  result);
+                    List<Order> tempList = JsonUtil.mGson.fromJson(orders,  new TypeToken<List<Order>>() {}.getType());
                     isLastPage = false;
                     if (tempList.size() < Constant.PAGE_SIZE_8) {
                         isLastPage = true;
@@ -248,7 +248,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(OrderActivity.this, "No data show");
+                        ToastUtil.show(OrderActivity.this,  getResources().getString(R.string.DeptActivity_java_55));
                     }
                 });
             }
@@ -256,11 +256,11 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private PopupWindow mOrderOperationPop;
-    private TextView mOrderIdTV,mOrderFeeTV,mLockNumTimeTV,mPayStatus;
+    private TextView mOrderIdTV, mOrderFeeTV, mLockNumTimeTV, mPayStatus;
     private Button mYesBtn;
     private void showOrderOperationPop() {
         if (mOrderOperationPop == null) {
-            View view = LayoutInflater.from(this).inflate(R.layout.pop_order_operation,null);
+            View view = LayoutInflater.from(this).inflate(R.layout.pop_order_operation, null);
             mOrderIdTV = (TextView) view.findViewById(R.id.pop_order_operation_orderid);
             mOrderFeeTV = (TextView) view.findViewById(R.id.pop_order_operation_money);
 //            mLockNumTimeTV = (TextView) view.findViewById(R.id.pop_order_operation_ordertime);
@@ -273,78 +273,78 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
 
             int width = ScreenUtil.getWidth(this) * 3 /4;
 //            int height = ScreenUtil.getHeight(this) * 3 / 4;
-            mOrderOperationPop = new PopupWindow(view,width, WindowManager.LayoutParams.WRAP_CONTENT,true);
+            mOrderOperationPop = new PopupWindow(view, width,  WindowManager.LayoutParams.WRAP_CONTENT, true);
             mOrderOperationPop.setBackgroundDrawable(new ColorDrawable(0x00000000));
             mOrderOperationPop.setOutsideTouchable(false);
         }
 
         mYesBtn.setVisibility(View.VISIBLE);
-        mOrderIdTV.setText("Order number：" + mOrder.getOrderid());
-        mOrderFeeTV.setText("Registration fee：" + mOrder.getOrderfee() + "element");
+        mOrderIdTV.setText(" " + getResources().getString(R.string.OrderActivity_java_77) + " ：" + mOrder.getOrderid());
+        mOrderFeeTV.setText(" " + getResources().getString(R.string.OrderActivity_java_78) + " ：" + mOrder.getOrderfee() + getResources().getString(R.string.MainActivity_java_98));
         String status = mOrder.getStatus();
         if ("1".equals(status)) {
-            status = "Locked success";
-            mYesBtn.setText("Confirm order");
+            status = getResources().getString(R.string.OrderActivity_java_80);
+            mYesBtn.setText(getResources().getString(R.string.OrderActivity_java_37));
         } else if ("2".equals(status)) {
-            status = "Confirmed";
-            mYesBtn.setText("To pay");
+            status = getResources().getString(R.string.OrderActivity_java_82);
+            mYesBtn.setText(getResources().getString(R.string.OrderActivity_java_83));
         } else if ("3".equals(status)) {
-            status = "Payed";
+            status = getResources().getString(R.string.OrderActivity_java_84);
             mYesBtn.setVisibility(View.GONE);
         }
-        mPayStatus.setText("Payment status：" + status);
-        mOrderOperationPop.showAtLocation(mRecyclerViewTV,Gravity.CENTER,0,0);
+        mPayStatus.setText(" " + getResources().getString(R.string.OrderActivity_java_85) + " ：" + status);
+        mOrderOperationPop.showAtLocation(mRecyclerViewTV, Gravity.CENTER, 0, 0);
     }
 
     private Dialog mConfirmHintDialog;
     private void showConfirmHintDialog() {
         if (mConfirmHintDialog == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Are you sure you confirm the order？");
-            builder.setPositiveButton("Confirmed", new DialogInterface.OnClickListener() {
+            builder.setTitle(" " + getResources().getString(R.string.OrderActivity_java_89) + "？");
+            builder.setPositiveButton(getResources().getString(R.string.BaseActivity_java_10),  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(DialogInterface dialog,  int which) {
                     confirmOrder();
                 }
             });
-            builder.setNegativeButton("cancel", null);
+            builder.setNegativeButton(getResources().getString(R.string.BaseActivity_java_11),  null);
             mConfirmHintDialog = builder.create();
         }
         mConfirmHintDialog.show();
     }
 
     private void confirmOrder() {
-        showProgressDialog("Confirming order");
+        showProgressDialog(getResources().getString(R.string.OrderActivity_java_95));
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("confirmorder",
                 new String[]{"orderid"},
-                new Object[]{mOrder.getOrderid()}), new Callback() {
+                new Object[]{mOrder.getOrderid()}),  new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(Call call,  IOException e) {
                 dismissProgressDialog();
                 String msg = e.getMessage();
                 if (msg.startsWith("Failed")) {
-                    msg = "Unable to connect to the server，Please check the network";
+                    msg = getResources().getString(R.string.BaseActivity_java_23);
                 }
-                ToastUtil.show(OrderActivity.this, msg);
+                ToastUtil.show(OrderActivity.this,  msg);
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                final String message = JsonUtil.getObjectByKey("message", result);
-                final String orderconfirmsms = JsonUtil.getObjectByKey("orderconfirmsms", message);
-                final String ret = JsonUtil.getObjectByKey("ret", message);
-                final String msg = JsonUtil.getObjectByKey("msg", message);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                final String message = JsonUtil.getObjectByKey("message",  result);
+                final String orderconfirmsms = JsonUtil.getObjectByKey("orderconfirmsms",  message);
+                final String ret = JsonUtil.getObjectByKey("ret",  message);
+                final String msg = JsonUtil.getObjectByKey("msg",  message);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         if ("0".equals(ret)) {
                             mOrderOperationPop.dismiss();
-                            showConfirmMsg("Confirmed：" + orderconfirmsms);
+                            showConfirmMsg(" " + getResources().getString(R.string.OrderActivity_java_82) + " ：" + orderconfirmsms);
                         } else {
-                            ToastUtil.show(OrderActivity.this, "Failed to confirm：" + msg);
+                            ToastUtil.show(OrderActivity.this,  " " + getResources().getString(R.string.OrderActivity_java_110) + " ：" + msg);
                         }
                     }
                 });
@@ -356,11 +356,11 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
     private void showConfirmMsg(String msg) {
         if (mshowConfirmMsgDialog == null) {
             mshowConfirmMsgDialog = new AlertDialog.Builder(this);
-            mshowConfirmMsgDialog.setTitle("Prompt");
-            mshowConfirmMsgDialog.setPositiveButton("Confirmed", new DialogInterface.OnClickListener() {
+            mshowConfirmMsgDialog.setTitle(getResources().getString(R.string.FamilyActivity_java_91));
+            mshowConfirmMsgDialog.setPositiveButton(getResources().getString(R.string.BaseActivity_java_10),  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    qryOrder(mPage, null);
+                public void onClick(DialogInterface dialog,  int which) {
+                    qryOrder(mPage,  null);
                 }
             });
         }
@@ -372,18 +372,18 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
     private EditText mCancelReasonET;
     private void showCancelPop() {
         if (mCancelPop == null) {
-            View view = LayoutInflater.from(this).inflate(R.layout.pop_order_cancel,null);
+            View view = LayoutInflater.from(this).inflate(R.layout.pop_order_cancel, null);
             view.findViewById(R.id.pop_order_cancel_close).setOnClickListener(cancelListener);
             view.findViewById(R.id.pop_order_cancel_confirm).setOnClickListener(cancelListener);
             mCancelReasonET = (EditText) view.findViewById(R.id.pop_order_cancel_reason);
 
             int width = ScreenUtil.getWidth(this) * 3 /4;
 //            int height = ScreenUtil.getHeight(this) * 3 / 4;
-            mCancelPop = new PopupWindow(view,width, WindowManager.LayoutParams.WRAP_CONTENT,true);
+            mCancelPop = new PopupWindow(view, width,  WindowManager.LayoutParams.WRAP_CONTENT, true);
             mCancelPop.setBackgroundDrawable(new ColorDrawable(0x00000000));
             mCancelPop.setOutsideTouchable(false);
         }
-        mCancelPop.showAtLocation(mRecyclerViewTV, Gravity.CENTER,0,0);
+        mCancelPop.showAtLocation(mRecyclerViewTV,  Gravity.CENTER, 0, 0);
     };
 
     private View.OnClickListener cancelListener = new View.OnClickListener() {
@@ -405,14 +405,14 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
     private void showCancelHintDialog() {
         if (mCancelHintDialog == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Are you sure cancel order？");
-            builder.setPositiveButton("Confirmed", new DialogInterface.OnClickListener() {
+            builder.setTitle(" " + getResources().getString(R.string.OrderActivity_java_123) + "？");
+            builder.setPositiveButton(getResources().getString(R.string.BaseActivity_java_10),  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(DialogInterface dialog,  int which) {
                     cancelOrder();
                 }
             });
-            builder.setNegativeButton("cancel", null);
+            builder.setNegativeButton(getResources().getString(R.string.BaseActivity_java_11),  null);
             mCancelHintDialog = builder.create();
         }
         mCancelHintDialog.show();
@@ -421,40 +421,40 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
     private void cancelOrder() {
         String reason = mCancelReasonET.getText().toString().trim();
         if (TextUtils.isEmpty(reason)) {
-            ToastUtil.show(this,"Please enter the reason");
+            ToastUtil.show(this, getResources().getString(R.string.OrderActivity_java_130));
             return;
         }
-        showProgressDialog("Cancelling the order");
+        showProgressDialog(getResources().getString(R.string.OrderActivity_java_131));
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("cancelorder",
-                new String[]{"cancelreason","operator","orderid"},
-                new Object[]{reason,mVip.getCard_code(),mOrder.getOrderid()}), new Callback() {
+                new String[]{"cancelreason", "operator", "orderid"},
+                new Object[]{reason, mVip.getCard_code(), mOrder.getOrderid()}),  new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(Call call,  IOException e) {
                 dismissProgressDialog();
                 String msg = e.getMessage();
                 if (msg.startsWith("Failed"))  {
-                    msg = "Unable to connect to the server，Please check the network";
+                    msg = getResources().getString(R.string.BaseActivity_java_23);
                 }
-                ToastUtil.show(OrderActivity.this, msg);
+                ToastUtil.show(OrderActivity.this,  msg);
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                final String message = JsonUtil.getObjectByKey("message", result);
-                final String ret = JsonUtil.getObjectByKey("ret", message);
-                final String msg = JsonUtil.getObjectByKey("msg", message);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                final String message = JsonUtil.getObjectByKey("message",  result);
+                final String ret = JsonUtil.getObjectByKey("ret",  message);
+                final String msg = JsonUtil.getObjectByKey("msg",  message);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         if ("0".equals(ret)) {
                             mCancelPop.dismiss();
-                            ToastUtil.show(OrderActivity.this,msg);
-                            qryOrder(mPage,null);
+                            ToastUtil.show(OrderActivity.this, msg);
+                            qryOrder(mPage, null);
                         } else {
-                            ToastUtil.show(OrderActivity.this,"Order cancellation failed：" + msg);
+                            ToastUtil.show(OrderActivity.this, " " + getResources().getString(R.string.OrderActivity_java_150) + " ：" + msg);
                         }
                     }
                 });
@@ -467,14 +467,14 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
     private ImageView mPayEwmIV;
     private void showPayPop(String orderId) {
         if (mPayPop == null) {
-            View view = LayoutInflater.from(this).inflate(R.layout.pop_order_pay,null);
+            View view = LayoutInflater.from(this).inflate(R.layout.pop_order_pay, null);
             mPayEwmIV = (ImageView) view.findViewById(R.id.pop_order_pay_erweima);
             view.findViewById(R.id.pop_order_pay_yes).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mPayPop.dismiss();
                     mOrderOperationPop.dismiss();
-                    qryOrder(mPage,null);
+                    qryOrder(mPage, null);
                 }
             });
             view.findViewById(R.id.pop_order_pay_cancel).setOnClickListener(new View.OnClickListener() {
@@ -487,13 +487,13 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
 
             int width = ScreenUtil.getWidth(this) * 3 /4;
 //            int height = ScreenUtil.getHeight(this) * 3 / 4;
-            mPayPop = new PopupWindow(view,width, WindowManager.LayoutParams.WRAP_CONTENT,true);
+            mPayPop = new PopupWindow(view, width,  WindowManager.LayoutParams.WRAP_CONTENT, true);
             mPayPop.setBackgroundDrawable(new ColorDrawable(0x00000000));
             mPayPop.setOutsideTouchable(false);
         }
-        ImageLoaderHelper.getInstance().loader("http://121.43.123.125:84/pay/getwxqrcode.do?orderid=" + orderId,
+        ImageLoaderHelper.getInstance().loader("http://114.55.228.245:84/nkyapi/pay/getwxqrcode.do?orderid=" + orderId,
                 mPayEwmIV,
                 null);
-        mPayPop.showAtLocation(mRecyclerViewTV, Gravity.CENTER,0,0);
+        mPayPop.showAtLocation(mRecyclerViewTV,  Gravity.CENTER, 0, 0);
     }
 }

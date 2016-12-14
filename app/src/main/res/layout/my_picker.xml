@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:gravity="center_horizontal"
-            android:text="Title"
+            android:text="@string/my_picker_xml_1"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:background="@drawable/picker_back"
-            android:text="cancel"
+            android:text="@string/BaseActivity_java_11"
             android:focusable="false"
             android:textColor="@android:color/white"
 
@@ -43,7 +43,7 @@
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
             android:background="@drawable/picker_finish"
-            android:text="complete"
+            android:text="@string/my_picker_xml_3"
             android:textColor="@android:color/white" />
     </RelativeLayout>
 

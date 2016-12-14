@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:textSize="@dimen/title_size"
                 android:textColor="@android:color/white"
-                android:text="register"/>
+                android:text="@string/register_xml_1"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -57,7 +57,7 @@
                 android:gravity="center_vertical"
                 android:background="@null"
                 android:nextFocusDown="@+id/register_phone"
-                android:hint="Please enter your ID"/>
+                android:hint="@string/RegisterActivity_java_32"/>
         </LinearLayout>
 
         <LinearLayout
@@ -84,7 +84,7 @@
                 android:nextFocusDown="@+id/register_authcode"
                 android:background="@null"
                 android:inputType="number"
-                android:hint="Please enter your phone number"/>
+                android:hint="@string/login_xml_3"/>
         </LinearLayout>
 
         <LinearLayout
@@ -112,7 +112,7 @@
                 android:nextFocusRight="@+id/register_getcode"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="Please enter verification code"/>
+                android:hint="@string/RegisterActivity_java_39"/>
 
             <Button
                 android:id="@+id/register_getcode"
@@ -124,7 +124,7 @@
                 android:nextFocusUp="@+id/register_phone"
                 android:nextFocusDown="@+id/register_password"
                 android:nextFocusLeft="@+id/register_authcode"
-                android:text="Verification Code"/>
+                android:text="@string/register_xml_5"/>
         </LinearLayout>
 
 
@@ -153,7 +153,7 @@
                 android:inputType="textPassword"
                 android:nextFocusUp="@+id/register_authcode"
                 android:nextFocusDown="@+id/register_submit"
-                android:hint="Please input a password"/>
+                android:hint="@string/FamilyActivity_java_52"/>
         </LinearLayout>
 
         <Button
@@ -165,7 +165,7 @@
             android:textColor="@android:color/white"
             android:nextFocusUp="@+id/register_password"
             android:nextFocusDown="@+id/register_back"
-            android:text="Submit"/>
+            android:text="@string/RegisterActivity_java_14"/>
 
         <Button
             android:id="@+id/register_back"
@@ -175,7 +175,7 @@
             android:background="@drawable/cyan_btn"
             android:textColor="@android:color/white"
             android:nextFocusUp="@+id/register_submit"
-            android:text="Return"/>
+            android:text="@string/DoctorActivity_java_40"/>
     </LinearLayout>
 
 

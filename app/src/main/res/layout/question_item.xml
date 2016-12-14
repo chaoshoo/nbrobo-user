@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Submit time"
+            android:text="@string/QuestionDetailsActivity_java_8"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="processing time"
+            android:text="@string/question_item_xml_2"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Replied"
+            android:text="@string/question_item_xml_3"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
     </LinearLayout>

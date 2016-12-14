@@ -40,7 +40,7 @@ import okhttp3.Response;
 /**
  * Created by xuchun on 2016/8/15.
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String TAG = "MainActivity";
 
@@ -49,9 +49,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     private ImageView mStatusIV;
 
 //    private ImageView mUserPortraitIV;
-    private TextView mCheckUserTV,mCheckTimeTV,mCheckTypeTV,mCheckValueTV;
+    private TextView mCheckUserTV, mCheckTimeTV, mCheckTypeTV, mCheckValueTV;
 
-    private TextView mRegistrationInfoTV,mReferenceTV;
+    private TextView mRegistrationInfoTV, mReferenceTV;
     private ImageView mErWeiMaIV;
 
     private FrameLayout mDetectionKpiContentFL;
@@ -84,13 +84,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         mCheckCardTV = (TextView) findViewById(R.id.universal_checkcard_num);
 
 
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.main, null));
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.main,  null));
         mMainUpView = (MainUpView) findViewById(R.id.main_upview);
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mStatusIV = (ImageView) findViewById(R.id.main_status);
 
@@ -128,43 +128,43 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 
         findViewById(R.id.main_my).requestFocus();
 
-        mCheckCardTV.setText("Check card number" + mVip.getCard_code());
+        mCheckCardTV.setText(getResources().getString(R.string.DeptActivity_java_6) + mVip.getCard_code());
         String userName = mVip.getReal_name();
         if (TextUtils.isEmpty(userName)) {
             userName = mVip.getMobile();
         }
         mCheckUserTV.setText(userName);
-//        ImageLoaderHelper.getInstance().loader(mVip.getHeard_img_url(), mUserPortraitIV, ImageLoaderHelper.makeImageOptions());
+//        ImageLoaderHelper.getInstance().loader(mVip.getHeard_img_url(),  mUserPortraitIV,  ImageLoaderHelper.makeImageOptions());
 
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = mBluetoothManager.getAdapter();
         if (mBluetoothAdapter == null) {
-            ToastUtil.show(this,"Bluetooth module was not detected.");
+            ToastUtil.show(this, getResources().getString(R.string.DeviceSelectAcitivity_java_10));
         }
 
-        showProgressDialog("Querying measured data..");
+        showProgressDialog(" " + getResources().getString(R.string.MainActivity_java_14) + " ..");
         qryOrder();
         getLastInfo();
     }
 
     BluetoothAdapter.LeScanCallback leScanCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
-        public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+        public void onLeScan(BluetoothDevice device,  int rssi,  byte[] scanRecord) {
             String macName = device.getName();
-            LogUtil.d(TAG,"macName：" + macName);
+            LogUtil.d(TAG, "macName：" + macName);
             if (macName != null && macName.startsWith("Bioland")) {
                 mBluetoothAdapter.stopLeScan(leScanCallback);
 //                showBluetoothScanDialog(device);
-                Intent intent = new Intent(MainActivity.this, DeviceControlActivity.class);
-                intent.putExtra("DEVICE_NAME", device.getName());
-                intent.putExtra("DEVICE_ADDRESS", device.getAddress());
-                startActivityForResult(intent,0);
+                Intent intent = new Intent(MainActivity.this,  DeviceControlActivity.class);
+                intent.putExtra("DEVICE_NAME",  device.getName());
+                intent.putExtra("DEVICE_ADDRESS",  device.getAddress());
+                startActivityForResult(intent, 0);
             }
         }
     };
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode,  int resultCode,  Intent data) {
         if (requestCode == 0) {
             if (data != null) {
                 List<DetectionKPI> tempList = (List<DetectionKPI>) data.getSerializableExtra("data");
@@ -183,7 +183,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
                 }
             };
         }
-        mTimer.schedule(mGetInfoTimerTask,30 * 60 * 1000,38 * 60 * 1000);
+        mTimer.schedule(mGetInfoTimerTask, 30 * 60 * 1000, 38 * 60 * 1000);
 
         if (mScanBluetoothTask == null) {
             mScanBluetoothTask = new TimerTask() {
@@ -193,7 +193,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
                 }
             };
         }
-        mTimer.schedule(mScanBluetoothTask,8 * 1000);
+        mTimer.schedule(mScanBluetoothTask, 8 * 1000);
     }
 
     private void stopGetInfoTimer() {
@@ -211,31 +211,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 //    private void showBluetoothScanDialog(final BluetoothDevice device) {
 //        if (mBluetoothScanDialog == null) {
 //            mBluetoothScanDialog = new AlertDialog.Builder(this);
-//            mBluetoothScanDialog.setTitle("提示");
-//            mBluetoothScanDialog.setPositiveButton("是", new DialogInterface.OnClickListener() {
+//            mBluetoothScanDialog.setTitle(getResources().getString(R.string.FamilyActivity_java_91));
+//            mBluetoothScanDialog.setPositiveButton(getResources().getString(R.string.MainActivity_java_28),  new DialogInterface.OnClickListener() {
 //                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    Intent intent = new Intent(MainActivity.this, DeviceControlActivity.class);
-//                    intent.putExtra("DEVICE_NAME", device.getName());
-//                    intent.putExtra("DEVICE_ADDRESS", device.getAddress());
+//                public void onClick(DialogInterface dialog,  int which) {
+//                    Intent intent = new Intent(MainActivity.this,  DeviceControlActivity.class);
+//                    intent.putExtra("DEVICE_NAME",  device.getName());
+//                    intent.putExtra("DEVICE_ADDRESS",  device.getAddress());
 //                    startActivity(intent);
 //                }
 //            });
-//            mBluetoothScanDialog.setNegativeButton("否", new DialogInterface.OnClickListener() {
+//            mBluetoothScanDialog.setNegativeButton(getResources().getString(R.string.MainActivity_java_34),  new DialogInterface.OnClickListener() {
 //                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    //再次去扫描
+//                public void onClick(DialogInterface dialog,  int which) {
+//                    // " + getResources().getString(R.string.MainActivity_java_37)
 //                    mBluetoothAdapter.startLeScan(leScanCallback);
 //                }
 //            });
 //        }
 //        String message = device.getName();
 //        if (message.endsWith("BPM")) {
-//            message = "血压";
+//            message = getResources().getString(R.string.DeviceSelectAcitivity_java_3);
 //        } if (message.endsWith("BGM")) {
-//            message = "血糖";
+//            message = getResources().getString(R.string.DeviceSelectAcitivity_java_6);
 //        }
-//        mBluetoothScanDialog.setMessage("已检测到" + message + "设备，是否进行测量？");
+//        mBluetoothScanDialog.setMessage(getResources().getString(R.string.MainActivity_java_40) + message + " " + getResources().getString(R.string.MainActivity_java_41)？");
 //        mBluetoothScanDialog.show();
 //    }
 
@@ -244,9 +244,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         super.onResume();
         excuteGetInfoTimer();
         if (MyApplication.isRefreshMain) {
-            showProgressDialog("Querying measured data..");
+            showProgressDialog(" " + getResources().getString(R.string.MainActivity_java_14) + " ..");
             mVip = Shared.getInstance().getLocalVip(this);
-            mCheckCardTV.setText("Check card number" + mVip.getCard_code());
+            mCheckCardTV.setText(getResources().getString(R.string.DeptActivity_java_6) + mVip.getCard_code());
             String userName = mVip.getReal_name();
             if (TextUtils.isEmpty(userName)) {
                 userName = mVip.getMobile();
@@ -271,9 +271,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -283,98 +283,98 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_remote:
-                //远程咨询
+                // " + getResources().getString(R.string.MainActivity_java_46)
             {
-                Intent intent = new Intent(this,RemoteActivity.class);
+                Intent intent = new Intent(this, RemoteActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.main_registration:
-                //挂号
+                // " + getResources().getString(R.string.MainActivity_java_48)
             {
-                Intent intent = new Intent(this,HosActivity.class);
+                Intent intent = new Intent(this, HosActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.main_my:
-                //个人中心
+                // " + getResources().getString(R.string.MainActivity_java_50)
             {
-                Intent intent = new Intent(this,PersonalCenterActivity.class);
+                Intent intent = new Intent(this, PersonalCenterActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.main_children:
-                //成员管理
+                // " + getResources().getString(R.string.FamilyActivity_java_1)
             {
-                Intent intent = new Intent(this,FamilyActivity.class);
+                Intent intent = new Intent(this, FamilyActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.main_message:
-                //消息
+                // " + getResources().getString(R.string.MainActivity_java_54)
             {
-                Intent intent = new Intent(this,MessageListActivity.class);
+                Intent intent = new Intent(this, MessageListActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.main_history:
-                //检测历史
+                // " + getResources().getString(R.string.MainActivity_java_56)
             {
-                Intent intent = new Intent(this,HistoryActivity.class);
+                Intent intent = new Intent(this, HistoryActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.main_setting:
-                //系统设置
+                // " + getResources().getString(R.string.MainActivity_java_58)
             {
-//                ToastUtil.show(this,"暂无此功能");
-                Intent intent = new Intent(this,SettingActivity.class);
+//                ToastUtil.show(this, getResources().getString(R.string.MainActivity_java_60));
+                Intent intent = new Intent(this, SettingActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.main_guide:
-                //操作指南
-//                ToastUtil.show(this,"暂无此功能");
+                // " + getResources().getString(R.string.GuideActivity_java_1)
+//                ToastUtil.show(this, getResources().getString(R.string.MainActivity_java_60));
             {
-                Intent intent = new Intent(this,GuideActivity.class);
+                Intent intent = new Intent(this, GuideActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.main_registration_info_layout:
             {
-                Intent intent = new Intent(this,OrderActivity.class);
+                Intent intent = new Intent(this, OrderActivity.class);
                 startActivity(intent);
             }
                 break;
         }
     }
 
-    //查询挂号信息
+    // " + getResources().getString(R.string.MainActivity_java_67)
     private void qryOrder() {
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("getghorderlst",
-                new String[]{"orderId","status","hosid","vipcode","docid","deptid","patientname","pageIndex","pageSize"},
-                new Object[]{"","","",mVip.getVip_code(),"","","",1, 1}), new Callback() {
+                new String[]{"orderId", "status", "hosid", "vipcode", "docid", "deptid", "patientname", "pageIndex", "pageSize"},
+                new Object[]{"", "", "", mVip.getVip_code(), "", "", "", 1,  1}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed"))  {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(MainActivity.this, msg);
+                        ToastUtil.show(MainActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                    String orders = JsonUtil.getObjectByKey("orders", result);
-                    final List<Order> tempList = JsonUtil.mGson.fromJson(orders, new TypeToken<List<Order>>() {}.getType());
+                LogUtil.d(TAG,  "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                    String orders = JsonUtil.getObjectByKey("orders",  result);
+                    final List<Order> tempList = JsonUtil.mGson.fromJson(orders,  new TypeToken<List<Order>>() {}.getType());
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -382,11 +382,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
                             if (!tempList.isEmpty()) {
                                 findViewById(R.id.main_no_reg).setVisibility(View.GONE);
                                 Order order = tempList.get(0);
-                                mRegistrationInfoTV.setText("Pre-consultation time：" + order.getOutpdate() + "\nOrder number：" + order.getOrderid() + "\nRegistration fee：" + order.getOrderfee() + "element\nHospital："
-                                 + order.getHosname() + "\nDepartment：" + order.getDeptname() + "\nDoctor：" + order.getDocname());
+                                mRegistrationInfoTV.setText(" " + getResources().getString(R.string.MainActivity_java_95) + " ：" + order.getOutpdate() + "\n " + getResources().getString(R.string.MainActivity_java_96) + " ：" + order.getOrderid() + "\n " + getResources().getString(R.string.MainActivity_java_97) + " ：" + order.getOrderfee() + " " + getResources().getString(R.string.MainActivity_java_98) + "\n " + getResources().getString(R.string.MainActivity_java_99) + " ："
+                                 + order.getHosname() + "\n " + getResources().getString(R.string.MainActivity_java_100) + " ：" + order.getDeptname() + "\n " + getResources().getString(R.string.MainActivity_java_101) + " ：" + order.getDocname());
                             } else {
                                 findViewById(R.id.main_no_reg).setVisibility(View.VISIBLE);
-                                mRegistrationInfoTV.setText("No registration information");
+                                mRegistrationInfoTV.setText(getResources().getString(R.string.MainActivity_java_102));
                             }
                         }
                     });
@@ -395,7 +395,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
                         @Override
                         public void run() {
                             findViewById(R.id.main_no_reg).setVisibility(View.VISIBLE);
-                            mRegistrationInfoTV.setText("No registration information");
+                            mRegistrationInfoTV.setText(getResources().getString(R.string.MainActivity_java_102));
                         }
                     });
                 }
@@ -406,9 +406,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     private void getLastInfo() {
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("recentmeasuredata",
                 new String[]{"card_code"},
-                new Object[]{mVip.getCard_code()}), new Callback() {
+                new Object[]{mVip.getCard_code()}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -421,21 +421,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 //                        showEmptyView();
 //                        String msg = e.getMessage();
 //                        if (msg.startsWith("Failed"))  {
-//                            msg = "无法连接服务器，请检查网络";
+//                            msg = getResources().getString(R.string.BaseActivity_java_23);
 //                        }
-                        ToastUtil.show(MainActivity.this, "Unable to connect to the server，Please check the network");
+                        ToastUtil.show(MainActivity.this,  getResources().getString(R.string.BaseActivity_java_23));
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG,"onResponse：" + result);
-                String flag = JsonUtil.getObjectByKey("flag",result);
+                LogUtil.d(TAG, "onResponse：" + result);
+                String flag = JsonUtil.getObjectByKey("flag", result);
                 if ("success".equals(flag)) {
-                    String array = JsonUtil.getObjectByKey("array",result);
-                    final List<DetectionKPI> tempList = JsonUtil.mGson.fromJson(array,new TypeToken<List<DetectionKPI>>() {}.getType());
+                    String array = JsonUtil.getObjectByKey("array", result);
+                    final List<DetectionKPI> tempList = JsonUtil.mGson.fromJson(array, new TypeToken<List<DetectionKPI>>() {}.getType());
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -445,13 +445,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
                         }
                     });
                 } else {
-                    final String remark = JsonUtil.getObjectByKey("remark",result);
+                    final String remark = JsonUtil.getObjectByKey("remark", result);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             dismissProgressDialog();
                             showEmptyView();
-                            ToastUtil.show(MainActivity.this,remark);
+                            ToastUtil.show(MainActivity.this, remark);
                         }
                     });
                 }
@@ -477,12 +477,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         }
     }
 
-    private TextView mHighPressTV,mLowPressTV,mPulseRateTV;
+    private TextView mHighPressTV, mLowPressTV, mPulseRateTV;
     private View mXueYaView;
     private void showXueYa(List<DetectionKPI> detectionKPIList) {
 
         if (mXueYaView == null) {
-            mXueYaView = LayoutInflater.from(this).inflate(R.layout.main_xueya,null);
+            mXueYaView = LayoutInflater.from(this).inflate(R.layout.main_xueya, null);
             mHighPressTV = (TextView) mXueYaView.findViewById(R.id.main_xueya_highpress);
             mLowPressTV = (TextView) mXueYaView.findViewById(R.id.main_xueya_lowpress);
             mPulseRateTV = (TextView) mXueYaView.findViewById(R.id.main_xueya_pulserate);
@@ -502,11 +502,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         showCheckInfo(detectionKPIList);
     }
 
-    private TextView mValueTV,mTypeTV;
+    private TextView mValueTV, mTypeTV;
     private View mXueTangView;
     private void showXueTang(List<DetectionKPI> detectionKPIList) {
         if (mXueTangView == null) {
-            mXueTangView = LayoutInflater.from(this).inflate(R.layout.main_xuetang,null);
+            mXueTangView = LayoutInflater.from(this).inflate(R.layout.main_xuetang, null);
             mTypeTV = (TextView) mXueTangView.findViewById(R.id.main_xuetang_type);;
             mValueTV = (TextView) mXueTangView.findViewById(R.id.main_xuetang_value);
         }
@@ -516,11 +516,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         for(DetectionKPI detectionKPI : detectionKPIList) {
             String str = "";
             if (Measure.XueTang.CODE_GLU0.equals(detectionKPI.getKpi_code())) {
-                str = "Random blood glucose";
+                str = getResources().getString(R.string.MainActivity_java_123);
             } else if (Measure.XueTang.CODE_GLU1.equals(detectionKPI.getKpi_code())) {
-                str = "Pre-meal blood glucose";
+                str = getResources().getString(R.string.MainActivity_java_124);
             } else if (Measure.XueTang.CODE_GLU2.equals(detectionKPI.getKpi_code())) {
-                str = "Postprandial blood glucose";
+                str = getResources().getString(R.string.MainActivity_java_125);
             }
             mTypeTV.setText(str);
             mValueTV.setText(detectionKPI.getInspect_value());
@@ -528,12 +528,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         showCheckInfo(detectionKPIList);
     }
 
-    private TextView mHeightTV,mWeightTV,mBMITV;
+    private TextView mHeightTV, mWeightTV, mBMITV;
     private View mXingTiView;
     private void showXingTi(List<DetectionKPI> detectionKPIList) {
 
         if (mXingTiView == null) {
-            mXingTiView = LayoutInflater.from(this).inflate(R.layout.main_xingti,null);
+            mXingTiView = LayoutInflater.from(this).inflate(R.layout.main_xingti, null);
             mHeightTV = (TextView) mXingTiView.findViewById(R.id.main_xingti_height);
             mWeightTV = (TextView) mXingTiView.findViewById(R.id.main_xingti_weight);
             mBMITV = (TextView) mXingTiView.findViewById(R.id.main_xingti_bmi);
@@ -562,33 +562,45 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
             }
         }
         if (status == -1) {
-            status = R.drawable.main_check_status_low;
+            if (getResources().getConfiguration().locale.getCountry().equals("CN") ) {
+                status = R.drawable.main_check_status_low_cn;
+            } else {
+                status = R.drawable.main_check_status_low;
+            }
         } else if (status == 0) {
-            status = R.drawable.main_check_status_normal;
+            if (getResources().getConfiguration().locale.getCountry().equals("CN") ) {
+                status = R.drawable.main_check_status_normal_cn;
+            } else {
+                status = R.drawable.main_check_status_normal;
+            }
         } else if (status == 1) {
-            status = R.drawable.main_check_status_high;
+            if (getResources().getConfiguration().locale.getCountry().equals("CN") ) {
+                status = R.drawable.main_check_status_high_cn;
+            } else {
+                status = R.drawable.main_check_status_high;
+            }
         }
         mStatusIV.setImageResource(status);
 
-        String desc = "Reference threshold  ";
+        String desc = " " + getResources().getString(R.string.MainActivity_java_129) + "  ";
         for (int i = 0; i < detectionKPIList.size();i ++) {
-            desc += " " + detectionKPIList.get(i).getInspect_desc();
+            desc += detectionKPIList.get(i).getInspect_desc();
         }
         mReferenceTV.setText(desc);
 
         DetectionKPI detectionKPI = detectionKPIList.get(0);
         String inspect_time = detectionKPI.getInspect_time();
-        mCheckTimeTV.setText("Recent test：" + inspect_time);
+        mCheckTimeTV.setText(" " + getResources().getString(R.string.MainActivity_java_130) + " ：" + inspect_time);
         String type = "";
         String value = "";
         if (Measure.XueTang.INSPECT_CODE.equals(detectionKPI.getInspect_code())) {
-            type = "blood sugar";
+            type = getResources().getString(R.string.DeviceSelectAcitivity_java_6);
             value = detectionKPI.getInspect_value();
         } else if (Measure.XueYa.INSPECT_CODE.equals(detectionKPI.getInspect_code())) {
-            type = "blood pressure";
+            type = getResources().getString(R.string.DeviceSelectAcitivity_java_3);
             value = mHighPressTV.getText() + "/" + mLowPressTV.getText();
         } else if (Measure.XingTi.INSPECT_CODE.equals(detectionKPI.getInspect_code())) {
-            type = "body";
+            type = getResources().getString(R.string.MainActivity_java_133);
             value = mHeightTV.getText() + "/" + mWeightTV.getText();
         }
         mCheckTypeTV.setText(type);
@@ -598,13 +610,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     private View mEmptyView;
     private void showEmptyView() {
         if (mEmptyView == null) {
-            mEmptyView = LayoutInflater.from(this).inflate(R.layout.main_xueya,null);
+            mEmptyView = LayoutInflater.from(this).inflate(R.layout.main_xueya, null);
         }
         mDetectionKpiContentFL.removeAllViews();
         mDetectionKpiContentFL.addView(mEmptyView);
 
-        mCheckTimeTV.setText("Last test time：--");
-        mCheckTypeTV.setText("blood pressure");
+        mCheckTimeTV.setText(" " + getResources().getString(R.string.MainActivity_java_135) + "：--");
+        mCheckTypeTV.setText(getResources().getString(R.string.DeviceSelectAcitivity_java_3));
         mCheckValueTV.setText("--");
         mReferenceTV.setText("");
     }

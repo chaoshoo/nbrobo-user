@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 医院
+ *  " + getResources().getString(R.string.MainActivity_java_99)
  * Created by xuchun on 2016/8/23.
  */
 public class Hospital implements Serializable {

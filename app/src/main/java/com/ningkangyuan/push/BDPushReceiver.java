@@ -8,7 +8,7 @@ import com.ningkangyuan.utils.LogUtil;
 import java.util.List;
 
 /**
- * 百度推送接收器
+ *  " + getResources().getString(R.string.BDPushReceiver_java_1)
  * Created by xuchun on 2016/8/15.
  */
 public class BDPushReceiver extends PushMessageReceiver {
@@ -48,9 +48,9 @@ public class BDPushReceiver extends PushMessageReceiver {
 
     @Override
     public void onMessage(Context context, String message, String customContentString) {
-        //接收消息
+        // " + getResources().getString(R.string.BDPushReceiver_java_25)
         LogUtil.d(TAG,"onMessage：message：" + message + "\ncustomContentString：" + customContentString);
-        //将此消息存起来，然后在消息中心展示
+        // " + getResources().getString(R.string.BDPushReceiver_java_27)
         LogUtil.d(TAG,"mOnPushListener：" + mOnPushListener);
         if (mOnPushListener != null) {
             mOnPushListener.inMessage(message);

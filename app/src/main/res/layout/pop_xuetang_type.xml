@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textSize="22sp"
-        android:text="Please select the type of blood glucose measurement"/>
+        android:text="@string/pop_xuetang_type_xml_1"/>
 
     <Button
         android:id="@+id/pop_xuetang_glu0"
@@ -24,7 +24,7 @@
         android:background="@drawable/cyan_btn"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:text="Random blood glucose"
+        android:text="@string/MainActivity_java_123"
         android:nextFocusDown="@+id/pop_xuetang_glu1"/>
 
     <Button
@@ -35,7 +35,7 @@
         android:background="@drawable/cyan_btn"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:text="Pre-meal blood glucose"
+        android:text="@string/MainActivity_java_124"
         android:nextFocusUp="@+id/pop_xuetang_glu0"
         android:nextFocusDown="@+id/pop_xuetang_glu2"/>
 
@@ -47,7 +47,7 @@
         android:background="@drawable/cyan_btn"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:text="Postprandial blood glucose"
+        android:text="@string/MainActivity_java_125"
         android:nextFocusUp="@+id/pop_xuetang_glu1"/>
 
 

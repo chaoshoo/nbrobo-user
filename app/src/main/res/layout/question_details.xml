@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:text="Submit time：--/--"/>
+                    android:text="@string/QuestionDetailsActivity_java_8"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:textSize="24sp"
-                        android:text="nothing"/>
+                        android:text="@string/question_details_xml_2"/>
                 </LinearLayout>
 
                 <TextView
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textSize="20sp"
-                    android:text="Reply time：--/--"/>
+                    android:text="@string/QuestionDetailsActivity_java_20"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:textSize="24sp"
-                        android:text="nothing"/>
+                        android:text="@string/question_details_xml_2"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -147,7 +147,7 @@
                             android:layout_marginLeft="10dp"
                             android:background="@null"
                             android:textSize="20sp"
-                            android:hint="Additional comment"/>
+                            android:hint="@string/question_details_xml_5"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -161,7 +161,7 @@
                             android:layout_height="50dp"
                             android:textColor="@android:color/white"
                             android:background="@drawable/blue_btn"
-                            android:text="Confirmed"
+                            android:text="@string/BaseActivity_java_10"
                             android:textSize="24sp"
                             android:nextFocusUp="@+id/question_save_content"
                             android:nextFocusRight="@+id/question_save_cancel"/>
@@ -172,7 +172,7 @@
                             android:layout_marginLeft="20dp"
                             android:textColor="@android:color/white"
                             android:background="@drawable/cyan_btn"
-                            android:text="Return"
+                            android:text="@string/DoctorActivity_java_40"
                             android:textSize="24sp"
                             android:nextFocusUp="@+id/question_save_content"
                             android:nextFocusLeft="@+id/question_save_confirm"/>

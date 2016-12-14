@@ -36,7 +36,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 诊断预约
+ *  " + getResources().getString(R.string.RemoteSaveActivity_java_1)
  * Created by xuchun on 2016/8/24.
  */
 public class RemoteSaveActivity extends BaseActivity implements View.OnClickListener {
@@ -44,9 +44,9 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
     private static final String TAG = "RemoteSaveActivity";
 
     private ImageView mProtraitIV;
-    private TextView mNameTV,mJobTV,mHistoryTV,mIntroTV;
-//    private TextView mDateTV,mTimeTV;
-    private EditText mDateET,mTimeET;
+    private TextView mNameTV, mJobTV, mHistoryTV, mIntroTV;
+//    private TextView mDateTV, mTimeTV;
+    private EditText mDateET, mTimeET;
     private EditText mRemarkET;
 
 //    private Calendar mCalendar = Calendar.getInstance(Locale.CHINA);
@@ -71,8 +71,8 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.remote_save, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.remote_save,  null));
 
         mProtraitIV = (ImageView) findViewById(R.id.doctor_details_protrait);
         mNameTV = (TextView) findViewById(R.id.doctor_details_name);
@@ -94,7 +94,7 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
         mDoctor = (Doctor) getIntent().getSerializableExtra("doctor");
         if (mDoctor != null) {
 
-//            ImageLoaderHelper.getInstance().loader("",mProtraitIV,ImageLoaderHelper.makeImageOptions());
+//            ImageLoaderHelper.getInstance().loader("", mProtraitIV, ImageLoaderHelper.makeImageOptions());
 
             mNameTV.setText(mDoctor.getName());
             mJobTV.setText(mDoctor.getTitle());
@@ -114,14 +114,14 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
 //            case R.id.remote_save_date:
-//                DateDialog.getInstance().show(this, onDatePickedListener);
+//                DateDialog.getInstance().show(this,  onDatePickedListener);
 //                break;
             case R.id.remote_save_confirm:
-                //确定
+                // " + getResources().getString(R.string.BaseActivity_java_10)
                 submit();
                 break;
             case R.id.remote_save_cancel:
-                //取消
+                // " + getResources().getString(R.string.BaseActivity_java_11)
                 finish();
                 break;
             case R.id.remote_save_date_layout:
@@ -133,17 +133,17 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    //选择日期
+    // " + getResources().getString(R.string.RemoteSaveActivity_java_14)
 //    private void showDatePickerDialog() {
 //        if (mDatePicker == null) {
 //            mDatePicker = new MyPicker(this);
-//            //年
+//            // " + getResources().getString(R.string.RemoteSaveActivity_java_15)
 //            List<String> years = new ArrayList<String>();
 //            for(int i = 2016; i < 2050;i ++) {
 //                years.add(i + "");
 //            }
-//            mDatePicker.setData(years,1);
-//            //月
+//            mDatePicker.setData(years, 1);
+//            // " + getResources().getString(R.string.RemoteSaveActivity_java_17)
 //            List<String> months = new ArrayList<String>();
 //            for(int i = 1; i < 13;i ++) {
 //                String month = "" + i;
@@ -152,8 +152,8 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
 //                }
 //                months.add(month);
 //            }
-//            mDatePicker.setData(months,2);
-//            //日
+//            mDatePicker.setData(months, 2);
+//            // " + getResources().getString(R.string.RemoteSaveActivity_java_19)
 //            List<String> days = new ArrayList<String>();
 //            for(int i = 1; i < 32;i ++) {
 //                String day = "" + i;
@@ -162,12 +162,12 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
 //                }
 //                days.add(day);
 //            }
-//            mDatePicker.setData(days,3);
+//            mDatePicker.setData(days, 3);
 //
-//            mDatePicker.setMiddleText(0, 1);
-//            mDatePicker.setMiddleText(0,2);
-//            mDatePicker.setMiddleText(0,3);
-//            mDatePicker.setPickerTitle("请选择日期");
+//            mDatePicker.setMiddleText(0,  1);
+//            mDatePicker.setMiddleText(0, 2);
+//            mDatePicker.setMiddleText(0, 3);
+//            mDatePicker.setPickerTitle(getResources().getString(R.string.RemoteSaveActivity_java_24));
 //            mDatePicker.setPrepare();
 //
 //            mDatePicker.setSelectedFinishListener(new MyPicker.SelectedFinishListener() {
@@ -181,19 +181,19 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
 //                }
 //            });
 //        }
-//        mDatePicker.showAtLocation(mDateTV, Gravity.CENTER,0,0);
+//        mDatePicker.showAtLocation(mDateTV,  Gravity.CENTER, 0, 0);
 //    }
 
-    //选择时间
+    // " + getResources().getString(R.string.RemoteSaveActivity_java_28)
 //    private void showTimePickerDialog() {
 //        if (mTimePicker == null) {
 //            mTimePicker = new MyPicker(this);
 //            //AM PM
 //            List<String> times = new ArrayList<String>();
-//            times.add("上午");
-//            times.add("下午");
-//            mTimePicker.setData(times,1);
-//            //小时
+//            times.add(getResources().getString(R.string.RemoteSaveActivity_java_29));
+//            times.add(getResources().getString(R.string.RemoteSaveActivity_java_30));
+//            mTimePicker.setData(times, 1);
+//            // " + getResources().getString(R.string.RemoteSaveActivity_java_32)
 //            List<String> hours = new ArrayList<String>();
 //            for(int i = 1; i < 13;i ++) {
 //                String hour = "" + i;
@@ -202,8 +202,8 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
 //                }
 //                hours.add(hour);
 //            }
-//            mTimePicker.setData(hours,2);
-//            //分钟
+//            mTimePicker.setData(hours, 2);
+//            // " + getResources().getString(R.string.RemoteSaveActivity_java_34)
 //            List<String> minutes = new ArrayList<String>();
 //            for(int i = 0; i < 60;i ++) {
 //                String minute = "" + i;
@@ -212,13 +212,13 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
 //                }
 //                minutes.add(minute);
 //            }
-//            mTimePicker.setData(minutes,3);
+//            mTimePicker.setData(minutes, 3);
 //
 //
-//            mTimePicker.setMiddleText(0, 1);
-//            mTimePicker.setMiddleText(9, 2);
-//            mTimePicker.setMiddleText(0,3);
-//            mTimePicker.setPickerTitle("请选择时间");
+//            mTimePicker.setMiddleText(0,  1);
+//            mTimePicker.setMiddleText(9,  2);
+//            mTimePicker.setMiddleText(0, 3);
+//            mTimePicker.setPickerTitle(getResources().getString(R.string.RemoteSaveActivity_java_39));
 //            mTimePicker.setPrepare();
 //
 //            mTimePicker.setSelectedFinishListener(new MyPicker.SelectedFinishListener() {
@@ -232,18 +232,18 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
 //                }
 //            });
 //        }
-//        mTimePicker.showAtLocation(mDateTV, Gravity.CENTER, 0, 0);
+//        mTimePicker.showAtLocation(mDateTV,  Gravity.CENTER,  0,  0);
 //    }
 
     public void submit() {
         String date = mDateET.getText().toString();
         if (TextUtils.isEmpty(date)) {
-            ToastUtil.show(this,"Please enter a date");
+            ToastUtil.show(this, getResources().getString(R.string.RemoteSaveActivity_java_44));
             return;
         }
         String time = mTimeET.getText().toString();
         if (TextUtils.isEmpty(time)) {
-            ToastUtil.show(this,"Please enter time");
+            ToastUtil.show(this, getResources().getString(R.string.RemoteSaveActivity_java_46));
             return;
         }
         String orderTime = date + " " + time;
@@ -253,33 +253,33 @@ public class RemoteSaveActivity extends BaseActivity implements View.OnClickList
 //            e.printStackTrace();
 //        }
         final String remark = mRemarkET.getText().toString().trim();
-        showProgressDialog("Submitting..");
+        showProgressDialog(" " + getResources().getString(R.string.QuestionDetailsActivity_java_58) + " ..");
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("remotesave",
-                new String[]{"vip_code","doctor_code","hospital_code","order_time","remark"},
-                new Object[]{mVip.getVip_code(),mDoctor.getCode(),mDoctor.getHospital_code(),
-                        orderTime,remark}), new Callback() {
+                new String[]{"vip_code", "doctor_code", "hospital_code", "order_time", "remark"},
+                new Object[]{mVip.getVip_code(), mDoctor.getCode(), mDoctor.getHospital_code(),
+                        orderTime, remark}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(RemoteSaveActivity.this,e.getMessage());
+                        ToastUtil.show(RemoteSaveActivity.this, e.getMessage());
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 String result = response.body().string();
-                LogUtil.d(TAG,"onResponse：" + result);
-                final String code = JsonUtil.getObjectByKey("code",result);
-                final String message = JsonUtil.getObjectByKey("message",result);
+                LogUtil.d(TAG, "onResponse：" + result);
+                final String code = JsonUtil.getObjectByKey("code", result);
+                final String message = JsonUtil.getObjectByKey("message", result);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(RemoteSaveActivity.this,message);
+                        ToastUtil.show(RemoteSaveActivity.this, message);
                         if ("1".equals(code)) {
                             finish();
                         }

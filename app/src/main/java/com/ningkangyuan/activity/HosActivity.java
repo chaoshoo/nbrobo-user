@@ -35,14 +35,14 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * 挂号医院
+ *  " + getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/1.
  */
-public class HosActivity extends BaseActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class HosActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String TAG = "RegListActivity";
 
-    private Button mUpBtn,mNextBtn,mBackBtn;
+    private Button mUpBtn, mNextBtn, mBackBtn;
     private List<Hos> mHosList = new ArrayList<Hos>();
     private HosAdapter mHosAdapter;
     private RecyclerViewTV mRecyclerViewTV;
@@ -66,8 +66,8 @@ public class HosActivity extends BaseActivity implements View.OnClickListener,Vi
 
     @Override
     protected void init() {
-        ((TextView) findViewById(R.id.universal_checkcard_num)).setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.hos, null));
+        ((TextView) findViewById(R.id.universal_checkcard_num)).setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.hos,  null));
 
         mUpBtn = (Button) findViewById(R.id.hos_up);
         mNextBtn = (Button) findViewById(R.id.hos_next);
@@ -83,50 +83,50 @@ public class HosActivity extends BaseActivity implements View.OnClickListener,Vi
         mMainUpView.setEffectBridge(new EffectNoDrawBridge());
         EffectNoDrawBridge effectNoDrawBridge = (EffectNoDrawBridge) mMainUpView.getEffectBridge();
         effectNoDrawBridge.setTranDurAnimTime(200);
-        mMainUpView.setUpRectResource(R.drawable.test_rectangle); // 设置移动边框的图片.
-        mMainUpView.setShadowResource(R.drawable.item_shadow); // 设置移动边框的阴影.
+        mMainUpView.setUpRectResource(R.drawable.test_rectangle); //  " + getResources().getString(R.string.DeptActivity_java_8).
+        mMainUpView.setShadowResource(R.drawable.item_shadow); //  " + getResources().getString(R.string.DeptActivity_java_9).
 
         mRecyclerViewTV = (RecyclerViewTV) findViewById(R.id.hos_rv);
-        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this,5);
+        GridLayoutManagerTV gridLayoutManagerTV = new GridLayoutManagerTV(this, 5);
         gridLayoutManagerTV.setOrientation(GridLayoutManagerTV.VERTICAL);
         mRecyclerViewTV.setLayoutManager(gridLayoutManagerTV);
         mRecyclerViewTV.setAdapter(mHosAdapter = new HosAdapter(mHosList));
         mRecyclerViewTV.setOnItemListener(new RecyclerViewTV.OnItemListener() {
             @Override
-            public void onItemPreSelected(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemPreSelected(RecyclerViewTV parent,  View itemView,  int position) {
                 mMainUpView.setUnFocusView(itemView);
             }
 
             @Override
-            public void onItemSelected(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onItemSelected(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
 
             @Override
-            public void onReviseFocusFollow(RecyclerViewTV parent, View itemView, int position) {
-                mMainUpView.setFocusView(itemView, 1.0f);
+            public void onReviseFocusFollow(RecyclerViewTV parent,  View itemView,  int position) {
+                mMainUpView.setFocusView(itemView,  1.0f);
             }
         });
         mRecyclerViewTV.setOnItemClickListener(new RecyclerViewTV.OnItemClickListener() {
             @Override
-            public void onItemClick(RecyclerViewTV parent, View itemView, int position) {
+            public void onItemClick(RecyclerViewTV parent,  View itemView,  int position) {
                 try {
-                    Intent intent = new Intent(HosActivity.this,DeptActivity.class);
-                    intent.putExtra("hosid",mHosList.get(position).getHosid());
+                    Intent intent = new Intent(HosActivity.this, DeptActivity.class);
+                    intent.putExtra("hosid", mHosList.get(position).getHosid());
                     startActivity(intent);
                 } catch (Exception e) {
-                    ToastUtil.show(HosActivity.this,e.getMessage());
+                    ToastUtil.show(HosActivity.this, e.getMessage());
                 }
 
             }
         });
-        qryRegHospital(mPage, null);
+        qryRegHospital(mPage,  null);
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
+    public void onFocusChange(View v,  boolean hasFocus) {
         if (hasFocus) {
-            mMainUpView.setFocusView(v,1.0f);
+            mMainUpView.setFocusView(v, 1.0f);
         } else {
             mMainUpView.setUnFocusView(v);
         }
@@ -136,55 +136,55 @@ public class HosActivity extends BaseActivity implements View.OnClickListener,Vi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.hos_up:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 if (mPage == 0) {
-                    ToastUtil.show(this,"First page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_29));
                     return;
                 }
-                qryRegHospital(mPage,"-");
+                qryRegHospital(mPage, "-");
                 break;
             case R.id.hos_next:
-                //下一页
+                // " + getResources().getString(R.string.DeptActivity_java_31)
                 if (isLastPage) {
-                    ToastUtil.show(this,"Last page.");
+                    ToastUtil.show(this, getResources().getString(R.string.DeptActivity_java_33));
                     return;
                 }
-                qryRegHospital(mPage,"+");
+                qryRegHospital(mPage, "+");
                 break;
             case R.id.hos_back:
-                //上一页
+                // " + getResources().getString(R.string.DeptActivity_java_27)
                 finish();
                 break;
         }
     }
 
-    private void qryRegHospital(int page, final String type) {
-        showProgressDialog("Querying data");
+    private void qryRegHospital(int page,  final String type) {
+        showProgressDialog(getResources().getString(R.string.DeptActivity_java_37));
         if ("+".equals(type)) {
             page ++;
         } else if ("-".equals(type)) {
             page --;
         }
         mCallList.add(OkHttpHelper.get(OkHttpHelper.makeJsonParams("hospitalalllist",
-                new String[]{"hosid","rowstart","rowcount"},
-                new Object[]{"0",page * Constant.PAGE_SIZE_10, Constant.PAGE_SIZE_10}), new Callback() {
+                new String[]{"hosid", "rowstart", "rowcount"},
+                new Object[]{"0", page * Constant.PAGE_SIZE_10,  Constant.PAGE_SIZE_10}),  new Callback() {
             @Override
-            public void onFailure(Call call, final IOException e) {
+            public void onFailure(Call call,  final IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dismissProgressDialog();
                         String msg = e.getMessage();
                         if (msg.startsWith("Failed"))  {
-                            msg = "Unable to connect to the server，Please check the network";
+                            msg = getResources().getString(R.string.BaseActivity_java_23);
                         }
-                        ToastUtil.show(HosActivity.this, msg);
+                        ToastUtil.show(HosActivity.this,  msg);
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call,  Response response) throws IOException {
                 if ("+".equals(type)) {
                     mPage ++;
                 }
@@ -192,12 +192,12 @@ public class HosActivity extends BaseActivity implements View.OnClickListener,Vi
                     mPage --;
                 }
                 String result = response.body().string();
-                LogUtil.d(TAG, "onResponse：" + result);
-                if ("1".equals(JsonUtil.getObjectByKey("code", result))) {
-                    String message = JsonUtil.getObjectByKey("message", result);
-                    String li = JsonUtil.getObjectByKey("li", message);
+                LogUtil.d(TAG,  "onResponse：" + result);
+                if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                    String message = JsonUtil.getObjectByKey("message",  result);
+                    String li = JsonUtil.getObjectByKey("li",  message);
                     if (li != null) {
-                        List<Hos> tempList = JsonUtil.mGson.fromJson(li, new TypeToken<List<Hos>>() {}.getType());
+                        List<Hos> tempList = JsonUtil.mGson.fromJson(li,  new TypeToken<List<Hos>>() {}.getType());
                         isLastPage = false;
                         if (tempList.size() < Constant.PAGE_SIZE_10) {
                             isLastPage = true;
@@ -220,7 +220,7 @@ public class HosActivity extends BaseActivity implements View.OnClickListener,Vi
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(HosActivity.this, "No data show");
+                        ToastUtil.show(HosActivity.this,  getResources().getString(R.string.DeptActivity_java_55));
                     }
                 });
             }

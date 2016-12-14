@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 远程咨询(远程预约诊断)
+ *  " + getResources().getString(R.string.MainActivity_java_46)( " + getResources().getString(R.string.RemoteHistory_java_2))
  * Created by xuchun on 2016/8/26.
  */
 public class RemoteHistory implements Serializable {
@@ -22,7 +22,7 @@ public class RemoteHistory implements Serializable {
     private String create_time;
     private String remark;
 
-    //医生名字
+    // " + getResources().getString(R.string.RemoteHistory_java_3)
     private String name;
 
     public String getId() {

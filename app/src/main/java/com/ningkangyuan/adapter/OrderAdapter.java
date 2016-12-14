@@ -11,13 +11,15 @@ import com.ningkangyuan.R;
 import com.ningkangyuan.bean.Hos;
 import com.ningkangyuan.bean.Order;
 import com.ningkangyuan.utils.LogUtil;
+import com.ningkangyuan.MyApplication;
+import com.ningkangyuan.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 /**
- * 挂号医院
+ *  " + MyApplication.mContext.getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
@@ -39,8 +41,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Order order = mOrderList.get(position);
-        holder.mOrderNumTV.setText("Pre-consultation time：" + order.getOutpdate() + "\nOrder number：" + order.getOrderid());
-        String content = "Order amount：" + order.getOrderfee() + "element";
+        holder.mOrderNumTV.setText(" " + MyApplication.mContext.getResources().getString(R.string.MainActivity_java_95) + " ：" + order.getOutpdate() + "\n " + MyApplication.mContext.getResources().getString(R.string.OrderActivity_java_77) + " ：" + order.getOrderid());
+        String content = " " + MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_8) + " ：" + order.getOrderfee() + MyApplication.mContext.getResources().getString(R.string.MainActivity_java_98);
         String status = "";
         String orderTime = order.getCreate_time();
         String payTime = order.getPayrtime();
@@ -60,21 +62,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         }
 
         if ("1".equals(order.getStatus())) {
-            holder.mOrderStatusTV.setText("To be paid");
+            holder.mOrderStatusTV.setText(MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_10));
         } else if ("2".equals(order.getStatus())) {
-            content += "\n" + "Confirmation time：" + orderTime;
-            status = "Confirmed";
+            content += "\n" + " " + MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_11) + " ：" + orderTime;
+            status = MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_12);
         } else if ("3".equals(order.getStatus())) {
-            content += "\n" + "Confirmation time：" + orderTime + "\n" + "Payment time：" + payTime;
-            status = "Paid";
+            content += "\n" + " " + MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_11) + " ：" + orderTime + "\n" + " " + MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_14) + " ：" + payTime;
+            status = MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_15);
         } else if ("4".equals(order.getStatus())) {
-            content += "\n" + "Confirmation time：" + orderTime;
-            status = "Payment failed";
+            content += "\n" + " " + MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_11) + " ：" + orderTime;
+            status = MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_17);
         } else if ("5".equals(order.getStatus())) {
-            content += "\n" + "Cancellation time：" + cancelTime + "\n" + "Cancel reason：" + order.getCancelreason();
-            status = "Canceled";
+            content += "\n" + " " + MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_18) + " ：" + cancelTime + "\n" + " " + MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_19) + " ：" + order.getCancelreason();
+            status = MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_20);
         } else if ("6".equals(order.getStatus())) {
-            status = "Registr failed";
+            status = MyApplication.mContext.getResources().getString(R.string.OrderAdapter_java_21);
         }
         holder.mOrderContentTV.setText(content);
         holder.mOrderStatusTV.setText(status);

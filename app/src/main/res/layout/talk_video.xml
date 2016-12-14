@@ -13,7 +13,7 @@
         <!--android:layout_marginTop="20dp"-->
         <!--android:textSize="20sp"-->
         <!--android:textColor="@android:color/white"-->
-        <!--android:text="Caller：ssss"/>-->
+        <!--android:text="@string/talk_video_xml_1：ssss"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:background="@drawable/cyan_btn"
-            android:text="Connect"
+            android:text="@string/talk_video_xml_2"
             android:nextFocusRight="@+id/talk_video_microphone"/>
 
         <!--<Button-->
@@ -63,7 +63,7 @@
             <!--android:textColor="@android:color/white"-->
             <!--android:textSize="24sp"-->
             <!--android:background="@drawable/cyan_btn"-->
-            <!--android:text="Voice off"-->
+            <!--android:text="@string/MultiChatActivity_java_118"-->
             <!--android:nextFocusLeft="@+id/talk_video_release"-->
             <!--android:nextFocusRight="@+id/talk_video_volume"/>-->
 
@@ -76,7 +76,7 @@
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:background="@drawable/cyan_btn"
-            android:text="Mute"
+            android:text="@string/talk_video_xml_4"
             android:nextFocusLeft="@+id/talk_video_microphone"/>
     </LinearLayout>
 

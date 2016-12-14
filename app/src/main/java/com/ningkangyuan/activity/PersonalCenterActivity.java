@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.ningkangyuan.R;
 
 /**
- * 个人中心
+ *  " + getResources().getString(R.string.MainActivity_java_50)
  * Created by xuchun on 2016/8/22.
  */
 public class PersonalCenterActivity extends BaseActivity implements View.OnClickListener {
@@ -32,8 +32,8 @@ public class PersonalCenterActivity extends BaseActivity implements View.OnClick
     @Override
     protected void init() {
         mTextView = (TextView) findViewById(R.id.universal_checkcard_num);
-        mTextView.setText("Check card number：" + mVip.getCard_code());
-        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.personal_center, null));
+        mTextView.setText(" " + getResources().getString(R.string.DeptActivity_java_6) + " ：" + mVip.getCard_code());
+        ((FrameLayout) findViewById(R.id.universal_content)).addView(LayoutInflater.from(this).inflate(R.layout.personal_center,  null));
 
         findViewById(R.id.personal_center_remote).setOnClickListener(this);
         findViewById(R.id.personal_center_registration).setOnClickListener(this);
@@ -51,28 +51,28 @@ public class PersonalCenterActivity extends BaseActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.personal_center_remote:
-                //远程诊断
+                // " + getResources().getString(R.string.PersonalCenterActivity_java_4)
             {
-                Intent intent = new Intent(this,RemoteHistoryActivity.class);
+                Intent intent = new Intent(this, RemoteHistoryActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.personal_center_registration:
-                //挂号
+                // " + getResources().getString(R.string.MainActivity_java_48)
             {
-                Intent intent = new Intent(this,OrderActivity.class);
+                Intent intent = new Intent(this, OrderActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.personal_center_consult:
-                //咨询
+                // " + getResources().getString(R.string.PersonalCenterActivity_java_8)
             {
-                Intent intent = new Intent(this,QuestionHistoryActivity.class);
+                Intent intent = new Intent(this, QuestionHistoryActivity.class);
                 startActivity(intent);
             }
                 break;
             case R.id.personal_center_back:
-                //返回
+                // " + getResources().getString(R.string.DoctorActivity_java_40)
                 finish();
                 break;
 

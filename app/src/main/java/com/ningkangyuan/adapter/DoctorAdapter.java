@@ -14,7 +14,7 @@ import com.ningkangyuan.bean.Doctor;
 import java.util.List;
 
 /**
- * 挂号医院
+ *  " + getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHolder> {
@@ -33,10 +33,10 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Doctor doctor = mDoctorList.get(position);
-        holder.name.setText(doctor.getName());  //Name
-        holder.job.setText(doctor.getTitle());  //Title
-        holder.history.setText(doctor.getEdu());    //Education
-        holder.intro.setText("  " + doctor.getInfo()); //Introduction
+        holder.name.setText(doctor.getName());  // " + getResources().getString(R.string.DoctorAdapter_java_6)
+        holder.job.setText(doctor.getTitle());  // " + getResources().getString(R.string.DoctorAdapter_java_7)
+        holder.history.setText(doctor.getEdu());    // " + getResources().getString(R.string.DoctorAdapter_java_8)
+        holder.intro.setText("  " + doctor.getInfo()); // " + getResources().getString(R.string.DoctorAdapter_java_9)
     }
 
     @Override

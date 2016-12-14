@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 到达的推送消息
+ *  " + getResources().getString(R.string.PWMessage_java_1)
  * Created by xuchun on 2016/9/24.
  */
 public class PWMessage implements Serializable {

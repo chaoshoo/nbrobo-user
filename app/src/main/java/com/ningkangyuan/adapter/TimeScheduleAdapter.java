@@ -9,11 +9,13 @@ import android.widget.TextView;
 import com.ningkangyuan.R;
 import com.ningkangyuan.bean.Schedule;
 import com.ningkangyuan.bean.TimeSchedule;
+import com.ningkangyuan.MyApplication;
+import com.ningkangyuan.R;
 
 import java.util.List;
 
 /**
- * 挂号医院
+ *  " + MyApplication.mContext.getResources().getString(R.string.HosActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class TimeScheduleAdapter extends RecyclerView.Adapter<TimeScheduleAdapter.MyViewHolder> {
@@ -32,13 +34,13 @@ public class TimeScheduleAdapter extends RecyclerView.Adapter<TimeScheduleAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         TimeSchedule timeSchedule = mTimeScheduleList.get(position);
-        holder.mBTimeTV.setText("start time：" + timeSchedule.getBstp());
-        holder.mETimeTV.setText("End time：" + timeSchedule.getEstp());
+        holder.mBTimeTV.setText(" " + MyApplication.mContext.getResources().getString(R.string.TimeScheduleAdapter_java_6) + " ：" + timeSchedule.getBstp());
+        holder.mETimeTV.setText(" " + MyApplication.mContext.getResources().getString(R.string.TimeScheduleAdapter_java_7) + " ：" + timeSchedule.getEstp());
         String regflag = timeSchedule.getRegflag();
         if ("1".equals(regflag)) {
-            regflag = "Click to registr";
+            regflag = MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_9);
         } else {
-            regflag = "Can not be registered";
+            regflag = MyApplication.mContext.getResources().getString(R.string.ScheduleAdapter_java_6);
         }
         holder.mFlagTV.setText(regflag);
     }

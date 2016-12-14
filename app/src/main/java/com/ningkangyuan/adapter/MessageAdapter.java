@@ -13,7 +13,7 @@ import com.ningkangyuan.bean.Message;
 import java.util.List;
 
 /**
- * 消息列表
+ *  " + getResources().getString(R.string.MessageListActivity_java_1)
  * Created by xuchun on 2016/9/21.
  */
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {

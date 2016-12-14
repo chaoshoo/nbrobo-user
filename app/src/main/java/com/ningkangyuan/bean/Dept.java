@@ -3,7 +3,7 @@ package com.ningkangyuan.bean;
 import java.io.Serializable;
 
 /**
- * 挂号医院科室
+ *  " + getResources().getString(R.string.Dept_java_1)
  * Created by xuchun on 2016/9/19.
  */
 public class Dept implements Serializable {

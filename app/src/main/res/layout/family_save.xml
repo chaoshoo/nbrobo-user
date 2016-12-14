@@ -27,7 +27,7 @@
             android:textSize="28sp"
             android:textColor="@color/cyan"
             android:gravity="center"
-            android:text="Bind member"
+            android:text="@string/FamilyActivity_java_23"
             />
 
         <LinearLayout
@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:hint="Please enter your ID or phone number."
+                android:hint="@string/family_save_xml_2"
                 android:textSize="24sp"
                 android:nextFocusUp="@+id/family_save_close"
                 android:nextFocusDown="@+id/family_save_pass"
@@ -75,7 +75,7 @@
                 android:layout_marginLeft="10dp"
                 android:inputType="textPassword"
                 android:background="@null"
-                android:hint="Please input a password"
+                android:hint="@string/FamilyActivity_java_52"
                 android:textSize="24sp"
                 android:nextFocusUp="@+id/family_save_card"
                 android:nextFocusDown="@+id/family_save_confirm"
@@ -90,7 +90,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/blue_btn"
             android:textColor="@android:color/white"
-            android:text="Confirmed"
+            android:text="@string/BaseActivity_java_10"
             android:textSize="24sp"
             android:nextFocusUp="@+id/family_save_pass"/>
     </LinearLayout>
