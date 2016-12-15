@@ -579,7 +579,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			mResultList.add(diaKPI);
 
             return OkHttpHelper.makeJsonParams("measure",
-                    new String[]{"inspect_codegetResources().getString(R.string.BaseActivity_java_1)card_codegetResources().getString(R.string.BaseActivity_java_1)device_sngetResources().getString(R.string.BaseActivity_java_1)inspect_timegetResources().getString(R.string.BaseActivity_java_1)SYSgetResources().getString(R.string.BaseActivity_java_1)DIAgetResources().getString(R.string.BaseActivity_java_1)PR"},
+                    new String[]{"inspect_code", "card_code", "device_sn", "inspect_time", "SYS", "DIA", "PR"},
                     new Object[]{Measure.XueYa.INSPECT_CODE,mVip.getCard_code(),
 							ScreenUtil.getDeviceId(this),new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
                             "" + getShort(mB, 8) ,
@@ -596,7 +596,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			xtKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 			mResultList.add(xtKPI);
             return OkHttpHelper.makeJsonParams("measure",
-                    new String[]{"inspect_codegetResources().getString(R.string.BaseActivity_java_1)card_codegetResources().getString(R.string.BaseActivity_java_1)device_sngetResources().getString(R.string.BaseActivity_java_1)inspect_time",mXueTangType},
+                    new String[]{"inspect_code", "card_code", "device_sn", "inspect_time",mXueTangType},
                     new Object[]{Measure.XueTang.INSPECT_CODE,mVip.getCard_code(),
 							ScreenUtil.getDeviceId(this),new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
 							swithXueTang(getShort(mB, 9) + "")});

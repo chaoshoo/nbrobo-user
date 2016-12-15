@@ -162,7 +162,7 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
             if ("vedio".equals(title)) {
                 mConfirm.setVisibility(View.VISIBLE);
                 mCancel.setText(getResources().getString(R.string.BaseActivity_java_11));
-                String doctorName = description.split(", ")[2];
+                String doctorName = description.split(",")[2];
                 titleStr = getResources().getString(R.string.BaseActivity_java_13);
                 msgStr = doctorName + " " + getResources().getString(R.string.BaseActivity_java_14) + " ？";
             }
@@ -206,8 +206,8 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
                     final String token = JsonUtil.getObjectByKey("token",  result);
 
                     String description = JsonUtil.getObjectByKey("description",  msg);
-                    final String channel = description.split(", ")[0];
-                    final String remoteId = description.split(", ")[1];
+                    final String channel = description.split(",")[0];
+                    final String remoteId = description.split(",")[1];
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -229,7 +229,7 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
                     @Override
                     public void run() {
                         dismissProgressDialog();
-                        ToastUtil.show(BaseActivity.this,  "Token " + getResources().getString(R.string.BaseActivity_java_40) + " ");
+                        ToastUtil.show(BaseActivity.this,  "Token: " + getResources().getString(R.string.BaseActivity_java_40) + " ");
                     }
                 });
             }
