@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ningkangyuan.Constant;
+import com.ningkangyuan.MyApplication;
 import com.ningkangyuan.R;
 import com.ningkangyuan.adapter.DeptAdapter;
 import com.ningkangyuan.adapter.HistoryAdapter;
@@ -178,14 +179,26 @@ public class HistoryActivity extends BaseActivity implements View.OnFocusChangeL
     }
 
     private void load(String inspect_code) {
-        String url = Constant.PLATFORM_DOMAIN +  "/nkyplatform/vipInspectData/chartall/" + mVip.getCard_code() + "/" + inspect_code + "/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html";
-        LogUtil.d(TAG, "url：" + url);
-        mWebView.loadUrl(url);
+        if (MyApplication.mContext.getResources().getConfiguration().locale.getCountry().equals("CN") ) {
+            String url = Constant.PLATFORM_DOMAIN + "/vipInspectData/chartall/" + mVip.getCard_code() + "/" + inspect_code + "/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html?lan=cn";
+            LogUtil.d(TAG, "url：" + url);
+            mWebView.loadUrl(url);
+        } else {
+            String url = Constant.PLATFORM_DOMAIN + "/vipInspectData/chartall/" + mVip.getCard_code() + "/" + inspect_code + "/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html";
+            LogUtil.d(TAG, "url：" + url);
+            mWebView.loadUrl(url);
+        }
     }
 
     private void loadNiao() {
-        String url = Constant.PLATFORM_DOMAIN +  "/nkyplatform/vipInspectData/getDatagrid/" + mVip.getCard_code() + "/C06/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html";
-        LogUtil.d(TAG, "url：" + url);
-        mWebView.loadUrl(url);
+        if (MyApplication.mContext.getResources().getConfiguration().locale.getCountry().equals("CN") ) {
+            String url = Constant.PLATFORM_DOMAIN + "/vipInspectData/getDatagrid/" + mVip.getCard_code() + "/C06/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html?lan=cn";
+            LogUtil.d(TAG, "url：" + url);
+            mWebView.loadUrl(url);
+        } else {
+            String url = Constant.PLATFORM_DOMAIN + "/vipInspectData/getDatagrid/" + mVip.getCard_code() + "/C06/ALL/" + mWebWidth + "-" + mWebHeight + "/0.html";
+            LogUtil.d(TAG, "url：" + url);
+            mWebView.loadUrl(url);
+        }
     }
 }

@@ -35,6 +35,8 @@ public class Constant {
 
     public static final String PLATFORM_DOMAIN = "http://121.43.123.125:83";
 
+    //public static final String PLATFORM_DOMAIN = "http://192.168.1.102:8080/nkyplatform";
+
     static {
         LogUtil.d(TAG, "static ...");
         NORM = new ArrayList<JSONObject>();

@@ -187,15 +187,16 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 String result = response.body().string();
                 LogUtil.d(TAG,  "onResponse：" + result);
                 if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
-                    String version_code = JsonUtil.getObjectByKey("version_code",  result);
+                    String vc = JsonUtil.getObjectByKey("version_code",  result);
+                    Integer version_code = Integer.parseInt(vc);
                     String version_url = JsonUtil.getObjectByKey("version_url",  result);
 
                     if (version_code != null && version_url != null) {
                         PackageManager packageManager = SettingActivity.this.getPackageManager();
                         try {
                             PackageInfo packageInfo = packageManager.getPackageInfo(SettingActivity.this.getPackageName(),  0);
-                            String versionCode = String.valueOf(packageInfo.versionCode);
-                            if (!versionCode.equals(version_code)) {
+                            Integer versionCode = packageInfo.versionCode;
+                            if (versionCode < version_code ) {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {

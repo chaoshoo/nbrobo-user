@@ -119,11 +119,11 @@ public class DetectionKPI implements Serializable {
             while (iter.hasNext()) {
                 Map.Entry<String, String> entry = iter.next();
                 if (inspect_desc.contains(entry.getValue())) {
-                    return inspect_desc.replace(entry.getValue(), entry.getKey());
+                    return inspect_desc.replace(entry.getValue(), entry.getKey()) + "\n";
                 }
             }
         }
-        return inspect_desc;
+        return inspect_desc + "\n";
     }
 
     private Map<String, String> cnMap;
@@ -134,9 +134,9 @@ public class DetectionKPI implements Serializable {
         cnMap.put("systolic pressure", "收缩压");
         cnMap.put("diastolic pressure", "舒张压");
         cnMap.put("Pulse rate", "脉率");
-        cnMap.put("Random blood glucose", "随机血糖");
-        cnMap.put("Pre meal blood glucose", "餐前血糖");
-        cnMap.put("Postprandial blood glucose", "餐后血糖");
+        cnMap.put("GLU", "随机血糖");
+        cnMap.put("FPG", "餐前血糖");
+        cnMap.put("PPG", "餐后血糖");
         cnMap.put("height", "身高");
         cnMap.put("weight", "体重");
         cnMap.put("temperature", "体温");
