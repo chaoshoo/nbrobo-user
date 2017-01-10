@@ -558,6 +558,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			frKPI.setInspect_desc("");
 			frKPI.setInspect_value("" + mB[11]);
 			frKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+			if (null == frKPI.getInspect_value() || frKPI.getInspect_value().isEmpty()) {
+				return null;
+			}
 			mResultList.add(frKPI);
 
 			// " + getResources().getString(R.string.DeviceControlActivity_java_103)
@@ -567,6 +570,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			sysKPI.setInspect_is_normal("0");
 			sysKPI.setInspect_desc("");
 			sysKPI.setInspect_value("" + getShort(mB, 8));
+			if (null == sysKPI.getInspect_value() || sysKPI.getInspect_value().isEmpty()) {
+				return null;
+			}
 			mResultList.add(sysKPI);
 
 			// " + getResources().getString(R.string.DeviceControlActivity_java_105)
@@ -576,6 +582,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			diaKPI.setInspect_is_normal("0");
 			diaKPI.setInspect_desc("");
 			diaKPI.setInspect_value("" + mB[10]);
+			if (null == diaKPI.getInspect_value() || diaKPI.getInspect_value().isEmpty()) {
+				return null;
+			}
 			mResultList.add(diaKPI);
 
             return OkHttpHelper.makeJsonParams("measure",
@@ -594,6 +603,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			xtKPI.setInspect_desc("");
 			xtKPI.setInspect_value(swithXueTang(getShort(mB, 9) + ""));
 			xtKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+			if (null == xtKPI.getInspect_value() || xtKPI.getInspect_value().isEmpty()) {
+				return null;
+			}
 			mResultList.add(xtKPI);
             return OkHttpHelper.makeJsonParams("measure",
                     new String[]{"inspect_code", "card_code", "device_sn", "inspect_time",mXueTangType},
@@ -647,8 +659,14 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 	}
 
 	private void uploadResult() {
-        showProgressDialog(getResources().getString(R.string.DeviceControlActivity_java_144));
-        mCallList.add(OkHttpHelper.get(makeUploadParams(), new Callback() {
+		showProgressDialog(getResources().getString(R.string.DeviceControlActivity_java_144));
+		JSONObject jsonObject = makeUploadParams();
+		if (null == jsonObject) {
+			dismissProgressDialog();
+			showConfirmMsg(getResources().getString(R.string.DeviceControlActivity_java_159));
+			return;
+		}
+		mCallList.add(OkHttpHelper.get(jsonObject, new Callback() {
 			@Override
 			public void onFailure(Call call, final IOException e) {
 				runOnUiThread(new Runnable() {

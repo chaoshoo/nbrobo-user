@@ -328,6 +328,7 @@
 <string name="DeviceControlActivity_java_154">normal</string>
 <string name="DeviceControlActivity_java_155">High</string>
 <string name="DeviceControlActivity_java_158">Uploaded. Please close the measuring device, and then click OK to exit.</string>
+<string name="DeviceControlActivity_java_159">Measure data error, please measure and upload again.</string>
 <string name="DeviceControlActivity_java_16">Here to connect to send the two command, or blood pressure can not be received in the process and the outcome of the package</string>
 <string name="DeviceControlActivity_java_160">Data upload failed</string>
 <string name="DeviceControlActivity_java_167">Set five to four</string>

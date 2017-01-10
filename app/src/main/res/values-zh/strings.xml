@@ -328,6 +328,7 @@
 <string name="DeviceControlActivity_java_154">正常</string>
 <string name="DeviceControlActivity_java_155">偏高</string>
 <string name="DeviceControlActivity_java_158">上传成功，请关闭测量设备后点击确定退出此界面。</string>
+<string name="DeviceControlActivity_java_159">检测数据格式错误，请重新检测上传数据</string>
 <string name="DeviceControlActivity_java_16">此处要连接发送两次命令，不然血压收不到过程和结果包</string>
 <string name="DeviceControlActivity_java_160">数据上传失败</string>
 <string name="DeviceControlActivity_java_167">设置四舍五入</string>
