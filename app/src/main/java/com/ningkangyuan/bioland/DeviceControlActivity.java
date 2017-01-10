@@ -558,6 +558,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			frKPI.setInspect_desc("");
 			frKPI.setInspect_value("" + mB[11]);
 			frKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+			if (null == frKPI || frKPI.getInspect_value().isEmpty()) {
+				return null;
+			}
 			mResultList.add(frKPI);
 
 			//收缩压
@@ -567,6 +570,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			sysKPI.setInspect_is_normal("0");
 			sysKPI.setInspect_desc("");
 			sysKPI.setInspect_value("" + getShort(mB, 8));
+			if (null == sysKPI || sysKPI.getInspect_value().isEmpty()) {
+				return null;
+			}
 			mResultList.add(sysKPI);
 
 			//舒张压
@@ -576,6 +582,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			diaKPI.setInspect_is_normal("0");
 			diaKPI.setInspect_desc("");
 			diaKPI.setInspect_value("" + mB[10]);
+			if (null == diaKPI || diaKPI.getInspect_value().isEmpty()) {
+				return null;
+			}
 			mResultList.add(diaKPI);
 
             return OkHttpHelper.makeJsonParams("measure",
@@ -594,6 +603,9 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			xtKPI.setInspect_desc("");
 			xtKPI.setInspect_value(swithXueTang(getShort(mB, 9) + ""));
 			xtKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+			if (null == xtKPI || xtKPI.getInspect_value().isEmpty()) {
+				return null;
+			}
 			mResultList.add(xtKPI);
             return OkHttpHelper.makeJsonParams("measure",
                     new String[]{"inspect_code","card_code","device_sn","inspect_time",mXueTangType},
@@ -648,7 +660,13 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 
 	private void uploadResult() {
         showProgressDialog("正在上传数据");
-        mCallList.add(OkHttpHelper.get(makeUploadParams(), new Callback() {
+		JSONObject jsonObject = makeUploadParams();
+		if (null == jsonObject) {
+			dismissProgressDialog();
+			showConfirmMsg("检测数据格式错误，请重新检测上传数据");
+			return;
+		}
+        mCallList.add(OkHttpHelper.get(jsonObject, new Callback() {
 			@Override
 			public void onFailure(Call call, final IOException e) {
 				runOnUiThread(new Runnable() {
