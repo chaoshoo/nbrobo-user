@@ -558,7 +558,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			frKPI.setInspect_desc("");
 			frKPI.setInspect_value("" + mB[11]);
 			frKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-			if (null == frKPI || frKPI.getInspect_value().isEmpty()) {
+			if (null == frKPI.getInspect_value() || frKPI.getInspect_value().isEmpty()) {
 				return null;
 			}
 			mResultList.add(frKPI);
@@ -570,7 +570,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			sysKPI.setInspect_is_normal("0");
 			sysKPI.setInspect_desc("");
 			sysKPI.setInspect_value("" + getShort(mB, 8));
-			if (null == sysKPI || sysKPI.getInspect_value().isEmpty()) {
+			if (null == sysKPI.getInspect_value() || sysKPI.getInspect_value().isEmpty()) {
 				return null;
 			}
 			mResultList.add(sysKPI);
@@ -582,7 +582,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			diaKPI.setInspect_is_normal("0");
 			diaKPI.setInspect_desc("");
 			diaKPI.setInspect_value("" + mB[10]);
-			if (null == diaKPI || diaKPI.getInspect_value().isEmpty()) {
+			if (null == diaKPI.getInspect_value() || diaKPI.getInspect_value().isEmpty()) {
 				return null;
 			}
 			mResultList.add(diaKPI);
@@ -603,7 +603,7 @@ public class DeviceControlActivity extends BaseActivity implements OnClickListen
 			xtKPI.setInspect_desc("");
 			xtKPI.setInspect_value(swithXueTang(getShort(mB, 9) + ""));
 			xtKPI.setInspect_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-			if (null == xtKPI || xtKPI.getInspect_value().isEmpty()) {
+			if (null == xtKPI.getInspect_value() || xtKPI.getInspect_value().isEmpty()) {
 				return null;
 			}
 			mResultList.add(xtKPI);
