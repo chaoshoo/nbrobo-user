@@ -54,4 +54,15 @@ public class Shared {
         SharedPreferences sp = context.getSharedPreferences("login", 0);
         return sp.getString("passwordStr",null);
     }
+
+    /**
+     * 得到登录的密码
+     * @param context
+     * @return
+     */
+    public String getPushMsg(Context context) {
+        SharedPreferences sp = context.getSharedPreferences("push", 0);
+        return sp.getString("msg",null);
+    }
+
 }

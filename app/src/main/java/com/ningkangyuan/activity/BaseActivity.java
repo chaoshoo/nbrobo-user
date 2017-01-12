@@ -155,6 +155,12 @@ public class BaseActivity extends FragmentActivity implements OnPushListener {
             String title = jsonObject.getString("title");
             String description = jsonObject.getString("description");
 
+            //如果本地存储的有此条消息，则啥都不做
+            if ((title + description).equals(Shared.getInstance().getPushMsg(this))) {
+                return;
+            }
+            this.getSharedPreferences("push",0).edit().putString("msg",title+description).commit();
+
             titleStr = title;
             msgStr = description;
             mConfirm.setVisibility(View.GONE);
