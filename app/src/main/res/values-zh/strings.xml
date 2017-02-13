@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">环球健康</string>
+    <string name="app_name">ROBO</string>
 
     <string name="label_data">Data:</string>
     <string name="label_send">Send:</string>
@@ -822,8 +822,8 @@
 <string name="talk_video_xml_4">关声</string>
 <string name="time_schedule_xml_1">医生分时排班</string>
 <string name="universal_xml_1">智慧健康管理</string>
-<string name="universal_xml_3">环球健康</string>
-<string name="universal_xml_4">环球健康</string>
+<string name="universal_xml_3">ROBO</string>
+<string name="universal_xml_4">ROBO</string>
 <string name="universal_xml_5">服务热线</string>
 <string name="video_evaluate_xml_1">输入评价</string>
 <string name="video_evaluate_xml_2">打分</string>

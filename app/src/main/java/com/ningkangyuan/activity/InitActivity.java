@@ -282,6 +282,13 @@ public class InitActivity extends Activity {
                 String result = response.body().string();
                 LogUtil.d(TAG,  "onResponse：" + result);
                 if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                    if ("1".equals(JsonUtil.getObjectByKey("code",  result))) {
+                        mIsCheckUpdate = true;
+                        if (mIsTimeOver) {
+                            leave();
+                        }
+                        return;
+                    }
                     String vc = JsonUtil.getObjectByKey("version_code",  result);
                     Integer version_code = Integer.parseInt(vc);
                     String version_url = JsonUtil.getObjectByKey("version_url",  result);

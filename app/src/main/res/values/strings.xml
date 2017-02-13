@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GD Health</string>
+    <string name="app_name">ROBO</string>
 
     <string name="label_data">Data:</string>
     <string name="label_send">Send:</string>
@@ -822,8 +822,8 @@
 <string name="talk_video_xml_4">Sound off</string>
 <string name="time_schedule_xml_1">The doctor time scheduling</string>
 <string name="universal_xml_1">Intelligent health management</string>
-<string name="universal_xml_3">GD Health</string>
-<string name="universal_xml_4">GD Health</string>
+<string name="universal_xml_3">ROBO</string>
+<string name="universal_xml_4">ROBO</string>
 <string name="universal_xml_5">hotline</string>
 <string name="video_evaluate_xml_1">Input evaluation</string>
 <string name="video_evaluate_xml_2">Mark</string>
