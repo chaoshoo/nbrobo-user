@@ -31,9 +31,9 @@ public class Constant {
 
     public static Map<String, String> REFERENCE;
 
-    public static final String API_DOMAIN = "http://api.nbrobo.com";
+    public static final String API_DOMAIN = "http://121.43.123.125:84";
 
-    public static final String PLATFORM_DOMAIN = "http://sys.nbrobo.com";
+    public static final String PLATFORM_DOMAIN = "http://121.43.123.125:83";
 
     //public static final String PLATFORM_DOMAIN = "http://192.168.1.102:8080/nkyplatform";
 
