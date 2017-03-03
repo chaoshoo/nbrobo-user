@@ -114,8 +114,8 @@ public class NRtcActivity extends AppCompatActivity {
         parameters.setBoolean(NRtcParameters.KEY_VIDEO_FPS_REPORTED, videoFpsReported);
         parameters.setInteger(NRtcParameters.KEY_DEVICE_DEFAULT_ROTATION, deviceDefaultRotation);
         parameters.setInteger(NRtcParameters.KEY_DEVICE_ROTATION_FIXED_OFFSET, deviceRotationOffset);
-        parameters.setBoolean(NRtcParameters.KEY_SESSION_LIVE_MODE, live);
-        parameters.setString(NRtcParameters.KEY_SESSION_LIVE_URL, liveUrl);
+        parameters.setBoolean(NRtcParameters.KEY_SESSION_LIVE_MODE, false);
+//        parameters.setString(NRtcParameters.KEY_SESSION_LIVE_URL, liveUrl);
         parameters.setInteger(NRtcParameters.KEY_VIDEO_FRAME_RATE, videoFrameRate);
         parameters.setBoolean(NRtcParameters.KEY_AUDIO_REPORT_SPEAKER, audioReportSpeaker);
 
