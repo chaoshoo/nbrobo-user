@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.baidu.android.pushservice.PushConstants;
@@ -60,6 +61,8 @@ public class InitActivity extends Activity {
 
     private boolean mIsCheckUpdate = false;
 
+    private boolean mIsCheckTessData = false;
+
     private boolean mIsTimeOver = false;
 
     @Override
@@ -100,11 +103,13 @@ public class InitActivity extends Activity {
         //检查版本更新
         checkNewVersion();
 
+        checkTessData();;
+
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 mIsTimeOver = true;
-                if (mIsCheckUpdate) {
+                if (mIsCheckUpdate && mIsCheckTessData) {
                     leave();
                 }
 //                leave();
@@ -263,6 +268,23 @@ public class InitActivity extends Activity {
         }
     };
 
+    private Handler mUpdateTessDataHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    int progress = msg.arg1;
+                    ToastUtil.show(InitActivity.this,"下载进度:" + progress + "%");
+                    break;
+                case 2:
+                    String apkPath = (String) msg.obj;
+                    ToastUtil.show(InitActivity.this,"下载完成");
+                    break;
+            }
+
+        }
+    };
+
     private Call mDownLoadCall;
     private void checkNewVersion() {
         mDownLoadCall = OkHttpHelper.get(OkHttpHelper.makeJsonParams("getappversion",
@@ -372,6 +394,79 @@ public class InitActivity extends Activity {
                     mUpdateApkHandler.sendMessage(message);
 
                     fos.flush();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        fos.close();
+                    }
+                    if (is != null) {
+                        is.close();
+                    }
+                }
+            }
+        });
+    }
+
+    private void checkTessData() {
+        String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File tessDataDir = new File(sdPath, "tessdata");
+        Log.d(TAG, "tess data dir: " + tessDataDir.getAbsolutePath());
+        if (tessDataDir.exists() &&  tessDataDir.isFile()) {
+            tessDataDir.delete();
+        }
+        final File tessDataFile = new File(tessDataDir,"eng.traineddata" );
+        Log.d(TAG, "tess data file: " + tessDataFile.getAbsolutePath());
+        if (tessDataFile.exists()) {
+            Log.d(TAG, "tess data exist: " + tessDataFile.getAbsolutePath());
+            mIsCheckTessData = true;
+            return;
+        }
+        if (!tessDataDir.exists()) {
+            tessDataDir.mkdirs();
+        }
+        OkHttpHelper.download(OkHttpHelper.DOMAIN + "/eng.traineddata", new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String msg = e.getMessage();
+                        if (msg.startsWith("Failed")) {
+                            msg = "无法连接服务器，请检查网络";
+                        }
+                        ToastUtil.show(InitActivity.this, msg);
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                InputStream is = null;
+                byte[] buff = new byte[2048];
+                int len = 0;
+                FileOutputStream fos = null;
+                String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                try {
+                    is = response.body().byteStream();
+                    long total = response.body().contentLength();
+                    fos = new FileOutputStream(tessDataFile);
+                    long sum = 0;
+                    while ((len = is.read(buff)) != -1) {
+                        fos.write(buff, 0, len);
+                        sum += len;
+                        int progress = (int) ((sum * 1.0f / total) * 100);
+                        Message message = mUpdateTessDataHandler.obtainMessage();
+                        message.what = 1;
+                        message.arg1 = progress;
+                        mUpdateTessDataHandler.sendMessage(message);
+                    }
+                    mIsCheckTessData = true;
+                    Message message = mUpdateTessDataHandler.obtainMessage();
+                    message.what = 2;
+                    mUpdateTessDataHandler.sendMessage(message);
+                    fos.flush();
+                    Log.d(TAG, "download tess data file sum: " + sum);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

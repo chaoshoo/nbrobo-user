@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/androidtvwidget/androidtvwidget.iml" filepath="$PROJECT_DIR$/androidtvwidget/androidtvwidget.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/effect/effect.iml" filepath="$PROJECT_DIR$/effect/effect.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nbrobo-user.iml" filepath="$PROJECT_DIR$/nbrobo-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/nkyuser.iml" filepath="$PROJECT_DIR$/nkyuser.iml" />
     </modules>
   </component>

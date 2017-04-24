@@ -10,6 +10,8 @@ android {
         targetSdkVersion 23
         versionCode 14
         versionName "1.0"
+        renderscriptTargetApi 16
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
@@ -34,6 +36,8 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'io.github.openfeign:feign-gson:9.3.0'
+    compile 'com.rmtheis:tess-two:6.3.0'
+    compile 'io.github.silvaren:easyrs:0.5.3'
     compile project(':androidtvwidget')
     compile files('libs/blue20140930.jar')
     compile files('libs/pushservice-5.0.0.66.jar')

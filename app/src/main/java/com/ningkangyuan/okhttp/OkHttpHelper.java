@@ -30,7 +30,9 @@ public class OkHttpHelper {
     //外网
 //    private static final String URL = "http://114.55.228.245:84/nkyapi/mobile/interface.do?content=";
 
-    private static final String URL = "http://api.nbrobo.com/mobile/interface.do?content=";
+    public static final String DOMAIN = "http://api.nbrobo.com";
+
+    private static final String API_URL = DOMAIN + "/mobile/interface.do?content=";
     /**
      * get请求
      * @param params
@@ -38,7 +40,7 @@ public class OkHttpHelper {
      * @return
      */
     public static Call get(JSONObject params,Callback callback) {
-        String requestUrl = URL + params.toString();
+        String requestUrl = API_URL + params.toString();
         Call call1 = mOkHttpClient.newCall(new Request.Builder().url(requestUrl).build());
         call1.enqueue(callback);
         LogUtil.d(TAG,"request：" + call1.request().toString());
