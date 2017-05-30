@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.nbrobo.scan.capture.CaptureActivity;
 import com.ningkangyuan.R;
 import com.ningkangyuan.okhttp.OkHttpHelper;
 import com.ningkangyuan.push.BDPushReceiver;

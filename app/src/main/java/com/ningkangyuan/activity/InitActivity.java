@@ -101,13 +101,15 @@ public class InitActivity extends Activity {
         updateSystemDate();
 
         //检查版本更新
-        checkNewVersion();
+        //checkNewVersion();
 
         checkTessData();;
 
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
+                Log.d(TAG, "mIsCheckUpdate: " + mIsCheckUpdate);
+                Log.d(TAG, "mIsCheckTessData: " + mIsCheckTessData);
                 mIsTimeOver = true;
                 if (mIsCheckUpdate && mIsCheckTessData) {
                     leave();
@@ -288,8 +290,8 @@ public class InitActivity extends Activity {
     private Call mDownLoadCall;
     private void checkNewVersion() {
         mDownLoadCall = OkHttpHelper.get(OkHttpHelper.makeJsonParams("getappversion",
-                new String[]{},
-                new Object[]{}), new Callback() {
+                new String[]{"version_type"},
+                new Object[]{"nky_scan"}), new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 String msg = e.getMessage();
@@ -420,6 +422,7 @@ public class InitActivity extends Activity {
         if (tessDataFile.exists()) {
             Log.d(TAG, "tess data exist: " + tessDataFile.getAbsolutePath());
             mIsCheckTessData = true;
+            checkNewVersion();
             return;
         }
         if (!tessDataDir.exists()) {
@@ -467,6 +470,7 @@ public class InitActivity extends Activity {
                     mUpdateTessDataHandler.sendMessage(message);
                     fos.flush();
                     Log.d(TAG, "download tess data file sum: " + sum);
+                    checkNewVersion();
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

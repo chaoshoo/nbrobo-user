@@ -258,7 +258,7 @@
 
         <activity android:name=".nrtc.AboutActivity"></activity>
 
-        <activity android:name="com.nbrobo.scan.capture.CaptureActivity"
+        <activity android:name="com.google.zxing.client.android.CaptureActivity"
             android:screenOrientation="sensorLandscape"
             android:clearTaskOnLaunch="true"
             android:stateNotNeeded="true"

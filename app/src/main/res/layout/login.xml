@@ -96,7 +96,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:nextFocusUp="@+id/login_password"
-            android:nextFocusDown="@+id/login_register"
+            android:nextFocusDown="@+id/regist_idcard_scan"
             android:background="@drawable/submit_btn"
             android:textColor="@android:color/white"
             android:text="登录"/>
@@ -106,7 +106,7 @@
             android:layout_width="500dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
-            android:nextFocusUp="@+id/login_password"
+            android:nextFocusUp="@+id/login_submit"
             android:nextFocusDown="@+id/login_register"
             android:background="@drawable/submit_btn"
             android:textColor="@android:color/white"

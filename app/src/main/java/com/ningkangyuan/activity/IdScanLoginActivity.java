@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
-import com.nbrobo.scan.capture.CaptureActivity;
+import com.google.zxing.client.android.CaptureActivity;
 import com.ningkangyuan.R;
 import com.ningkangyuan.okhttp.OkHttpHelper;
 import com.ningkangyuan.push.BDPushReceiver;
