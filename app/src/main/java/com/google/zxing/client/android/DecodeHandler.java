@@ -31,14 +31,18 @@ import android.support.v8.renderscript.RenderScript;
 import android.util.Log;
 
 
-import com.example.njupt.zhb.imageprocesssystem.ImageProcess;
-import com.google.zxing.client.android.camera.CameraManager;
 import com.googlecode.tesseract.android.TessBaseAPI;
 import com.ningkangyuan.R;
+import com.ningkangyuan.activity.InitActivity;
 import com.ningkangyuan.utils.ToastUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,12 +58,14 @@ final class DecodeHandler extends Handler {
 
   private TessBaseAPI baseApi;
   private RenderScript rs;
-  private ImageProcess imageProcess;
+ // private ImageProcess imageProcess;
+
+  private List<String> resultList;
 
   DecodeHandler(CaptureActivity activity) {
     this.activity = activity;
     rs = RenderScript.create(activity);
-    imageProcess = new ImageProcess();
+    this.resultList = new ArrayList<>();
   }
 
   @Override
@@ -76,6 +82,54 @@ final class DecodeHandler extends Handler {
         Looper.myLooper().quit();
         break;
     }
+  }
+
+  private String checkResult(String result) {
+    if (this.resultList.isEmpty()) {
+      this.resultList.add(result);
+    } else if (result.length() == this.resultList.get(0).length()) {
+      this.resultList.add(result);
+    } else {
+      return null;
+    }
+    if (this.resultList.size() < 5) {
+      return null;
+    }
+    int length = result.length();
+    StringBuilder sb = new StringBuilder();
+    for (int index = 0; index < length; index++) {
+      Map<String, Integer> map = new HashMap<>();
+      for (int resultIndex = 0; resultIndex < this.resultList.size(); resultIndex++) {
+        char c = this.resultList.get(resultIndex).charAt(index);
+        String s = String.valueOf(c);
+        Integer count = map.get(s);
+        if (count == null) {
+          count = 0;
+        } else {
+          count ++;
+        }
+        map.put(s, count);
+      }
+      Integer count = 0;
+      String s = "";
+      Iterator<Map.Entry<String, Integer>> iter = map.entrySet().iterator();
+      while (iter.hasNext()) {
+        Map.Entry<String, Integer> entry = iter.next();
+        String key = entry.getKey();
+        Integer value = entry.getValue();
+        if (value.equals(count)) {
+          this.resultList.clear();
+          return null;
+        }
+        if (value > count) {
+          s = key;
+          count = value;
+        }
+      }
+      sb.append(s);
+    }
+    this.resultList.clear();
+    return sb.toString();
   }
 
   /**
@@ -96,6 +150,12 @@ final class DecodeHandler extends Handler {
         Pattern pattern = Pattern.compile(reg);
         Matcher m = pattern.matcher(result);
         while (m.find()) {
+          result = this.checkResult(result);
+          if (null == result) {
+            Message message = Message.obtain(handler, R.id.decode_failed);
+            message.sendToTarget();
+            return;
+          }
           Message message = Message.obtain(handler, R.id.decode_succeeded, result);
           Bundle bundle = new Bundle();
           message.setData(bundle);
@@ -115,10 +175,9 @@ final class DecodeHandler extends Handler {
   }
 
   private String execute(byte[] data, int width, int height) {
-
-    baseApi=new TessBaseAPI();
     String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-    baseApi.init(sdPath, "eng");
+    baseApi=new TessBaseAPI();
+    baseApi.init(sdPath, InitActivity.TRAINED_DATA_NAME_PREFIX);
     Bitmap bitmap = Nv21Image.nv21ToBitmap(rs, data, width, height);
 
     int destWidth = width / 2;
@@ -128,7 +187,7 @@ final class DecodeHandler extends Handler {
     }
 
     Bitmap  resultMap = Bitmap.createBitmap(bitmap, (width  - destWidth) / 2, (height - destHeight) / 2, destWidth, destHeight);
-    resultMap = scaleBitmap(resultMap, 2f, 2f);
+    resultMap = scaleBitmap(resultMap, 4f, 4f);
     resultMap = binarization(resultMap);
 //    Bitmap laplaceBitmap = imageProcess.LaplaceGradient(resultMap);
     //设置要ocr的图片bitmap
@@ -138,23 +197,22 @@ final class DecodeHandler extends Handler {
 //    String lpath = Environment.getExternalStorageDirectory().toString()+"/DCIM/Bitmap["+
 //            android.os.SystemClock.uptimeMillis() + "]l.png";
 //    dumpBitmap(resultMap, path);
+//    ToastUtil.show(this.activity, String.valueOf(new File(path).getParentFile().listFiles().length));
 //    dumpBitmap(laplaceBitmap, lpath);
+
     baseApi.setImage(resultMap);
     //根据Init的语言，获得ocr后的字符串
-    Log.d(TAG, "start tess ocr. width: " + destWidth + " height: " + destHeight + " data length: " + data.length);
+    //Log.d(TAG, "start tess ocr. width: " + destWidth + " height: " + destHeight + " data length: " + data.length);
     String text= baseApi.getUTF8Text();
-    ToastUtil.show(this.activity, text);
-    Log.d(TAG, "----------end tess ocr, result: "+ text);
+    //ToastUtil.show(this.activity, text);
+    //Log.d(TAG, "----------end tess ocr, result: "+ text);
     //释放bitmap
     baseApi.clear();
 
     //如果连续ocr多张图片，这个end可以不调用，但每次ocr之后，必须调用clear来对bitmap进行释放
     //释放native内存
     baseApi.end();
-
     return text;
-
-    //return "123";
   }
 
   private Bitmap convertBmp(Bitmap bmp){

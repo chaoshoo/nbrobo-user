@@ -49,6 +49,10 @@ public class InitActivity extends Activity {
     //企业
     private static final String PUSH_API_KEY = "iO2Kd9I9Sv2Cn4Djmm8YFBaD";
 
+    public static final String TRAINED_DATA_NAME_PREFIX = "cnid";
+
+    private static final String TRAINED_DATA_NAME = TRAINED_DATA_NAME_PREFIX + ".traineddata";
+
     //我的
 //    private static final String PUSH_API_KEY = "kuE3h2aj59tuyoVlttTxI4ZO";
 
@@ -417,10 +421,10 @@ public class InitActivity extends Activity {
         if (tessDataDir.exists() &&  tessDataDir.isFile()) {
             tessDataDir.delete();
         }
-        final File tessDataFile = new File(tessDataDir,"eng.traineddata" );
+        File tessDataFile = new File(tessDataDir,TRAINED_DATA_NAME);
         Log.d(TAG, "tess data file: " + tessDataFile.getAbsolutePath());
         if (tessDataFile.exists()) {
-            Log.d(TAG, "tess data exist: " + tessDataFile.getAbsolutePath());
+            Log.d(TAG, "tess data exist");
             mIsCheckTessData = true;
             checkNewVersion();
             return;
@@ -428,7 +432,12 @@ public class InitActivity extends Activity {
         if (!tessDataDir.exists()) {
             tessDataDir.mkdirs();
         }
-        OkHttpHelper.download(OkHttpHelper.DOMAIN + "/eng.traineddata", new Callback() {
+        downloadTessData(tessDataDir, TRAINED_DATA_NAME, true);
+    }
+
+    private void downloadTessData(File tessDataDir, String dataFileName, final boolean needCheckNweVersion) {
+        final File tessDataFile = new File(tessDataDir,dataFileName);
+        OkHttpHelper.download(OkHttpHelper.DOMAIN + "/" + dataFileName, new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {
                 runOnUiThread(new Runnable() {
@@ -449,7 +458,6 @@ public class InitActivity extends Activity {
                 byte[] buff = new byte[2048];
                 int len = 0;
                 FileOutputStream fos = null;
-                String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
@@ -470,7 +478,9 @@ public class InitActivity extends Activity {
                     mUpdateTessDataHandler.sendMessage(message);
                     fos.flush();
                     Log.d(TAG, "download tess data file sum: " + sum);
-                    checkNewVersion();
+                    if (needCheckNweVersion) {
+                        checkNewVersion();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
